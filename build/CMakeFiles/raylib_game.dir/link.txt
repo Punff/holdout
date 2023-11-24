@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/raylib_game.dir/src/main.cpp.o -o raylib_game  -Wl,-rpath,/usr/local/lib64 /usr/local/lib64/libraylib.so 

@@ -1,3 +1,0 @@
-/home/punff/Documents/divine-intellect/raylib/test-game/build/CMakeFiles/raylib_game.dir
-/home/punff/Documents/divine-intellect/raylib/test-game/build/CMakeFiles/edit_cache.dir
-/home/punff/Documents/divine-intellect/raylib/test-game/build/CMakeFiles/rebuild_cache.dir
