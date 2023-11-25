@@ -7,7 +7,7 @@ int main() {
     InitWindow(800, 600, "raylib");
     SetTargetFPS(60);
     int screenWidth = GetScreenWidth();
-    Vector2 center = {GetScreenWidth()/2, GetScreenHeight()/2};
+    Vector2 center = {GetScreenWidth()/2.0f, GetScreenHeight()/2.0f};
     vector<Rectangle> redRectangles;
     float rotation = 0;
     Rectangle box = { GetScreenWidth() / 2.0f - 30, GetScreenHeight() / 2.0f - 30, 60, 60 };
@@ -19,7 +19,7 @@ int main() {
         box.y = GetMouseY() - box.height / 2;
 
         if (IsMouseButtonPressed(0))
-            redRectangles.push_back({ GetMouseX() - 25, GetMouseY() - 25, 50, 50 });
+            redRectangles.push_back({ GetMouseX() - 25.0f, GetMouseY() - 25.0f, 50, 50 });
 
         BeginDrawing();
         
