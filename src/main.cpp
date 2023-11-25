@@ -13,7 +13,7 @@ int main() {
     while (!WindowShouldClose()) {
         // Updates
         Map map;
-        map.set_size(GetScreenWidth());
+        map.set_size(GetScreenWidth() / 2);
         map.set_pos(GetScreenWidth() / 2, GetScreenHeight() / 2);
         
 
