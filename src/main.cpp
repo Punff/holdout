@@ -1,5 +1,6 @@
 #include <iostream>
 #include "map.hpp"
+#include "wireframeTile.hpp"
 #include <raylib.h>
 #include <vector>
 using namespace std;
@@ -13,7 +14,7 @@ int main() {
         // Updates
         Map map;
         map.set_size(GetScreenWidth());
-        map.set_poz(GetScreenWidth() / 2, GetScreenHeight() / 2);
+        map.set_pos(GetScreenWidth() / 2, GetScreenHeight() / 2);
         
 
         // Draw
@@ -21,7 +22,7 @@ int main() {
         
         ClearBackground(BLACK);
 
-        DrawRectangleLines(map.x - map.size / 2, map.y - map.size / 2, map.size, map.size, RAYWHITE);
+        map.draw_map();
         
         EndDrawing();
     }

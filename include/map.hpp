@@ -1,6 +1,5 @@
 #ifndef MAP_H
 #define MAP_H
-#define MAP_SIZE 10
 
 #include "baseTile.hpp"
 #include <iostream>

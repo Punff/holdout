@@ -3,8 +3,8 @@
 
 class baseTile{
     public:
-    baseTile(int size);
-    virtual void draw_tile(int xPos, int yPos, int size);
+    baseTile();
+    virtual void draw_tile(int xPos, int yPos, int size) = 0;
 };
 
 #endif

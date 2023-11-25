@@ -1,4 +1,19 @@
 #include "map.hpp"
+#include "wireframeTile.hpp"
+#define MAP_TILES 10
+
+Map::Map(){
+    grid.resize(MAP_TILES);
+    
+    for(int i = 0; i < MAP_TILES; i++){
+        vector<baseTile*> row(MAP_TILES);
+        for(int j = 0; j < MAP_TILES; j++){
+            wireframeTile* tile = new wireframeTile;
+            row[j] = tile;
+        }
+        grid[i] = row;
+    }
+}
 
 void Map::draw_map(){
     size /= MAP_TILES;
