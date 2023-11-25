@@ -1,7 +1,4 @@
-#include <iostream>
-#include <raylib.h>
-#include <vector>
-using namespace std;
+#include "main.hpp"
 
 int main() {
     InitWindow(800, 600, "raylib");
