@@ -21,7 +21,7 @@ int main() {
         BeginDrawing();
         
         ClearBackground(BLACK);
-
+        DrawFPS(5, 5);
         map.draw_map();
         
         EndDrawing();
