@@ -1,5 +1,6 @@
 #include "map.hpp"
-#include "wireframeTile.hpp"
+#include "tiles.hpp"
+
 #define MAP_TILES 10
 
 Map::Map(){

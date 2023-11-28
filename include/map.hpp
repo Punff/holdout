@@ -1,7 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "baseTile.hpp"
+#include "tiles.hpp"
 #include <iostream>
 #include <vector>
 using namespace std;
