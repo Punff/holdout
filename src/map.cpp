@@ -20,8 +20,8 @@ void Map::draw_map(){
     for(int i = 0; i < MAP_TILES; i++){
         for(int j = 0; j < MAP_TILES; j++){
             grid[i][j]->draw_tile
-            (tileSize * j + tileSize / 2 + xPos - size / 2 - tileSize / 2,
-            tileSize * i + tileSize / 2 + yPos - size / 2 - tileSize / 2,
+            (tileSize * j + xPos - size / 2,
+            tileSize * i + yPos - size / 2,
             tileSize);
         }
     }
