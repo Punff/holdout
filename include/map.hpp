@@ -9,7 +9,7 @@ using namespace std;
 
 class Map{
     private:
-    int size, xPos, yPos;
+    int size, xPos, yPos, mapTiles;
 
     public:
     vector<vector<baseTile*>> grid;
