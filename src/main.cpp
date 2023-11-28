@@ -1,6 +1,6 @@
 #include <iostream>
-#include "map.hpp"
-#include "wireframeTile.hpp"
+#include "../include/map.hpp"
+#include "../include/wireframeTile.hpp"
 #include <raylib.h>
 #include <vector>
 using namespace std;
