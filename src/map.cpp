@@ -1,5 +1,5 @@
-#include "map.hpp"
-#include "tiles.hpp"
+#include "../include/map.hpp"
+#include "../include/tiles.hpp"
 
 Map::Map(){
     mapTiles = 10;
