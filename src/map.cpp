@@ -4,11 +4,12 @@
 Map::Map(){
     mapTiles = 10;
     grid.resize(mapTiles);
-    
+    int tileSize = size / mapTiles;
+
     for(int i = 0; i < mapTiles; i++){
         vector<baseTile*> row(mapTiles);
         for(int j = 0; j < mapTiles; j++){
-            wireframeTile* tile = new wireframeTile;
+            wireframeTile* tile = new wireframeTile(tileSize * j + xPos - size / 2, tileSize * i + yPos - size / 2, tileSize);
             row[j] = tile;
         }
         grid[i] = row;
@@ -16,13 +17,14 @@ Map::Map(){
 }
 
 void Map::draw_map(){
-    int tileSize = size / mapTiles;
-    for(int i = 0; i < mapTiles; i++){
-        for(int j = 0; j < mapTiles; j++){
-            grid[i][j]->draw_tile
-            (tileSize * j + xPos - size / 2,
-            tileSize * i + yPos - size / 2,
-            tileSize);
+    if(grid.size() == 0){
+        return;
+    }
+
+    for(int i = 0; i < grid.size(); i++){
+        for(int j = 0; j < grid[0].size(); j++)
+        {
+            grid[i][j]->draw_tile();
         }
     }
 }

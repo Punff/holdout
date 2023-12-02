@@ -2,13 +2,19 @@
 #define TILES_H
 
 class baseTile{
+    protected:
+    int xPos, yPos, size;
     public:
-    baseTile();
-    virtual void draw_tile(int xPos, int yPos, int size);
+    baseTile(int xPos, int yPos, int size);
+    int get_xPos();
+    int get_yPos();
+    int get_size();
+    virtual void draw_tile();
 };
 
 class wireframeTile : public baseTile{
-    void draw_tile(int xPos, int yPos, int size);
+    using baseTile::baseTile;
+    void draw_tile();
 };
 
 #endif
