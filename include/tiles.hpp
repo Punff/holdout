@@ -12,7 +12,7 @@ class baseTile{
     virtual void draw_tile();
 };
 
-class wireframeTile : public baseTile{
+class wireframeTile : public baseTile {
     using baseTile::baseTile;
     void draw_tile();
 };

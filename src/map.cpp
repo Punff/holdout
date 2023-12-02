@@ -1,5 +1,5 @@
-#include "map.hpp"
-#include "tiles.hpp"
+#include "../include/map.hpp"
+#include "../include/tiles.hpp"
 
 Map::Map(){
     mapTiles = 10;
@@ -16,7 +16,7 @@ Map::Map(){
     }
 }
 
-void Map::draw_map(){
+void Map::draw_map() {
     if(grid.size() == 0){
         return;
     }
