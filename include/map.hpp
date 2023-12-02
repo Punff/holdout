@@ -6,7 +6,6 @@
 #include <vector>
 using namespace std;
 
-
 class Map{
     private:
     int size, xPos, yPos, mapTiles;
