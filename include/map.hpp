@@ -7,7 +7,6 @@
 #include <fstream>
 using namespace std;
 
-
 class Map{
     private:
     int size, xPos, yPos, mapTiles;
@@ -17,7 +16,10 @@ class Map{
     static const string MAP_PATH;
     vector<vector<baseTile*>> grid;
     Map();
+
     Map(string filename);
+
+    //Map(string filename);
     void draw_map();
     void set_size(int size);
     void set_pos(int xPos, int yPos);

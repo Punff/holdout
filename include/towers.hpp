@@ -10,7 +10,7 @@ class baseTower {
 	int cost;
 	
 	public:
-	// finish contructor
+	// finish constructor
 	baseTower();
     virtual void draw_tower(int xPos, int yPos, int size);
     virtual void draw_range(int xPos, int yPos, float range);

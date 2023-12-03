@@ -92,3 +92,4 @@ int Map::get_tile_yPos(int row){
 int Map::get_tile_size(){
     return size / mapTiles;
 }
+
