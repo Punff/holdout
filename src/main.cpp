@@ -1,21 +1,18 @@
 #include <iostream>
 #include "../include/map.hpp"
-#include "../include/tiles.hpp"
 #include "../include/towers.hpp"
 #include <raylib.h>
-#include <vector>
 using namespace std;
 
-int main() {
+int main(int argc, char** argv) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "raylib");
     ToggleFullscreen();
     SetTargetFPS(60);
     basicTower test;
+    Map map("map1");
     
     while (!WindowShouldClose()) {
         // Updates
-        Map map;
-        Map towerUI;
         map.set_size(GetScreenWidth() / 2);
         map.set_pos(GetScreenWidth() / 2, GetScreenHeight() / 2);
        

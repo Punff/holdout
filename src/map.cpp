@@ -1,6 +1,8 @@
 #include "../include/map.hpp"
 #include "../include/tiles.hpp"
 
+const string Map::MAP_PATH = "assets/maps/";
+
 Map::Map(){
     mapTiles = 10;
     grid.resize(mapTiles);
@@ -16,6 +18,43 @@ Map::Map(){
     }
 }
 
+Map::Map(string filename){
+    string path = MAP_PATH + filename + ".tmf";
+    ifstream mapFile(path);
+    if(!mapFile){
+        cout << "Could not find " << path << "\n";
+    }
+    
+    mapFile >> mapTiles;
+    cout << "Map tiles: " << mapTiles << "\n";
+    grid.resize(mapTiles);
+    int tileID;
+
+    for(int i = 0; i < mapTiles; i++)
+    {
+        vector<baseTile*> row(mapTiles);
+        for(int j = 0; j < mapTiles; j++)
+        {
+            mapFile >> tileID;
+            row[j] = create_tile_by_ID(tileID);
+        }
+        grid[i] = row;
+    }
+
+    mapFile.close();
+}
+
+baseTile* Map::create_tile_by_ID(int ID){
+    switch(ID){
+        case 0:
+            return new wireframeTile;
+        case 1:
+            return new solidTile;
+        default:
+            return NULL;
+    }
+}
+
 void Map::draw_map() {
     if(grid.size() == 0){
         return;
@@ -25,6 +64,9 @@ void Map::draw_map() {
     for(int i = 0; i < grid.size(); i++){
         for(int j = 0; j < grid[0].size(); j++)
         {
+            if(grid[i][j] == NULL){
+                return;
+            }
             grid[i][j]->draw_tile(tileSize * j + xPos - size / 2, tileSize * i + yPos - size / 2, tileSize);
         }
     }

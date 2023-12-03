@@ -10,3 +10,7 @@ void baseTile::draw_tile(int xPos, int yPos, int size){}
 void wireframeTile::draw_tile(int xPos, int yPos, int size){
     DrawRectangleLines(xPos, yPos, size, size, WHITE);
 }
+
+void solidTile::draw_tile(int xPos, int yPos, int size){
+    DrawRectangle(xPos, yPos, size, size, WHITE);
+}

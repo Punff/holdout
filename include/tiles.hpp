@@ -11,4 +11,8 @@ class wireframeTile : public baseTile {
     void draw_tile(int xPos, int yPos, int size);
 };
 
+class solidTile : public baseTile {
+    void draw_tile(int xPos, int yPos, int size);
+};
+
 #endif
