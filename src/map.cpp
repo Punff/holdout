@@ -86,7 +86,7 @@ int Map::get_tile_xPos(int column){
 }
 
 int Map::get_tile_yPos(int row){
-    return (size / mapTiles) * row + xPos - size / 2;
+    return (size / mapTiles) * row + yPos - size / 2;
 }
 
 int Map::get_tile_size(){
