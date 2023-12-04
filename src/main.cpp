@@ -7,6 +7,7 @@ using namespace std;
 
 int main(int argc, char** argv) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
+    ToggleFullscreen();
     SetTargetFPS(60);
 
     Map map("map1");
@@ -20,7 +21,6 @@ int main(int argc, char** argv) {
         if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
             int x = map.get_tile_xPos_on_hover();
             int y = map.get_tile_yPos_on_hover();
-
             
             basicTower tower;
             tower.set_position(map.get_tile_xPos(x), map.get_tile_yPos(y));
@@ -38,6 +38,7 @@ int main(int argc, char** argv) {
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());
+            tower.draw_range(200, map.get_tile_size());
         }
 
         EndDrawing();
