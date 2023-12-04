@@ -16,13 +16,13 @@ class baseTower {
 	baseTower();
     virtual void set_position(int xPos, int yPos);
     virtual void draw_tower(int size);
-    virtual void draw_range(float range);
+    virtual void draw_range(float range, int size);
 };
 
 class basicTower : public baseTower {
 	public:
 	void set_position(int xPos, int yPos);
 	void draw_tower(int size);
-	void draw_range(float range);
+	void draw_range(float range, int size);
 };
 #endif
