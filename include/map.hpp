@@ -3,10 +3,10 @@
 
 #include "tiles.hpp"
 #include <iostream>
+#include <raylib.h>
 #include <vector>
 #include <fstream>
 using namespace std;
-
 
 class Map{
     private:
@@ -17,13 +17,18 @@ class Map{
     static const string MAP_PATH;
     vector<vector<baseTile*>> grid;
     Map();
+
     Map(string filename);
+
+    //Map(string filename);
     void draw_map();
     void set_size(int size);
     void set_pos(int xPos, int yPos);
     int get_tile_xPos(int column);
     int get_tile_yPos(int row);
     int get_tile_size();
+    int get_tile_xPos_on_hover();
+    int get_tile_yPos_on_hover();
 };
 
 #endif
