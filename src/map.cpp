@@ -23,10 +23,11 @@ Map::Map(string filename){
     ifstream mapFile(path);
     if(!mapFile){
         cout << "Could not find " << path << "\n";
+        grid.clear();
+        return;
     }
     
     mapFile >> mapTiles;
-    cout << "Map tiles: " << mapTiles << "\n";
     grid.resize(mapTiles);
     int tileID;
 
@@ -35,12 +36,20 @@ Map::Map(string filename){
         vector<baseTile*> row(mapTiles);
         for(int j = 0; j < mapTiles; j++)
         {
+            if(mapFile.eof()){
+                cout << "Incorrect tile amount, cannot create map\n";
+                grid.clear();
+                return;
+            }
             mapFile >> tileID;
             row[j] = create_tile_by_ID(tileID);
         }
         grid[i] = row;
     }
 
+    if(!mapFile.eof()){
+        cout << "Warning: tile amount doesnt match map size!\n";
+    }
     mapFile.close();
 }
 
