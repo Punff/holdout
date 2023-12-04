@@ -3,6 +3,7 @@
 
 #include "tiles.hpp"
 #include <iostream>
+#include <raylib.h>
 #include <vector>
 #include <fstream>
 using namespace std;
@@ -26,6 +27,8 @@ class Map{
     int get_tile_xPos(int column);
     int get_tile_yPos(int row);
     int get_tile_size();
+    int get_tile_xPos_on_hover();
+    int get_tile_yPos_on_hover();
 };
 
 #endif

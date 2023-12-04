@@ -4,6 +4,8 @@
 
 class baseTower {
 	protected:
+	int xPos;
+	int yPos;
 	int HP;
 	int damage;
 	float range;
@@ -12,13 +14,15 @@ class baseTower {
 	public:
 	// finish constructor
 	baseTower();
-    virtual void draw_tower(int xPos, int yPos, int size);
-    virtual void draw_range(int xPos, int yPos, float range);
+    virtual void set_position(int xPos, int yPos);
+    virtual void draw_tower(int size);
+    virtual void draw_range(float range);
 };
 
 class basicTower : public baseTower {
 	public:
-	void draw_tower(int xPos, int yPos, int size);
-	void draw_range(int xPos, int yPos, float range);
+	void set_position(int xPos, int yPos);
+	void draw_tower(int size);
+	void draw_range(float range);
 };
 #endif

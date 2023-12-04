@@ -93,3 +93,45 @@ int Map::get_tile_size(){
     return size / mapTiles;
 }
 
+int Map::get_tile_xPos_on_hover() {
+    float mouseX = GetMouseX();
+    float mouseY = GetMouseY();
+    float tileSize = get_tile_size();
+
+    for (int column = 0; column < mapTiles; ++column) {
+        for (int row = 0; row < mapTiles; ++row) {
+            float tileX = get_tile_xPos(column);
+            float tileY = get_tile_yPos(row);
+
+            Rectangle tileRect = { tileX, tileY, tileSize, tileSize };
+
+            if (CheckCollisionPointRec({ mouseX, mouseY }, tileRect)) {
+                return column;
+            }
+        }
+    }
+
+    return 69;
+}
+
+int Map::get_tile_yPos_on_hover() {
+    float mouseY = GetMouseY();
+    float mouseX = GetMouseX();
+    float tileSize = get_tile_size();
+
+    for (int column = 0; column < mapTiles; ++column) {
+        for (int row = 0; row < mapTiles; ++row) {
+            float tileX = get_tile_xPos(column);
+            float tileY = get_tile_yPos(row);
+
+            Rectangle tileRect = { tileX, tileY, tileSize, tileSize };
+
+            if (CheckCollisionPointRec({ mouseX, mouseY }, tileRect)) {
+                return row;
+            }
+        }
+    }
+    
+    return 69;
+}
+
