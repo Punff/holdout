@@ -1,18 +1,21 @@
 #ifndef TILES_H
 #define TILES_H
-
+#include "raylib.h"
 class baseTile{
     public:
-    baseTile();
-    virtual void draw_tile(int xPos, int yPos, int size);
+    Rectangle hitbox;
+    baseTile(int xPos, int yPos, int size);
+    virtual void draw_tile();
 };
 
 class wireframeTile : public baseTile {
-    void draw_tile(int xPos, int yPos, int size);
+    using baseTile::baseTile;
+    void draw_tile();
 };
 
 class solidTile : public baseTile {
-    void draw_tile(int xPos, int yPos, int size);
+    using baseTile::baseTile;
+    void draw_tile();
 };
 
 #endif
