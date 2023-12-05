@@ -9,9 +9,8 @@ using namespace std;
 int main(int argc, char** argv) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
     ToggleFullscreen();
-    SetTargetFPS(240);
-
-    Map map("map1");
+    SetTargetFPS(60);
+    Map map("tenbytenwireframe", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
 
@@ -22,6 +21,7 @@ int main(int argc, char** argv) {
         map.set_pos(GetScreenWidth() / 2, GetScreenHeight() / 2);
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+
             int x = map.get_tile_xPos_on_hover();
             int y = map.get_tile_yPos_on_hover();
 

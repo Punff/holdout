@@ -1,16 +1,24 @@
 #include "../include/tiles.hpp"
-#include "raylib.h"
 
 // Base tile
-baseTile::baseTile(){}
 
-void baseTile::draw_tile(int xPos, int yPos, int size){}
-
-// Wireframe tile
-void wireframeTile::draw_tile(int xPos, int yPos, int size){
-    DrawRectangleLines(xPos, yPos, size, size, WHITE);
+baseTile::baseTile(int xPos, int yPos, int size){
+    hitbox.x = xPos;
+    hitbox.y = yPos;
+    hitbox.height = hitbox.width = size;
 }
 
-void solidTile::draw_tile(int xPos, int yPos, int size){
-    DrawRectangle(xPos, yPos, size, size, WHITE);
+baseTile::~baseTile(){
+
+}
+
+void baseTile::draw_tile(){}
+
+// Wireframe tile
+void wireframeTile::draw_tile(){
+    DrawRectangleLines(hitbox.x, hitbox.y, hitbox.width, hitbox.height, WHITE);
+}
+
+void solidTile::draw_tile(){
+    DrawRectangle(hitbox.x, hitbox.y, hitbox.width, hitbox.height, WHITE);
 }

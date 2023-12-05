@@ -11,19 +11,15 @@ using namespace std;
 class Map{
     private:
     int size, xPos, yPos, mapTiles;
-    baseTile* create_tile_by_ID(int ID);
+    baseTile* create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize);
 
     public:
     static const string MAP_PATH;
     vector<vector<baseTile*>> grid;
-    Map();
-
-    Map(string filename);
+    Map(string filename, int xPos, int yPos, int size);
 
     //Map(string filename);
     void draw_map();
-    void set_size(int size);
-    void set_pos(int xPos, int yPos);
     int get_tile_xPos(int column);
     int get_tile_yPos(int row);
     int get_tile_size();
