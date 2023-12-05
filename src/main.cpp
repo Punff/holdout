@@ -14,7 +14,10 @@ int main(int argc, char** argv) {
 
     while (!WindowShouldClose()) {
         // Updates
-
+        if(IsKeyPressed(300)){
+            ToggleFullscreen();
+        }
+        
         if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
             int x = map.get_tile_xPos_on_hover();
             int y = map.get_tile_yPos_on_hover();

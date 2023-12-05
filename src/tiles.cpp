@@ -8,6 +8,10 @@ baseTile::baseTile(int xPos, int yPos, int size){
     hitbox.height = hitbox.width = size;
 }
 
+baseTile::~baseTile(){
+
+}
+
 void baseTile::draw_tile(){}
 
 // Wireframe tile

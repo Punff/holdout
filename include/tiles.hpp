@@ -5,7 +5,8 @@ class baseTile{
     public:
     Rectangle hitbox;
     baseTile(int xPos, int yPos, int size);
-    virtual void draw_tile();
+    virtual void draw_tile() = 0;
+    virtual ~baseTile();
 };
 
 class wireframeTile : public baseTile {
