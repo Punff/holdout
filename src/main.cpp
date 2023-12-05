@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/map.hpp"
 #include "../include/towers.hpp"
+#include "../include/gameUI.hpp"
 #include <raylib.h>
 #include <vector>
 using namespace std;
@@ -11,16 +12,19 @@ int main(int argc, char** argv) {
     SetTargetFPS(60);
     Map map("tenbytenwireframe", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
+    towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
+
 
     while (!WindowShouldClose()) {
         // Updates
-        if(IsKeyPressed(300)){
-            ToggleFullscreen();
-        }
-        
-        if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+        map.set_size(GetScreenWidth() / 2);
+        map.set_pos(GetScreenWidth() / 2, GetScreenHeight() / 2);
+
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+
             int x = map.get_tile_xPos_on_hover();
             int y = map.get_tile_yPos_on_hover();
+
             
             basicTower tower;
             tower.set_position(map.get_tile_xPos(x), map.get_tile_yPos(y));
@@ -35,6 +39,7 @@ int main(int argc, char** argv) {
         ClearBackground(BLACK);
         DrawFPS(5, 5);
         map.draw_map();
+        testUI.draw_towerUI();
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());
