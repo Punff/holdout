@@ -17,9 +17,6 @@ int main(int argc, char** argv) {
 
     while (!WindowShouldClose()) {
         // Updates
-        map.set_size(GetScreenWidth() / 2);
-        map.set_pos(GetScreenWidth() / 2, GetScreenHeight() / 2);
-
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 
             int x = map.get_tile_xPos_on_hover();
