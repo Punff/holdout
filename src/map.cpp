@@ -51,6 +51,8 @@ baseTile* Map::create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize){
             return new wireframeTile(tilexPos, tileyPos, tileSize);
         case 1:
             return new solidTile(tilexPos, tileyPos, tileSize);
+        case 2:
+            return new pathTile(tilexPos, tileyPos, tileSize);
         default:
             return NULL;
     }
