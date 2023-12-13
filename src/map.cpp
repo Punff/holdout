@@ -20,6 +20,10 @@ Map::Map(string filename, int xPos, int yPos, int size){
     int tileSize = get_tile_size();
     int tileID;
 
+    Vector2 startPos;
+    mapFile >> startPos.x;
+    mapFile >> startPos.y;
+
     for(int i = 0; i < mapTiles; i++)
     {
         vector<baseTile*> row(mapTiles);
@@ -38,6 +42,13 @@ Map::Map(string filename, int xPos, int yPos, int size){
 
     if(!mapFile.eof()){
         cout << "Warning: tile amount doesnt match map size!\n";
+    }
+    generate_path(startPos, startPos);
+
+    cout << "Entry coordinates: " << startPos.x << ", " << startPos.y << "\n";
+    cout << "Path:\n";
+    for(int k = 0; k < enemyPath.size(); k++){
+        cout << enemyPath[k].x << ", " << enemyPath[k].y << "\n";
     }
     cout << "Map loaded\n";
     mapFile.close();
@@ -124,5 +135,42 @@ int Map::get_tile_yPos_on_hover() {
     }
     
     return 69;
+}
+
+void Map::generate_path(Vector2 pos, Vector2 lastPos){
+    if(pos.x < 0 || pos.y < 0 || pos.x > mapTiles - 1 || pos.y > mapTiles - 1){
+        return;
+    }
+
+    if(grid[pos.y][pos.x]->is_path){
+        enemyPath.push_back(pos);
+    }
+    else{
+        return;
+    }
+
+    Vector2 neighbour = pos;
+    neighbour.x++;
+    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+        generate_path(neighbour, pos);
+    }
+
+    neighbour.x--;
+    neighbour.y++;
+    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+        generate_path(neighbour, pos);
+    }
+
+    neighbour.x--;
+    neighbour.y--;
+    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+        generate_path(neighbour, pos);
+    }
+
+    neighbour.x++;
+    neighbour.y--;
+    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+        generate_path(neighbour, pos);
+    }
 }
 

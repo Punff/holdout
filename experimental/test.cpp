@@ -1,8 +1,11 @@
 #include <iostream>
+#include "raylib.h"
 
 using namespace std;
 
 int main(){
-    cout << 3 + 2 * 6 << "\n";
+    Vector2 a = {2, 2};
+    Vector2 b = {2, 2};
+
     return 0;
 }

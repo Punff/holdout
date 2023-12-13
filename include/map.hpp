@@ -16,10 +16,11 @@ class Map{
     public:
     static const string MAP_PATH;
     vector<vector<baseTile*>> grid;
+    vector<Vector2> enemyPath;
     Map(string filename, int xPos, int yPos, int size);
 
-    //Map(string filename);
     void draw_map();
+    void generate_path(Vector2 pos, Vector2 lastPos);
     int get_tile_xPos(int column);
     int get_tile_yPos(int row);
     int get_tile_size();
