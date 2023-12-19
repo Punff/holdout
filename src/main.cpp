@@ -1,9 +1,11 @@
 #include <iostream>
-#include "../include/map.hpp"
-#include "../include/towers.hpp"
-#include "../include/gameUI.hpp"
+#include "map.hpp"
+#include "towers.hpp"
+#include "gameUI.hpp"
+#include "enemies.hpp"
 #include <raylib.h>
 #include <vector>
+#include "Vec2.hpp"
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -13,7 +15,7 @@ int main(int argc, char** argv) {
     Map map("map1", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
-
+    basicEnemy testEnemy(&map);
 
     while (!WindowShouldClose()) {
         // Updates
@@ -29,7 +31,7 @@ int main(int argc, char** argv) {
 
             printf("%d, %d \n", x, y);
         }
-
+        testEnemy.update();
         // Draw
         BeginDrawing();
 
@@ -37,6 +39,7 @@ int main(int argc, char** argv) {
         DrawFPS(5, 5);
         map.draw_map();
         testUI.draw_towerUI();
+        testEnemy.draw_enemy();
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());
