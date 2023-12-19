@@ -1,5 +1,5 @@
-#include "../include/map.hpp"
-#include "../include/tiles.hpp"
+#include "map.hpp"
+#include "tiles.hpp"
 
 const string Map::MAP_PATH = "assets/maps/";
 
@@ -20,7 +20,7 @@ Map::Map(string filename, int xPos, int yPos, int size){
     int tileSize = get_tile_size();
     int tileID;
 
-    Vector2 enemySpawn;
+    Vec2 enemySpawn;
     mapFile >> enemySpawn.x;
     mapFile >> enemySpawn.y;
 
@@ -139,7 +139,7 @@ int Map::get_tile_yPos_on_hover() {
     return 69;
 }
 
-void Map::generate_path(Vector2 pos, Vector2 lastPos, bool start){
+void Map::generate_path(Vec2 pos, Vec2 lastPos, bool start){
     if(start){
         enemyPath.push_back(pos);
     }
@@ -156,27 +156,27 @@ void Map::generate_path(Vector2 pos, Vector2 lastPos, bool start){
         }
     }
 
-    Vector2 neighbour = pos;
+    Vec2 neighbour = pos;
     neighbour.x++;
-    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+    if(neighbour != lastPos){
         generate_path(neighbour, pos, false);
     }
 
     neighbour.x--;
     neighbour.y++;
-    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+    if(neighbour != lastPos){
         generate_path(neighbour, pos, false);
     }
 
     neighbour.x--;
     neighbour.y--;
-    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+    if(neighbour != lastPos){
         generate_path(neighbour, pos, false);
     }
 
     neighbour.x++;
     neighbour.y--;
-    if(neighbour.x != lastPos.x || neighbour.y != lastPos.y){
+    if(neighbour != lastPos){
         generate_path(neighbour, pos, false);
     }
 }

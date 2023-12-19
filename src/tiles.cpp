@@ -1,4 +1,4 @@
-#include "../include/tiles.hpp"
+#include "tiles.hpp"
 
 // Base tile
 

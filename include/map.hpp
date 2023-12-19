@@ -5,6 +5,7 @@
 #include <iostream>
 #include <raylib.h>
 #include <vector>
+#include "Vec2.hpp"
 #include <fstream>
 using namespace std;
 
@@ -16,11 +17,11 @@ class Map{
 
     public:
     vector<vector<baseTile*>> grid;
-    vector<Vector2> enemyPath;
+    vector<Vec2> enemyPath;
     Map(string filename, int xPos, int yPos, int size);
 
     void draw_map();
-    void generate_path(Vector2 pos, Vector2 lastPos, bool start);
+    void generate_path(Vec2 pos, Vec2 lastPos, bool start);
     int get_tile_xPos(int column);
     int get_tile_yPos(int row);
     int get_tile_size();

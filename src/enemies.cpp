@@ -27,11 +27,11 @@ void basicEnemy::update(){
         return;
     }
 
-    Vector2 wishPos;
+    Vec2 wishPos;
     wishPos.x = map->get_tile_xPos(map->enemyPath[pathPos + 1].x);
     wishPos.y = map->get_tile_yPos(map->enemyPath[pathPos + 1].y);
 
-    Vector2 dir;
+    Vec2 dir;
     dir.x = wishPos.x - position.x;
     dir.y = wishPos.y - position.y;
 

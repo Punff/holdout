@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include "map.hpp"
 #include <vector>
+#include "Vec2.hpp"
 using namespace std;
 
 class baseEnemy {
@@ -12,7 +13,7 @@ class baseEnemy {
     int hp;
     float moveSpeed;
     int damage;
-    Vector2 position;
+    Vec2 position;
     int pathPos;
 
     public:

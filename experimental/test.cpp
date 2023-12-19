@@ -1,11 +1,10 @@
 #include <iostream>
-#include "raylib.h"
+#include "Vec2.hpp"
 
 using namespace std;
 
 int main(){
-    Vector2 a = {2, 2};
-    Vector2 b = {2, 2};
+    Vector2
 
     return 0;
 }
