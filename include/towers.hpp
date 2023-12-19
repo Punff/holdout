@@ -1,6 +1,6 @@
 #ifndef TOWERS_H
 #define TOWERS_H
-#include "../include/tiles.hpp"
+#include "tiles.hpp"
 
 class baseTower {
 	protected:

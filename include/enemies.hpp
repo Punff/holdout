@@ -2,26 +2,31 @@
 #define ENEMIES_H
 
 #include "raylib.h"
+#include "map.hpp"
 #include <vector>
+#include "Vec2.hpp"
 using namespace std;
 
 class baseEnemy {
     protected:
+    Map* map;
     int hp;
-    int moveSpeed;
+    float moveSpeed;
     int damage;
-    Rectangle hitbox;
-    vector<Vector2> path;
+    Vec2 position;
+    int pathPos;
 
     public:
     baseEnemy();
+    virtual void update() = 0;
     virtual void draw_enemy() = 0;
     virtual ~baseEnemy();
 };
 
 class basicEnemy : public baseEnemy {
     public:
-    basicEnemy(int xPos, int yPos, vector<Vector2> path);
+    basicEnemy(Map* map);
+    void update();
     void draw_enemy();
 };
 
