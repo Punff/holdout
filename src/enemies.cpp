@@ -14,7 +14,7 @@ basicEnemy::basicEnemy(Map* map){
 
     this->damage = 1;
     this->hp = 10;
-    this->moveSpeed = 50;
+    this->moveSpeed = 500;
     this->pathPos = 0;
     
     this->position.x = map->get_tile_xPos(map->enemyPath[pathPos].x) + map->get_tile_size() / 2;
@@ -28,14 +28,17 @@ void basicEnemy::update(){
     }
 
     Vec2 wishPos;
-    wishPos.x = map->get_tile_xPos(map->enemyPath[pathPos + 1].x);
-    wishPos.y = map->get_tile_yPos(map->enemyPath[pathPos + 1].y);
+    wishPos.x = map->get_tile_xPos(map->enemyPath[pathPos + 1].x) + map->get_tile_size() / 2;
+    wishPos.y = map->get_tile_yPos(map->enemyPath[pathPos + 1].y) + map->get_tile_size() / 2;
 
-    Vec2 dir;
-    dir.x = wishPos.x - position.x;
-    dir.y = wishPos.y - position.y;
+    Vec2 dir = wishPos - position;
+    if(dir.lenght() <= (dir.normalized() * moveSpeed * GetFrameTime()).lenght()){
+        position = wishPos;
+        pathPos++;
+        return;
+    }
 
-    dir.x /= dir.x;
+    position = position + (dir.normalized() * moveSpeed) * GetFrameTime();
 }
 
 void basicEnemy::draw_enemy(){

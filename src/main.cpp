@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
 
             printf("%d, %d \n", x, y);
         }
+        
         testEnemy.update();
         // Draw
         BeginDrawing();

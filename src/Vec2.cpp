@@ -50,3 +50,9 @@ bool Vec2::operator==(const Vec2& other){
 bool Vec2::operator!=(const Vec2& other){
     return !(*this == other);
 }
+
+Vec2 Vec2::operator*(float s){
+    this->x *= s;
+    this->y *= s;
+    return *this;
+}
