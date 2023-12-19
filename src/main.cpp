@@ -11,11 +11,11 @@ using namespace std;
 int main(int argc, char** argv) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
     ToggleFullscreen();
-    SetTargetFPS(144);
+    SetTargetFPS(60);
     Map map("map1", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
-    basicEnemy testEnemy(&map);
+    baseEnemy* testEnemy = new basicEnemy(&map);
 
     while (!WindowShouldClose()) {
         // Updates
@@ -31,16 +31,16 @@ int main(int argc, char** argv) {
 
             printf("%d, %d \n", x, y);
         }
-        
-        testEnemy.update();
+        if(testEnemy != NULL)
+            testEnemy->update();
         // Draw
         BeginDrawing();
 
         ClearBackground(BLACK);
         DrawFPS(5, 5);
         map.draw_map();
-        testUI.draw_towerUI();
-        testEnemy.draw_enemy();
+        if(testEnemy != NULL)
+            testEnemy->draw_enemy();
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());

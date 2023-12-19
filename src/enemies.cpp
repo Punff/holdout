@@ -14,7 +14,7 @@ basicEnemy::basicEnemy(Map* map){
 
     this->damage = 1;
     this->hp = 10;
-    this->moveSpeed = 500;
+    this->moveSpeed = 200;
     this->pathPos = 0;
     
     this->position.x = map->get_tile_xPos(map->enemyPath[pathPos].x) + map->get_tile_size() / 2;
@@ -22,7 +22,7 @@ basicEnemy::basicEnemy(Map* map){
 }
 
 void basicEnemy::update(){
-    if(pathPos >= map->enemyPath.size()){
+    if(pathPos > map->enemyPath.size()){
         delete this;
         return;
     }
