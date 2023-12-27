@@ -15,9 +15,10 @@ class baseEnemy {
     int damage;
     Vec2 position;
     int pathPos;
+    bool reachedEnd;
 
     public:
-    baseEnemy();
+    baseEnemy(Map* map);
     virtual void update() = 0;
     virtual void draw_enemy() = 0;
     virtual ~baseEnemy();
