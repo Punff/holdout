@@ -2,6 +2,13 @@
 Tower defense game project using C++ &amp; Raylib
 
 ## TO-DO
-- Make a map file format and load map from file - Teo
-- Tower position using tile position - Mario
-- Tower Menu UI
+- Enemy behaviour and variety
+- Projectiles
+- Tower behaviour and variety
+- Waves
+- Economy
+- UI
+### Optional:
+- Assets
+- Sound and music
+- More maps
