@@ -9,18 +9,19 @@ class WaveManager{
     Map* map;
     int currWave;
     vector<baseEnemy*> remainingEnemies;
-    float spawnInterval;
+    vector<baseEnemy*> activeEnemies;
+    double spawnInterval;
+    double nextSpawnTime;
     bool active;
 
     public:
-    vector<baseEnemy*> activeEnemies;
-
     WaveManager(Map* map);
     void clear_enemies();
     void add_enemies(char type, int amount);
     void load_enemies(int waveNum);
-    void start_wave();
+    void spawn_enemy();
     void update();
+    void draw_enemies();
 };
 
 #endif

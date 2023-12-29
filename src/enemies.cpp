@@ -21,6 +21,7 @@ basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
 
 void basicEnemy::update(){
     if(pathPos >= map->enemyPath.size() - 1){
+        reachedEnd = true;
         return;
     }
 

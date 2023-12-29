@@ -34,14 +34,13 @@ int main(int argc, char** argv) {
 
             printf("%d, %d \n", x, y);
         }
-        testEnemy->update();
+        testWave.update();
         // Draw
         BeginDrawing();
-
         ClearBackground(BLACK);
         DrawFPS(5, 5);
         map.draw_map();
-        testEnemy->draw_enemy();
+        testWave.draw_enemies();
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());
