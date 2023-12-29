@@ -6,6 +6,8 @@
 #include <raylib.h>
 #include <vector>
 #include "Vec2.hpp"
+#include "waves.hpp"
+
 using namespace std;
 
 int main(int argc, char** argv) {
@@ -16,6 +18,8 @@ int main(int argc, char** argv) {
     vector<basicTower> towers;
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
     baseEnemy* testEnemy = new basicEnemy(&map);
+    WaveManager testWave(&map);
+    testWave.load_enemies(1);
 
     while (!WindowShouldClose()) {
         // Updates

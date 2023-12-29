@@ -6,15 +6,20 @@
 class WaveManager{
     private:
     static const string WAVE_PATH;
+    Map* map;
     int currWave;
-    int maxWave;
     vector<baseEnemy*> remainingEnemies;
-    vector<baseEnemy*> activeEnemies;
+    float spawnInterval;
     bool active;
 
     public:
-    WaveManager();
+    vector<baseEnemy*> activeEnemies;
+
+    WaveManager(Map* map);
+    void clear_enemies();
+    void add_enemies(char type, int amount);
     void load_enemies(int waveNum);
+    void start_wave();
     void update();
 };
 
