@@ -17,9 +17,7 @@ int main(int argc, char** argv) {
     Map map("map3", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
-    baseEnemy* testEnemy = new basicEnemy(&map);
     WaveManager testWave(&map);
-    testWave.load_enemies(1);
 
     while (!WindowShouldClose()) {
         // Updates
@@ -41,6 +39,7 @@ int main(int argc, char** argv) {
         DrawFPS(5, 5);
         map.draw_map();
         testWave.draw_enemies();
+        testWave.draw_ui();
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());

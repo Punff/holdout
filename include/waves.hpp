@@ -8,11 +8,14 @@ class WaveManager{
     static const string WAVE_PATH;
     Map* map;
     int currWave;
+    int maxWave;
     vector<baseEnemy*> remainingEnemies;
     vector<baseEnemy*> activeEnemies;
     double spawnInterval;
     double nextSpawnTime;
     bool active;
+
+    Rectangle button; // temporary
 
     public:
     WaveManager(Map* map);
@@ -20,8 +23,10 @@ class WaveManager{
     void add_enemies(char type, int amount);
     void load_enemies(int waveNum);
     void spawn_enemy();
+    void start_wave();
     void update();
     void draw_enemies();
+    void draw_ui(); // temporary, for testing
 };
 
 #endif

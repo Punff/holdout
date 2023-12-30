@@ -19,7 +19,7 @@ class baseEnemy {
     int hp;
     bool reachedEnd;
     baseEnemy(Map* map);
-    virtual void update() = 0;
+    void update();
     virtual void draw_enemy() = 0;
     virtual ~baseEnemy();
 };
@@ -27,7 +27,12 @@ class baseEnemy {
 class basicEnemy : public baseEnemy {
     public:
     basicEnemy(Map* map);
-    void update();
+    void draw_enemy();
+};
+
+class eliteEnemy : public baseEnemy {
+    public:
+    eliteEnemy(Map* map);
     void draw_enemy();
 };
 
