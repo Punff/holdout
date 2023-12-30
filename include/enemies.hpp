@@ -10,15 +10,16 @@ using namespace std;
 class baseEnemy {
     protected:
     Map* map;
-    int hp;
     float moveSpeed;
     int damage;
     Vec2 position;
     int pathPos;
 
     public:
-    baseEnemy();
-    virtual void update() = 0;
+    int hp;
+    bool reachedEnd;
+    baseEnemy(Map* map);
+    void update();
     virtual void draw_enemy() = 0;
     virtual ~baseEnemy();
 };
@@ -26,7 +27,12 @@ class baseEnemy {
 class basicEnemy : public baseEnemy {
     public:
     basicEnemy(Map* map);
-    void update();
+    void draw_enemy();
+};
+
+class eliteEnemy : public baseEnemy {
+    public:
+    eliteEnemy(Map* map);
     void draw_enemy();
 };
 

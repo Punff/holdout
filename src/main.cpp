@@ -6,16 +6,18 @@
 #include <raylib.h>
 #include <vector>
 #include "Vec2.hpp"
+#include "waves.hpp"
+
 using namespace std;
 
 int main(int argc, char** argv) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
     ToggleFullscreen();
     SetTargetFPS(60);
-    Map map("map1", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
+    Map map("map3", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
-    baseEnemy* testEnemy = new basicEnemy(&map);
+    WaveManager testWave(&map);
 
     while (!WindowShouldClose()) {
         // Updates
@@ -24,23 +26,20 @@ int main(int argc, char** argv) {
             int x = map.get_tile_xPos_on_hover();
             int y = map.get_tile_yPos_on_hover();
 
-            
             basicTower tower;
             tower.set_position(map.get_tile_xPos(x), map.get_tile_yPos(y));
             towers.push_back(tower);
 
             printf("%d, %d \n", x, y);
         }
-        if(testEnemy != NULL)
-            testEnemy->update();
+        testWave.update();
         // Draw
         BeginDrawing();
-
         ClearBackground(BLACK);
         DrawFPS(5, 5);
         map.draw_map();
-        if(testEnemy != NULL)
-            testEnemy->draw_enemy();
+        testWave.draw_enemies();
+        testWave.draw_ui();
 
         for (auto& tower : towers) {
             tower.draw_tower(map.get_tile_size());
