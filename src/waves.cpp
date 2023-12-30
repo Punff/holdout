@@ -6,11 +6,12 @@ const string WaveManager::WAVE_PATH = "assets/waves";
 WaveManager::WaveManager(Map* map){
     this->map = map;
     this->currWave = 1;
+    this->maxWave = MAX_WAVES;
     this->spawnInterval = 1;
     this->nextSpawnTime = 0;
     this->active = false;
 
-    this->button.width = GetScreenWidth() / 8;
+    this->button.width = GetScreenWidth() / 6;
     this->button.height = this->button.width / 2;
     this->button.x = GetScreenWidth() * 3 / 4 + 10;
     this->button.y = GetScreenHeight() / 2 - GetScreenWidth() / 4;
@@ -71,7 +72,10 @@ void WaveManager::load_enemies(int waveNum){
 void WaveManager::update(){
     
     if(!active){
-        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+        if(currWave > maxWave){
+            return;
+        }
+        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){ // temporary
             if(CheckCollisionPointRec(GetMousePosition(), button)){
                 start_wave();
             }
@@ -122,7 +126,13 @@ void WaveManager::spawn_enemy(){
 
 void WaveManager::draw_ui(){
     DrawRectangleRec(button, RAYWHITE);
-    string waveText = "WAVE ";
-    waveText.push_back(currWave + '0');
-    DrawText(waveText.c_str(), button.x + button.width / 20, button.y + button.height / 4, button.width / 4, BLACK);
+    string waveText;
+    if(currWave > maxWave){
+        waveText = "DONE";
+    }
+    else{
+        waveText = "WAWE ";
+        waveText.push_back(currWave + '0');
+    }
+    DrawText(waveText.c_str(), button.x + button.width / 20, button.y + button.height / 4, button.width / 5, BLACK);
 }

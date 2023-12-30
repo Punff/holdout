@@ -2,6 +2,7 @@
 #define WAVES_H
 
 #include "enemies.hpp"
+#define MAX_WAVES 3
 
 class WaveManager{
     private:
