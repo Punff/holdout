@@ -26,8 +26,7 @@ int main(int argc, char** argv) {
             int x = map.get_tile_xPos_on_hover();
             int y = map.get_tile_yPos_on_hover();
 
-            basicTower tower;
-            tower.set_position(map.get_tile_xPos(x), map.get_tile_yPos(y));
+            basicTower tower(map.get_tile_xPos(x), map.get_tile_yPos(y));
             towers.push_back(tower);
 
             printf("%d, %d \n", x, y);
