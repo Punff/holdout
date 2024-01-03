@@ -249,6 +249,30 @@ src/map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/raylib_game.dir/build.make CMakeFiles/raylib_game.dir/src/map.cpp.s
 .PHONY : src/map.cpp.s
 
+src/projectiles.o: src/projectiles.cpp.o
+.PHONY : src/projectiles.o
+
+# target to build an object file
+src/projectiles.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raylib_game.dir/build.make CMakeFiles/raylib_game.dir/src/projectiles.cpp.o
+.PHONY : src/projectiles.cpp.o
+
+src/projectiles.i: src/projectiles.cpp.i
+.PHONY : src/projectiles.i
+
+# target to preprocess a source file
+src/projectiles.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raylib_game.dir/build.make CMakeFiles/raylib_game.dir/src/projectiles.cpp.i
+.PHONY : src/projectiles.cpp.i
+
+src/projectiles.s: src/projectiles.cpp.s
+.PHONY : src/projectiles.s
+
+# target to generate assembly for a file
+src/projectiles.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/raylib_game.dir/build.make CMakeFiles/raylib_game.dir/src/projectiles.cpp.s
+.PHONY : src/projectiles.cpp.s
+
 src/tiles.o: src/tiles.cpp.o
 .PHONY : src/tiles.o
 
@@ -345,6 +369,9 @@ help:
 	@echo "... src/map.o"
 	@echo "... src/map.i"
 	@echo "... src/map.s"
+	@echo "... src/projectiles.o"
+	@echo "... src/projectiles.i"
+	@echo "... src/projectiles.s"
 	@echo "... src/tiles.o"
 	@echo "... src/tiles.i"
 	@echo "... src/tiles.s"

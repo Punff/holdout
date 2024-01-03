@@ -8,6 +8,7 @@ include_directories(include)
 
 find_library(RAYLIB_LIB raylib)
 
-add_executable(${PROJECT_NAME} ${SRCS})
+add_executable(${PROJECT_NAME} ${SRCS}
+        include/projectiles.hpp)
 target_link_libraries(${PROJECT_NAME} ${RAYLIB_LIB})
 

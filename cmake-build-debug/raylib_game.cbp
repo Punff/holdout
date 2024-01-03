@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/punff/Documents/divine-intellect/untitled-TD/include/projectiles.hpp">
+			<Option target="raylib_game"/>
+		</Unit>
 		<Unit filename="/home/punff/Documents/divine-intellect/untitled-TD/src/Vec2.cpp">
 			<Option target="raylib_game"/>
 		</Unit>
@@ -97,6 +100,9 @@
 			<Option target="raylib_game"/>
 		</Unit>
 		<Unit filename="/home/punff/Documents/divine-intellect/untitled-TD/src/map.cpp">
+			<Option target="raylib_game"/>
+		</Unit>
+		<Unit filename="/home/punff/Documents/divine-intellect/untitled-TD/src/projectiles.cpp">
 			<Option target="raylib_game"/>
 		</Unit>
 		<Unit filename="/home/punff/Documents/divine-intellect/untitled-TD/src/tiles.cpp">

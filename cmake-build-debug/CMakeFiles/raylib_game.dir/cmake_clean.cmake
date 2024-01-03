@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/raylib_game.dir/src/main.cpp.o.d"
   "CMakeFiles/raylib_game.dir/src/map.cpp.o"
   "CMakeFiles/raylib_game.dir/src/map.cpp.o.d"
+  "CMakeFiles/raylib_game.dir/src/projectiles.cpp.o"
+  "CMakeFiles/raylib_game.dir/src/projectiles.cpp.o.d"
   "CMakeFiles/raylib_game.dir/src/tiles.cpp.o"
   "CMakeFiles/raylib_game.dir/src/tiles.cpp.o.d"
   "CMakeFiles/raylib_game.dir/src/towers.cpp.o"

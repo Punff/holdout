@@ -139,10 +139,24 @@ CMakeFiles/raylib_game.dir/src/map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/raylib_game.dir/src/map.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/punff/Documents/divine-intellect/untitled-TD/src/map.cpp -o CMakeFiles/raylib_game.dir/src/map.cpp.s
 
+CMakeFiles/raylib_game.dir/src/projectiles.cpp.o: CMakeFiles/raylib_game.dir/flags.make
+CMakeFiles/raylib_game.dir/src/projectiles.cpp.o: /home/punff/Documents/divine-intellect/untitled-TD/src/projectiles.cpp
+CMakeFiles/raylib_game.dir/src/projectiles.cpp.o: CMakeFiles/raylib_game.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/raylib_game.dir/src/projectiles.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/raylib_game.dir/src/projectiles.cpp.o -MF CMakeFiles/raylib_game.dir/src/projectiles.cpp.o.d -o CMakeFiles/raylib_game.dir/src/projectiles.cpp.o -c /home/punff/Documents/divine-intellect/untitled-TD/src/projectiles.cpp
+
+CMakeFiles/raylib_game.dir/src/projectiles.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/raylib_game.dir/src/projectiles.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/punff/Documents/divine-intellect/untitled-TD/src/projectiles.cpp > CMakeFiles/raylib_game.dir/src/projectiles.cpp.i
+
+CMakeFiles/raylib_game.dir/src/projectiles.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/raylib_game.dir/src/projectiles.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/punff/Documents/divine-intellect/untitled-TD/src/projectiles.cpp -o CMakeFiles/raylib_game.dir/src/projectiles.cpp.s
+
 CMakeFiles/raylib_game.dir/src/tiles.cpp.o: CMakeFiles/raylib_game.dir/flags.make
 CMakeFiles/raylib_game.dir/src/tiles.cpp.o: /home/punff/Documents/divine-intellect/untitled-TD/src/tiles.cpp
 CMakeFiles/raylib_game.dir/src/tiles.cpp.o: CMakeFiles/raylib_game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/raylib_game.dir/src/tiles.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/raylib_game.dir/src/tiles.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/raylib_game.dir/src/tiles.cpp.o -MF CMakeFiles/raylib_game.dir/src/tiles.cpp.o.d -o CMakeFiles/raylib_game.dir/src/tiles.cpp.o -c /home/punff/Documents/divine-intellect/untitled-TD/src/tiles.cpp
 
 CMakeFiles/raylib_game.dir/src/tiles.cpp.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/raylib_game.dir/src/tiles.cpp.s: cmake_force
 CMakeFiles/raylib_game.dir/src/towers.cpp.o: CMakeFiles/raylib_game.dir/flags.make
 CMakeFiles/raylib_game.dir/src/towers.cpp.o: /home/punff/Documents/divine-intellect/untitled-TD/src/towers.cpp
 CMakeFiles/raylib_game.dir/src/towers.cpp.o: CMakeFiles/raylib_game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/raylib_game.dir/src/towers.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/raylib_game.dir/src/towers.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/raylib_game.dir/src/towers.cpp.o -MF CMakeFiles/raylib_game.dir/src/towers.cpp.o.d -o CMakeFiles/raylib_game.dir/src/towers.cpp.o -c /home/punff/Documents/divine-intellect/untitled-TD/src/towers.cpp
 
 CMakeFiles/raylib_game.dir/src/towers.cpp.i: cmake_force
@@ -170,7 +184,7 @@ CMakeFiles/raylib_game.dir/src/towers.cpp.s: cmake_force
 CMakeFiles/raylib_game.dir/src/waves.cpp.o: CMakeFiles/raylib_game.dir/flags.make
 CMakeFiles/raylib_game.dir/src/waves.cpp.o: /home/punff/Documents/divine-intellect/untitled-TD/src/waves.cpp
 CMakeFiles/raylib_game.dir/src/waves.cpp.o: CMakeFiles/raylib_game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/raylib_game.dir/src/waves.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/raylib_game.dir/src/waves.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/raylib_game.dir/src/waves.cpp.o -MF CMakeFiles/raylib_game.dir/src/waves.cpp.o.d -o CMakeFiles/raylib_game.dir/src/waves.cpp.o -c /home/punff/Documents/divine-intellect/untitled-TD/src/waves.cpp
 
 CMakeFiles/raylib_game.dir/src/waves.cpp.i: cmake_force
@@ -188,6 +202,7 @@ raylib_game_OBJECTS = \
 "CMakeFiles/raylib_game.dir/src/gameUI.cpp.o" \
 "CMakeFiles/raylib_game.dir/src/main.cpp.o" \
 "CMakeFiles/raylib_game.dir/src/map.cpp.o" \
+"CMakeFiles/raylib_game.dir/src/projectiles.cpp.o" \
 "CMakeFiles/raylib_game.dir/src/tiles.cpp.o" \
 "CMakeFiles/raylib_game.dir/src/towers.cpp.o" \
 "CMakeFiles/raylib_game.dir/src/waves.cpp.o"
@@ -200,13 +215,14 @@ raylib_game: CMakeFiles/raylib_game.dir/src/enemies.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/src/gameUI.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/src/main.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/src/map.cpp.o
+raylib_game: CMakeFiles/raylib_game.dir/src/projectiles.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/src/tiles.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/src/towers.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/src/waves.cpp.o
 raylib_game: CMakeFiles/raylib_game.dir/build.make
 raylib_game: /usr/lib/libraylib.so
 raylib_game: CMakeFiles/raylib_game.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable raylib_game"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/punff/Documents/divine-intellect/untitled-TD/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable raylib_game"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raylib_game.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
