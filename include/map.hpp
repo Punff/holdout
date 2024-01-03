@@ -16,10 +16,10 @@ class Map{
     baseTile* create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize);
 
     public:
+    bool loaded;
     vector<vector<baseTile*>> grid;
     vector<Vec2> enemyPath;
     Map(string filename, int xPos, int yPos, int size);
-
     void draw_map();
     void generate_path(Vec2 pos, Vec2 lastPos, bool start);
     int get_tile_xPos(int column);

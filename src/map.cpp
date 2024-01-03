@@ -8,6 +8,7 @@ Map::Map(string filename, int xPos, int yPos, int size){
     ifstream mapFile(path);
     if(!mapFile){
         cout << "Could not find " << path << "\n";
+        loaded = false;
         grid.clear();
         return;
     }
@@ -31,6 +32,7 @@ Map::Map(string filename, int xPos, int yPos, int size){
         {
             if(mapFile.eof()){
                 cout << "Incorrect tile amount, cannot create map\n";
+                loaded = false;
                 grid.clear();
                 return;
             }
@@ -51,6 +53,7 @@ Map::Map(string filename, int xPos, int yPos, int size){
         cout << enemyPath[k].x << ", " << enemyPath[k].y << "\n";
     }
     cout << "Map loaded\n";
+    loaded = true;
     mapFile.close();
 
 
