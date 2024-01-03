@@ -20,5 +20,3 @@ void basicTower::draw_tower(int size) {
 void basicTower::draw_range(float range, int size) {
 	DrawCircleLines(position.x + size / 2, position.y + size / 2, range, ORANGE);
 }
-
-/
