@@ -3,9 +3,10 @@
 
 baseEnemy::baseEnemy(Map* map){
     this->map = map;
+    this->size = map->get_tile_size();
     this->pathPos = 0;
-    this->position.x = map->get_tile_xPos(map->enemyPath[pathPos].x) + map->get_tile_size() / 2;
-    this->position.y = map->get_tile_yPos(map->enemyPath[pathPos].y) + map->get_tile_size() / 2;
+    this->position.x = map->get_tile_xPos(map->enemyPath[pathPos].x) + size / 2;
+    this->position.y = map->get_tile_yPos(map->enemyPath[pathPos].y) + size / 2;
     this->reachedEnd = false;
 }
 
@@ -18,17 +19,17 @@ void baseEnemy::update(){
     }
 
     Vec2 wishPos;
-    wishPos.x = map->get_tile_xPos(map->enemyPath[pathPos + 1].x) + map->get_tile_size() / 2;
-    wishPos.y = map->get_tile_yPos(map->enemyPath[pathPos + 1].y) + map->get_tile_size() / 2;
+    wishPos.x = map->get_tile_xPos(map->enemyPath[pathPos + 1].x) + size / 2;
+    wishPos.y = map->get_tile_yPos(map->enemyPath[pathPos + 1].y) + size / 2;
 
     Vec2 dir = wishPos - position;
-    if(dir.lenght() <= (dir.normalized() * moveSpeed * map->get_tile_size() * GetFrameTime()).lenght()){
+    if(dir.length() <= (dir.normalized() * moveSpeed * size * GetFrameTime()).length()){
         position = wishPos;
         pathPos++;
         return;
     }
 
-    position = position + (dir.normalized() * moveSpeed * map->get_tile_size()) * GetFrameTime();
+    position = position + (dir.normalized() * moveSpeed * size) * GetFrameTime();
 }
 
 basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
@@ -38,7 +39,7 @@ basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
 }
 
 void basicEnemy::draw_enemy(){
-    DrawCircle(position.x, position.y, map->get_tile_size() * 0.8f / 2, RED);
+    DrawCircle(position.x, position.y, size * 0.8f / 2, RED);
 }
 
 eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
@@ -48,5 +49,5 @@ eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
 }
 
 void eliteEnemy::draw_enemy(){
-    DrawCircle(position.x, position.y, map->get_tile_size() * 0.8f / 2, PINK);
+    DrawCircle(position.x, position.y, size * 0.8f / 2, PINK);
 }

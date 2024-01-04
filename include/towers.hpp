@@ -2,33 +2,41 @@
 #define TOWERS_H
 
 #include "Vec2.hpp"
-#include "projectiles.hpp"  // Include projectiles.hpp here
+#include "projectiles.hpp"
+#include <vector>
+#include "raylib.h"
+
+using namespace std;
 
 class baseEnemy;  // Forward declaration
+class baseProjectile;  // Forward declaration
 
 class baseTower {
 public:
+    baseProjectile* projectile;
     Vec2 position;
-    int HP;
     int damage;
+    float cooldown;
     float attackSpeed;
     float range;
     int cost;
+    bool busy;
 
     baseTower(float x, float y);
-    virtual void draw_tower(int size) = 0;
-    virtual void draw_range(float range, int size) = 0;
-    virtual bool is_enemy_in_range(const baseEnemy& target) = 0;
-    virtual void shoot_projectile(const baseEnemy& target) = 0;
+    virtual void update_tower(vector<baseEnemy*>& activeEnemies, int size);
+    virtual void draw_tower(int size);
+    virtual void draw_range(int size);
+    virtual bool is_enemy_in_range(const baseEnemy* target, int size);
+    virtual void shoot_projectile(int size);
 };
 
 class basicTower : public baseTower {
 public:
     basicTower(float x, float y);
     void draw_tower(int size) override;
-    void draw_range(float range, int size) override;
-    bool is_enemy_in_range(const baseEnemy& target) override;
-    void shoot_projectile(const baseEnemy& target) override;
+    void draw_range(int size) override;
+    bool is_enemy_in_range(const baseEnemy* target, int size) override;
+    void shoot_projectile(int size) override;
 };
 
 #endif

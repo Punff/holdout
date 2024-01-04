@@ -19,8 +19,12 @@ int main(int argc, char** argv) {
     towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
     WaveManager testWave(&map);
 
+    basicEnemy test(&map);
+
+
     while (!WindowShouldClose()) {
         // Updates
+
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 
             int x = map.get_tile_xPos_on_hover();
@@ -31,7 +35,9 @@ int main(int argc, char** argv) {
 
             printf("%d, %d \n", x, y);
         }
+
         testWave.update();
+
         // Draw
         BeginDrawing();
         ClearBackground(BLACK);
@@ -41,8 +47,7 @@ int main(int argc, char** argv) {
         testWave.draw_ui();
 
         for (auto& tower : towers) {
-            tower.draw_tower(map.get_tile_size());
-            tower.draw_range(200, map.get_tile_size());
+            tower.update_tower(testWave.activeEnemies, map.get_tile_size());
         }
 
         EndDrawing();

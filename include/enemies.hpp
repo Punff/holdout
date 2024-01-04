@@ -13,8 +13,8 @@ protected:
     float moveSpeed;
     int damage;
     int pathPos;
-
 public:
+    int size;
     Vec2 position;
     int hp;
     bool reachedEnd;

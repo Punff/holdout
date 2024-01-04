@@ -4,27 +4,34 @@
 #include "Vec2.hpp"
 #include "towers.hpp"
 #include "enemies.hpp"
+#include <vector>
+#include <algorithm>
+
+using namespace std;
 
 class baseTower;
 
 class baseProjectile {
 protected:
-    Vec2 pos;
-    Vec2 targetPos;
+    Vec2 position;
     int damage;
     float speed;
 
+
 public:
-    baseProjectile(baseTower* shooter, const baseEnemy& target);
-    virtual void update_projectile() = 0;
-    virtual void draw_projectile() = 0;
+    baseEnemy* target;
+    baseProjectile(baseTower* shooter, baseEnemy& target, int size);
+    virtual void update_projectile(baseTower* shooter);
+    virtual void draw_projectile();
+
+    bool shouldDelete;
 };
 
 class basicProjectile : public baseProjectile {
 public:
-    basicProjectile(basicTower* shooter, const baseEnemy& target);
+    basicProjectile(baseTower* shooter, baseEnemy& target, int size);
 
-    void update_projectile() override;
+    void update_projectile(baseTower* shooter) override;
     void draw_projectile() override;
 };
 
