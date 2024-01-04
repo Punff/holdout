@@ -1,4 +1,5 @@
 /build/
+/cmake-build-debug/
 /.vscode/
 a.out
 cmake_install.cmake

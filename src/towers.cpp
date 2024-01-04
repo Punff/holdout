@@ -90,4 +90,3 @@ bool basicTower::is_enemy_in_range(const baseEnemy* target, int size) {
 void basicTower::shoot_projectile(int size) {
     baseTower::shoot_projectile(size);
 }
-
