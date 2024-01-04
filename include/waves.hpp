@@ -10,15 +10,14 @@ class WaveManager{
     Map* map;
     int currWave;
     int maxWave;
-    vector<baseEnemy*> remainingEnemies;
-    vector<baseEnemy*> activeEnemies;
     double spawnInterval;
     double nextSpawnTime;
     bool active;
-
     Rectangle button; // temporary
 
     public:
+    vector<baseEnemy*> remainingEnemies;
+    vector<baseEnemy*> activeEnemies;
     WaveManager(Map* map);
     void clear_enemies();
     void add_enemies(char type, int amount);
