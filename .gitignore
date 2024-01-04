@@ -5,3 +5,5 @@ cmake_install.cmake
 CMakeCache.txt
 raylib_game.cbp
 /Testing
+/cmake-build-debug
+/.cmake
