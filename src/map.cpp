@@ -66,7 +66,7 @@ baseTile* Map::create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize){
         case 0:
             return new wireframeTile(tilexPos, tileyPos, tileSize);
         case 1:
-            return new solidTile(tilexPos, tileyPos, tileSize);
+            return new grassTile(tilexPos, tileyPos, tileSize);
         case 2:
             return new pathTile(tilexPos, tileyPos, tileSize);
         default:

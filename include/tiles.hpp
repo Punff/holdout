@@ -21,9 +21,21 @@ class solidTile : public baseTile {
 };
 
 class pathTile : public baseTile {
-    void draw_tile();
-    public:
+private:
+    Texture2D texture;
+public:
     pathTile(int xPos, int yPos, int size);
+    ~pathTile();
+    void draw_tile();
+};
+
+class grassTile : public baseTile {
+private:
+    Texture2D texture;
+public:
+    grassTile(int xPos, int yPos, int size);
+    ~grassTile();
+    void draw_tile();
 };
 
 #endif

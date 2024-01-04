@@ -131,7 +131,7 @@ void WaveManager::draw_ui(){
         waveText = "DONE";
     }
     else{
-        waveText = "WAWE ";
+        waveText = "WAVE ";
         waveText.push_back(currWave + '0');
     }
     DrawText(waveText.c_str(), button.x + button.width / 20, button.y + button.height / 4, button.width / 5, BLACK);
