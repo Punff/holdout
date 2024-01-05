@@ -6,10 +6,10 @@
 using namespace std;
 
 class towerUI {
-	private:
+private:
 	int xPos, yPos;
 	int width, height;
-	public:
+public:
 	towerUI(int xPos, int yPos, int width, int height) {
 		this->xPos = xPos;
 		this->yPos = yPos;

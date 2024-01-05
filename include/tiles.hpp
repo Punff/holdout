@@ -2,7 +2,7 @@
 #define TILES_H
 #include "raylib.h"
 class baseTile{
-    public:
+public:
     Rectangle hitbox;
     bool is_path;
     baseTile(int xPos, int yPos, int size);
@@ -21,9 +21,21 @@ class solidTile : public baseTile {
 };
 
 class pathTile : public baseTile {
-    void draw_tile();
-    public:
+private:
+    Texture2D texture;
+public:
     pathTile(int xPos, int yPos, int size);
+    ~pathTile();
+    void draw_tile();
+};
+
+class grassTile : public baseTile {
+private:
+    Texture2D texture;
+public:
+    grassTile(int xPos, int yPos, int size);
+    ~grassTile();
+    void draw_tile();
 };
 
 #endif
