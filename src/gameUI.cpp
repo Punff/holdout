@@ -31,7 +31,5 @@ void UI::draw_wave_info(WaveManager* wave) {
             waveActive++;
         }
     }
-
-
 }
 

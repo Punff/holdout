@@ -40,6 +40,8 @@ basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
 
 void basicEnemy::draw_enemy(){
     DrawCircle(position.x, position.y, size * 0.8f / 2, RED);
+    DrawCircle(position.x, position.y, size * 0.8f / 2.5, BLUE);
+    DrawCircle(position.x, position.y, size * 0.8f / 4, WHITE);
 }
 
 eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
