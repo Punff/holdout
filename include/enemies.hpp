@@ -13,6 +13,7 @@ protected:
     float moveSpeed;
     int damage;
     int pathPos;
+
 public:
     int size;
     Vec2 position;
@@ -25,13 +26,13 @@ public:
 };
 
 class basicEnemy : public baseEnemy {
-    public:
+public:
     basicEnemy(Map* map);
     void draw_enemy();
 };
 
 class eliteEnemy : public baseEnemy {
-    public:
+public:
     eliteEnemy(Map* map);
     void draw_enemy();
 };
