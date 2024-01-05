@@ -12,10 +12,11 @@ protected:
     Map* map;
     float moveSpeed;
     int damage;
-    Vec2 position;
     int pathPos;
 
 public:
+    int size;
+    Vec2 position;
     int hp;
     bool reachedEnd;
     baseEnemy(Map* map);

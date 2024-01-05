@@ -9,5 +9,5 @@ include_directories(include)
 find_library(RAYLIB_LIB raylib)
 
 add_executable(${PROJECT_NAME} ${SRCS})
-target_link_libraries(${PROJECT_NAME} ${RAYLIB_LIB})
 
+target_link_libraries(${PROJECT_NAME} ${RAYLIB_LIB})

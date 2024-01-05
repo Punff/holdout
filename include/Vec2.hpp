@@ -9,7 +9,7 @@ struct Vec2 {
 
     Vec2();
     Vec2(float x, float y);
-    float lenght();
+    float length();
     Vec2 normalized();
 
     Vec2 operator+(const Vec2& other);

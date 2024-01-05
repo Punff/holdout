@@ -11,12 +11,12 @@ Vec2::Vec2(float x, float y){
     this->y = y;
 }
 
-float Vec2::lenght(){
+float Vec2::length(){
     return sqrt(pow(x, 2) + pow(y, 2));
 }
 
 Vec2 Vec2::normalized(){
-    float len = this->lenght();
+    float len = this->length();
     Vec2 v(x / len, y / len);
     return v;
 }
