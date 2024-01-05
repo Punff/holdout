@@ -5,9 +5,10 @@
 baseTower::baseTower(GameManager* game, float x, float y) {
     this->game = game;
     this->size = game->map->get_tile_size();
-    position = { x, y };
+    this->position = { x, y };
     this->rotation = 0;
     this->level = 1;
+    this->toggleRange = false;
 }
 
 void baseTower::update_tower() {
@@ -25,6 +26,9 @@ void baseTower::update_tower() {
         }
     }
 
+    if (CheckCollisionPointRec(GetMousePosition(), {position.x - size / 2, position.y - size / 2, size, size}) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        toggleRange = !toggleRange;
+    }
 }
 
 baseEnemy* baseTower::get_enemy_in_range(){
@@ -37,12 +41,13 @@ baseEnemy* baseTower::get_enemy_in_range(){
 }
 
 void baseTower::draw_range() {
-    DrawCircleLines(position.x, position.y, range * size, ORANGE);
+    if (toggleRange)
+        DrawCircleLines(position.x, position.y, range * size, ORANGE);
 }
 
 basicTower::basicTower(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = LoadTexture("assets/textures/tower.png");
-    range = 2.5f;
+    range = 2.0f;
     cost = 15;
     attackDelay = 1.5f;
     cooldown = 0.0f;
@@ -55,10 +60,9 @@ basicTower::~basicTower(){
 
 void basicTower::draw_tower() {
     DrawTexturePro(texture, {16, 0, 16, 16}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
-    DrawTexturePro(texture, {0, 0, 16, 16}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation, WHITE);
-
-    if (IsKeyDown(KEY_R))
-        draw_range();
+    DrawTexturePro(texture, {0, 0, 16, 16}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation,
+                   WHITE);
+    draw_range();
 }
 
 void basicTower::shoot_projectile(Vec2 targetPos) {

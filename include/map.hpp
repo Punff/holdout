@@ -25,8 +25,8 @@ public:
     int get_tile_xPos(int column);
     int get_tile_yPos(int row);
     int get_tile_size();
-    int get_tile_xPos_on_hover();
-    int get_tile_yPos_on_hover();
+    float get_tile_xPos_on_hover();
+    float get_tile_yPos_on_hover();
 };
 
 #endif

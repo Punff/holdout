@@ -8,13 +8,14 @@ GameManager::GameManager(){
     screenWidth = GetScreenWidth();
     screenHeight = GetScreenHeight();
     playerHP = 100;
-    money = 0;
+    money = 180;
     map = NULL;
     waveManager = NULL;
+    isPlacingTower = false;
 }
 
 void GameManager::gameloop(){
-    UI gameUI(map);
+    UI gameUI(this);
 
     while(!WindowShouldClose()){
         // Updates
@@ -22,14 +23,18 @@ void GameManager::gameloop(){
             waveManager->update();
         }
 
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        if (isPlacingTower) {
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 
-            int x = map->get_tile_xPos_on_hover();
-            int y = map->get_tile_yPos_on_hover();
+                int x = map->get_tile_xPos_on_hover();
+                int y = map->get_tile_yPos_on_hover();
 
-            towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                isPlacingTower = false;
 
-            printf("%d, %d \n", x, y);
+                printf("%d, %d \n", x, y);
+            }
+
         }
 
         for(basicTower* el : towers){
