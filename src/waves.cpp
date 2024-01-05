@@ -5,16 +5,17 @@ const string WaveManager::WAVE_PATH = "assets/waves";
 
 WaveManager::WaveManager(Map* map){
     this->map = map;
-    currWave = 1;
-    maxWave = MAX_WAVES;
-    spawnInterval = 1;
-    nextSpawnTime = 0;
-    active = false;
+    this->currWave = 1;
+    this->maxWave = MAX_WAVES;
+    this->spawnInterval = 1;
+    this->nextSpawnTime = 0;
+    this->active = false;
+    this->waveShouldStart = false;
 
-    button.width = GetScreenWidth() / 6;
-    button.height = button.width / 2;
-    button.x = GetScreenWidth() * 3 / 4 + 10;
-    button.y = GetScreenHeight() / 2 - GetScreenWidth() / 4;
+    this->button.width = GetScreenWidth() / 6;
+    this->button.height = this->button.width / 2;
+    this->button.x = GetScreenWidth() * 3 / 4 + 10;
+    this->button.y = GetScreenHeight() / 2 - GetScreenWidth() / 4;
 }
 
 void WaveManager::clear_enemies(){
@@ -75,10 +76,10 @@ void WaveManager::update(){
         if(currWave > maxWave){
             return;
         }
-        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){ // temporary
-            if(CheckCollisionPointRec(GetMousePosition(), button)){
-                start_wave();
-            }
+        if(waveShouldStart) {
+            start_wave();
+            this->waveShouldStart = false;
+
         }
     }
     else if(activeEnemies.empty() && remainingEnemies.empty()){
@@ -122,6 +123,7 @@ void WaveManager::spawn_enemy(){
 
     activeEnemies.push_back(remainingEnemies[0]);
     remainingEnemies.erase(remainingEnemies.begin());
+
 }
 
 void WaveManager::draw_ui(){
@@ -131,7 +133,7 @@ void WaveManager::draw_ui(){
         waveText = "DONE";
     }
     else{
-        waveText = "WAVE ";
+        waveText = "WAWE ";
         waveText.push_back(currWave + '0');
     }
     DrawText(waveText.c_str(), button.x + button.width / 20, button.y + button.height / 4, button.width / 5, BLACK);
