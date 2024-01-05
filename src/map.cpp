@@ -102,7 +102,7 @@ int Map::get_tile_size(){
     return size / mapTiles;
 }
 
-int Map::get_tile_xPos_on_hover() {
+float Map::get_tile_xPos_on_hover() {
     float mouseX = GetMouseX();
     float mouseY = GetMouseY();
     float tileSize = get_tile_size();
@@ -123,7 +123,7 @@ int Map::get_tile_xPos_on_hover() {
     return 69;
 }
 
-int Map::get_tile_yPos_on_hover() {
+float Map::get_tile_yPos_on_hover() {
     float mouseY = GetMouseY();
     float mouseX = GetMouseX();
     float tileSize = get_tile_size();
