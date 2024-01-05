@@ -2,7 +2,7 @@
 #include "waves.hpp"
 
 class GameManager {
-    private:
+private:
     int screenWidth;
     int screenHeight;
 
@@ -12,7 +12,7 @@ class GameManager {
     Map* map;
     WaveManager* waveManager;
 
-    public:
+public:
     GameManager();
     ~GameManager();
     void load_map(string mapName);

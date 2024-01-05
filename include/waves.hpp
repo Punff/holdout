@@ -5,7 +5,7 @@
 #define MAX_WAVES 3
 
 class WaveManager{
-    private:
+private:
     static const string WAVE_PATH;
     Map* map;
     int currWave;
@@ -18,7 +18,7 @@ class WaveManager{
 
     Rectangle button; // temporary
 
-    public:
+public:
     WaveManager(Map* map);
     void clear_enemies();
     void add_enemies(char type, int amount);

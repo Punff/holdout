@@ -2,7 +2,7 @@
 #define TILES_H
 #include "raylib.h"
 class baseTile{
-    public:
+public:
     Rectangle hitbox;
     bool is_path;
     baseTile(int xPos, int yPos, int size);

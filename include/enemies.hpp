@@ -8,14 +8,14 @@
 using namespace std;
 
 class baseEnemy {
-    protected:
+protected:
     Map* map;
     float moveSpeed;
     int damage;
     Vec2 position;
     int pathPos;
 
-    public:
+public:
     int hp;
     bool reachedEnd;
     baseEnemy(Map* map);
@@ -25,13 +25,13 @@ class baseEnemy {
 };
 
 class basicEnemy : public baseEnemy {
-    public:
+public:
     basicEnemy(Map* map);
     void draw_enemy();
 };
 
 class eliteEnemy : public baseEnemy {
-    public:
+public:
     eliteEnemy(Map* map);
     void draw_enemy();
 };
