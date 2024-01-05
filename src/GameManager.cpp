@@ -53,8 +53,13 @@ void GameManager::gameloop(){
             el->draw_tower();
         }
 
+
+        // ovo ce kasnije sve ici u jednu funckiju dw
         gameUI.draw_mainUI();
         gameUI.draw_wave_info(waveManager);
+        gameUI.draw_HP();
+        gameUI.draw_shop();
+        gameUI.draw_money();
         EndDrawing();
     }
 }
