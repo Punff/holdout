@@ -13,6 +13,7 @@ class Map{
 public:
     static const string MAP_PATH;
     int size, xPos, yPos, mapTiles;
+    bool loaded;
 
     baseTile* create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize);
     vector<vector<baseTile*>> grid;

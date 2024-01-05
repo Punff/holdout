@@ -67,9 +67,22 @@ basicTower::basicTower(float x, float y) : baseTower(x, y) {
 }
 
 void baseTower::draw_tower(int size) {
-    DrawRectangle(position.x + 50, position.y + 50, size - 100, size - 100, BLUE);
-    //DrawRectangle(position.x + 30, position.y + 30, size - 60, size - 60, RED);
+    int padding = 20;
+
+    float drawX = position.x + padding;
+    float drawY = position.y + padding;
+    float drawSize = size - 2 * padding;
+
+    DrawRectangle(drawX, drawY, drawSize, drawSize, BLUE);
+
+    DrawTriangle(
+            Vector2{drawX, drawY},
+            Vector2{drawX, drawY + drawSize},
+            Vector2{drawX + drawSize, drawY},
+            YELLOW
+    );
 }
+
 
 void baseTower::draw_range(int size) {
     DrawCircleLines(position.x + size / 2, position.y + size / 2, this->range, ORANGE);

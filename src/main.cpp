@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
     ToggleFullscreen();
     SetTargetFPS(60);
-    Map map("map3", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
+    Map map("map1", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
     UI testUI(&map);
     WaveManager testWave(&map);
