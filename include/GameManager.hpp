@@ -22,6 +22,7 @@ public:
     Map* map;
     WaveManager* waveManager;
     vector<basicTower*> towers;
+    bool isPlacingTower;
     vector<basicProjectile*> projectiles;
     GameManager();
     ~GameManager();

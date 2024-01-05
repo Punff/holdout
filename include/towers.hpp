@@ -19,6 +19,7 @@ public:
     float cooldown;
     float attackDelay;
     float range;
+    bool toggleRange;
     int cost;
 
     baseTower(GameManager* game, float x, float y);
@@ -30,9 +31,8 @@ public:
 };
 
 class basicTower : public baseTower {
-private:
-    Texture2D texture;
 public:
+    Texture2D texture;
     basicTower(GameManager* game, float x, float y);
     void draw_tower() override;
     void shoot_projectile() override;

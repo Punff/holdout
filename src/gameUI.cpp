@@ -1,5 +1,20 @@
 #include "gameUI.hpp"
 
+UI::UI(GameManager* game) {
+    this->game = game;
+    this->map = game->map;
+    this->tileSize = map->get_tile_size();
+    this->mapTiles = map->mapTiles;
+    this->height = tileSize * mapTiles;
+    this->width = GetScreenWidth() / 4;
+    this->leftCorner = {map->get_tile_xPos(0) - width, map->get_tile_yPos(0)};
+    this->rightCorner = {map->get_tile_xPos(map->mapTiles), map->get_tile_yPos(0)};
+    this->padding = 15.0f;
+    this->lineHeight = 30.0f;
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
+    GuiSetStyle(DEFAULT, BORDER_WIDTH, 5);
+}
+
 void UI::draw_mainUI() {
     // Update
 
@@ -10,7 +25,7 @@ void UI::draw_mainUI() {
 
 void UI::draw_HP() {
     // Update
-    float HPvalue = 69.0f;
+    float HPvalue = game->playerHP;
 
     // Draw
     GuiSliderBar((Rectangle){ leftCorner.x + width / 4, leftCorner.y + lineHeight, width / 2, height / 10 }, NULL, NULL, &HPvalue, 0, 100);
@@ -33,7 +48,7 @@ void UI::draw_wave_info(WaveManager* wave) {
 
 void UI::draw_money() {
     // Update
-    int moneyValue = 150;
+    int moneyValue = game->money;
 
     // Draw
     GuiGroupBox((Rectangle){ rightCorner.x, rightCorner.y, width, height / 4 }, NULL);
@@ -42,12 +57,23 @@ void UI::draw_money() {
 }
 
 void UI::draw_shop() {
-    GuiGroupBox((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + lineHeight + height / 4, tileSize, tileSize}, NULL);
-    GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + tileSize + lineHeight + height / 4, tileSize, tileSize / 4}, "Buy");
+    // Update
+    int basicTowerPrice = 7;
 
-    GuiGroupBox((Rectangle){ rightCorner.x + tileSize + 2 * lineHeight, rightCorner.y + lineHeight + height / 4, tileSize, tileSize}, NULL);
-    GuiButton((Rectangle){ rightCorner.x + tileSize + 2 * lineHeight, rightCorner.y + tileSize + lineHeight + height / 4, tileSize, tileSize / 4}, "Buy");
+    // Draw
+    GuiGroupBox((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4}, NULL);
+    if (GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4, width / 4 / 4}, "Buy") && game->money >= basicTowerPrice) {
+        game->isPlacingTower = true;
+        game->money -= basicTowerPrice;
+    }
 
-    GuiGroupBox((Rectangle){ rightCorner.x + 2 * tileSize + 3 * lineHeight, rightCorner.y + lineHeight + height / 4, tileSize, tileSize}, NULL);
-    GuiButton((Rectangle){ rightCorner.x + 2 * tileSize + 3 * lineHeight, rightCorner.y + tileSize + lineHeight + height / 4, tileSize, tileSize / 4}, "Buy");
+    GuiGroupBox((Rectangle){ rightCorner.x + width / 4 + 2 * lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4}, NULL);
+    if (GuiButton((Rectangle){ rightCorner.x + width / 4 + 2 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4, width / 4 / 4}, "Buy")) {
+
+    }
+
+    GuiGroupBox((Rectangle){ rightCorner.x + 2 * width / 4 + 3 * lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4}, NULL);
+    if (GuiButton((Rectangle){ rightCorner.x + 2 * width / 4 + 3 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4, width / 4 / 4}, "Buy")) {
+
+    }
 }
