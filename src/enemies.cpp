@@ -34,6 +34,7 @@ void baseEnemy::update(){
 
 basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
     this->damage = 1;
+    this->value = 5;
     this->hp = 10;
     this->moveSpeed = 1;
 }
@@ -46,6 +47,7 @@ void basicEnemy::draw_enemy(){
 
 eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
     this->damage = 1;
+    this->value = 10;
     this->hp = 15;
     this->moveSpeed = 1.5;
 }

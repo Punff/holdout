@@ -3,40 +3,40 @@
 
 #include "Vec2.hpp"
 #include "projectiles.hpp"
-#include <vector>
 #include "raylib.h"
+#include "raymath.h"
+#include "enemies.hpp"
 
-using namespace std;
-
-class baseEnemy;  // Forward declaration
-class baseProjectile;  // Forward declaration
+class GameManager;
 
 class baseTower {
 public:
-    baseProjectile* projectile;
+    GameManager* game;
     Vec2 position;
+    float rotation;
+    float size;
     int damage;
     float cooldown;
-    float attackSpeed;
+    float attackDelay;
     float range;
     int cost;
-    bool busy;
 
-    baseTower(float x, float y);
-    virtual void update_tower(vector<baseEnemy*>& activeEnemies, int size);
-    virtual void draw_tower(int size);
-    virtual void draw_range(int size);
-    virtual bool is_enemy_in_range(const baseEnemy* target, int size);
-    virtual void shoot_projectile(int size);
+    baseTower(GameManager* game, float x, float y);
+    void update_tower();
+    void draw_range();
+    baseEnemy* get_enemy_in_range();
+    virtual void draw_tower() = 0;
+    virtual void shoot_projectile() = 0;
 };
 
 class basicTower : public baseTower {
+private:
+    Texture2D texture;
 public:
-    basicTower(float x, float y);
-    void draw_tower(int size) override;
-    void draw_range(int size) override;
-    bool is_enemy_in_range(const baseEnemy* target, int size) override;
-    void shoot_projectile(int size) override;
+    basicTower(GameManager* game, float x, float y);
+    void draw_tower() override;
+    void shoot_projectile() override;
+    ~basicTower();
 };
 
 #endif

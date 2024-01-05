@@ -4,12 +4,15 @@
 #include "enemies.hpp"
 #define MAX_WAVES 3
 
+class GameManager;
 class WaveManager {
     private:
     static const string WAVE_PATH;
     Map* map;
+    GameManager* game;
     int currWave;
     int maxWave;
+    int lastFrameDamage;
     double spawnInterval;
     double nextSpawnTime;
 
@@ -18,7 +21,7 @@ public:
     bool waveShouldStart;
     vector<baseEnemy*> remainingEnemies;
     vector<baseEnemy*> activeEnemies;
-    WaveManager(Map* map);
+    WaveManager(GameManager* game);
     void clear_enemies();
     void add_enemies(char type, int amount);
     void load_enemies(int waveNum);
