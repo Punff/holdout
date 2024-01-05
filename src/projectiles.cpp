@@ -32,7 +32,6 @@ void baseProjectile::update_projectile(baseTower* shooter) {
 
     if (CheckCollisionPointCircle({ position.x, position.y }, { target->position.x, target->position.y }, target->size / 2)) {
         // Handle damage
-        shooter->busy = false;
         shouldDelete = true;
     }
 }

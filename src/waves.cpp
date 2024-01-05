@@ -1,10 +1,12 @@
 #include "waves.hpp"
+#include "GameManager.hpp"
 #include <sstream>
 
 const string WaveManager::WAVE_PATH = "assets/waves";
 
-WaveManager::WaveManager(Map* map){
-    this->map = map;
+WaveManager::WaveManager(GameManager* game){
+    this->game = game;
+    this->map = game->map;
     this->currWave = 1;
     this->maxWave = MAX_WAVES;
     this->spawnInterval = 1;
@@ -74,7 +76,6 @@ void WaveManager::update(){
         if(waveShouldStart) {
             start_wave();
             this->waveShouldStart = false;
-
         }
     }
     else if(activeEnemies.empty() && remainingEnemies.empty()){
@@ -94,7 +95,12 @@ void WaveManager::update(){
     }
 
     for(int i = 0; i < activeEnemies.size(); i++){
-        if(activeEnemies[i]->hp <= 0 || activeEnemies[i]->reachedEnd){
+        if(activeEnemies[i]->hp <= 0){
+            game->money += activeEnemies[i]->value;
+            activeEnemies.erase(activeEnemies.begin() + i);
+        }
+        else if(activeEnemies[i]->reachedEnd){
+            game->take_damage(activeEnemies[i]->damage);
             activeEnemies.erase(activeEnemies.begin() + i);
         }
     }

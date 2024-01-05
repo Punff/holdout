@@ -1,3 +1,6 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include <iostream>
 #include "map.hpp"
 #include "towers.hpp"
@@ -18,10 +21,13 @@ public:
     int money;
     Map* map;
     WaveManager* waveManager;
-    vector<basicTower*> tempTowers;
+    vector<basicTower*> towers;
     vector<basicProjectile*> projectiles;
     GameManager();
     ~GameManager();
-    void load_map(string mapName);
     void gameloop();
+    void load_map(string mapName);
+    void take_damage(int damage);
 };
+
+#endif
