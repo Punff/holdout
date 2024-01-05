@@ -14,22 +14,45 @@ GameManager::GameManager(){
 }
 
 void GameManager::gameloop(){
+    UI gameUI(map);
+    vector<basicTower> towers;
+
     while(!WindowShouldClose()){
         // Updates
         if(waveManager != NULL){
             waveManager->update();
         }
+
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+
+            int x = map->get_tile_xPos_on_hover();
+            int y = map->get_tile_yPos_on_hover();
+
+            basicTower tower(map->get_tile_xPos(x), map->get_tile_yPos(y));
+            towers.push_back(tower);
+
+            printf("%d, %d \n", x, y);
+        }
+
         // Rendering
         BeginDrawing();
         ClearBackground(BLACK);
         DrawFPS(5, 5);
+
         if(map != NULL){
             map->draw_map();
         }
+
         if(waveManager != NULL){
             waveManager->draw_enemies();
-            waveManager->draw_ui();
         }
+        
+        for (auto& tower : towers) {
+            tower.update_tower(waveManager->activeEnemies, map->get_tile_size());
+        }
+        
+        gameUI.draw_mainUI();
+        gameUI.draw_wave_info(waveManager);
         EndDrawing();
     }
 }

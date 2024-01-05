@@ -36,5 +36,3 @@ void baseProjectile::update_projectile(baseTower* shooter) {
         shouldDelete = true;
     }
 }
-
-

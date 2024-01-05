@@ -1,4 +1,11 @@
+#include <iostream>
 #include "map.hpp"
+#include "towers.hpp"
+#include "gameUI.hpp"
+#include "enemies.hpp"
+#include <raylib.h>
+#include <vector>
+#include "Vec2.hpp"
 #include "waves.hpp"
 
 class GameManager {
@@ -6,13 +13,13 @@ private:
     int screenWidth;
     int screenHeight;
 
+public:
     int playerHP;
     int money;
-    
     Map* map;
     WaveManager* waveManager;
-
-public:
+    vector<basicTower*> tempTowers;
+    vector<basicProjectile*> projectiles;
     GameManager();
     ~GameManager();
     void load_map(string mapName);

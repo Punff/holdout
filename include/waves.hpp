@@ -12,7 +12,6 @@ class WaveManager {
     int maxWave;
     double spawnInterval;
     double nextSpawnTime;
-    Rectangle button; // temporary
 
 public:
     bool active;
@@ -27,7 +26,6 @@ public:
     void start_wave();
     void update();
     void draw_enemies();
-    void draw_ui(); // temporary, for testing
 };
 
 #endif

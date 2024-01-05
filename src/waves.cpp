@@ -11,11 +11,6 @@ WaveManager::WaveManager(Map* map){
     this->nextSpawnTime = 0;
     this->active = false;
     this->waveShouldStart = false;
-
-    this->button.width = GetScreenWidth() / 6;
-    this->button.height = this->button.width / 2;
-    this->button.x = GetScreenWidth() * 3 / 4 + 10;
-    this->button.y = GetScreenHeight() / 2 - GetScreenWidth() / 4;
 }
 
 void WaveManager::clear_enemies(){
@@ -124,17 +119,4 @@ void WaveManager::spawn_enemy(){
     activeEnemies.push_back(remainingEnemies[0]);
     remainingEnemies.erase(remainingEnemies.begin());
 
-}
-
-void WaveManager::draw_ui(){
-    DrawRectangleRec(button, RAYWHITE);
-    string waveText;
-    if(currWave > maxWave){
-        waveText = "DONE";
-    }
-    else{
-        waveText = "WAWE ";
-        waveText.push_back(currWave + '0');
-    }
-    DrawText(waveText.c_str(), button.x + button.width / 20, button.y + button.height / 4, button.width / 5, BLACK);
 }
