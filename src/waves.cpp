@@ -10,6 +10,7 @@ WaveManager::WaveManager(Map* map){
     this->spawnInterval = 1;
     this->nextSpawnTime = 0;
     this->active = false;
+    this->waveShouldStart = false;
 
     this->button.width = GetScreenWidth() / 6;
     this->button.height = this->button.width / 2;
@@ -75,10 +76,10 @@ void WaveManager::update(){
         if(currWave > maxWave){
             return;
         }
-        if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){ // temporary
-            if(CheckCollisionPointRec(GetMousePosition(), button)){
-                start_wave();
-            }
+        if(waveShouldStart) {
+            start_wave();
+            this->waveShouldStart = false;
+
         }
     }
     else if(activeEnemies.empty() && remainingEnemies.empty()){
@@ -122,6 +123,7 @@ void WaveManager::spawn_enemy(){
 
     activeEnemies.push_back(remainingEnemies[0]);
     remainingEnemies.erase(remainingEnemies.begin());
+
 }
 
 void WaveManager::draw_ui(){

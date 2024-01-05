@@ -10,12 +10,11 @@
 using namespace std;
 
 class Map{
-    private:
+public:
     static const string MAP_PATH;
     int size, xPos, yPos, mapTiles;
-    baseTile* create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize);
 
-    public:
+    baseTile* create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize);
     vector<vector<baseTile*>> grid;
     vector<Vec2> enemyPath;
     Map(string filename, int xPos, int yPos, int size);

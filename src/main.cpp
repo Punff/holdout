@@ -4,6 +4,8 @@
 #include "gameUI.hpp"
 #include "enemies.hpp"
 #include <raylib.h>
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
 #include <vector>
 #include "Vec2.hpp"
 #include "waves.hpp"
@@ -16,7 +18,7 @@ int main(int argc, char** argv) {
     SetTargetFPS(60);
     Map map("map3", GetScreenWidth() / 2, GetScreenHeight() / 2, GetScreenWidth() / 2);
     vector<basicTower> towers;
-    towerUI testUI(0, 0, GetScreenWidth() / 10, GetScreenHeight() / 2);
+    UI testUI(&map);
     WaveManager testWave(&map);
 
     basicEnemy test(&map);
@@ -44,7 +46,9 @@ int main(int argc, char** argv) {
         DrawFPS(5, 5);
         map.draw_map();
         testWave.draw_enemies();
-        testWave.draw_ui();
+        //testWave.draw_ui();
+        testUI.draw_mainUI();
+        testUI.draw_wave_info(&testWave);
 
         for (auto& tower : towers) {
             tower.update_tower(testWave.activeEnemies, map.get_tile_size());
