@@ -40,6 +40,19 @@ void GameManager::gameloop(){
         for(basicTower* el : towers){
             el->update_tower();
         }
+        
+        for(basicProjectile* el : projectiles){
+            el->update();
+        }
+
+        for(int i = 0; i < projectiles.size();){
+            if(projectiles[i]->shouldDelete){
+                projectiles.erase(projectiles.begin() + i);
+            }
+            else{
+                i++;
+            }
+        }
 
         // Rendering
         BeginDrawing();
@@ -53,11 +66,14 @@ void GameManager::gameloop(){
         if(waveManager != NULL){
             waveManager->draw_enemies();
         }
-
+        
         for(basicTower* el : towers){
             el->draw_tower();
         }
 
+        for(baseProjectile* el : projectiles){
+            el->draw_projectile();
+        }
 
         // ovo ce kasnije sve ici u jednu funckiju dw
         gameUI.draw_mainUI();

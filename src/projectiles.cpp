@@ -2,36 +2,45 @@
 #include "towers.hpp"
 #include "enemies.hpp"
 #include "raylib.h"
+#include "GameManager.hpp"
 
-baseProjectile::baseProjectile(baseTower *shooter, baseEnemy &target, int size) {
-    this->position = { shooter->position.x + size / 2, shooter->position.y + size / 2 };
-    this->target = &target;
-    this->damage = shooter->damage;
-    this->speed = 500.0f;
-    this->shouldDelete = false;
+baseProjectile::baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos) {
+    this->game = game;
+    this->position = position;
+    size = game->map->get_tile_size() * 0.2f;
+    dir = targetPos - position;
+    shouldDelete = false;
+    lifetime = 10;
 }
 
-basicProjectile::basicProjectile(baseTower *shooter, baseEnemy &target, int size) : baseProjectile(shooter, target, size) {}
+baseProjectile::~baseProjectile(){ }
 
-void basicProjectile::update_projectile(baseTower* shooter) {
-    baseProjectile::update_projectile(shooter);
+void baseProjectile::update() {
+    lifetime -= GetFrameTime();
+    if(lifetime <= 0){
+        shouldDelete = true;
+    }
+
+    position = position + (dir.normalized() * speed * size) * GetFrameTime();
+
+    for(baseEnemy* el : game->waveManager->activeEnemies){
+        if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * 0.7f)){
+            el->hp -= damage;
+            shouldDelete = true;
+        }
+    }
+}
+
+basicProjectile::basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos) : baseProjectile(game, position, targetPos){
+    texture = LoadTexture("assets/textures/pellet.png");
+    damage = 3;
+    speed = 20;
+}
+
+basicProjectile::~basicProjectile(){
+    UnloadTexture(texture);
 }
 
 void basicProjectile::draw_projectile() {
-    baseProjectile::draw_projectile();
-}
-
-void baseProjectile::draw_projectile() {
-    DrawCircleV({ position.x, position.y }, 10, RED);
-}
-
-void baseProjectile::update_projectile(baseTower* shooter) {
-    Vec2 dir = (target->position - position).normalized();
-
-    position = position + dir * speed * GetFrameTime();
-
-    if (CheckCollisionPointCircle({ position.x, position.y }, { target->position.x, target->position.y }, target->size / 2)) {
-        // Handle damage
-        shouldDelete = true;
-    }
+    DrawTexturePro(texture, {0, 0, 13, 13}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
 }
