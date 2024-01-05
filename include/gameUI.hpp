@@ -29,9 +29,14 @@ public:
         this->padding = 15.0f;
         this->lineHeight = 30.0f;
         GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
+        GuiSetStyle(DEFAULT, BORDER_WIDTH, 5);
+
     }
 
 	void draw_mainUI();
+    void draw_HP();
+    void draw_money();
+    void draw_shop();
     void draw_wave_info(WaveManager* wave);
 };
 

@@ -50,9 +50,13 @@ void GameManager::gameloop(){
         for (auto& tower : towers) {
             tower.update_tower(waveManager->activeEnemies, map->get_tile_size());
         }
-        
+
+        // ovo ce kasnije sve ici u jednu funckiju dw
         gameUI.draw_mainUI();
         gameUI.draw_wave_info(waveManager);
+        gameUI.draw_HP();
+        gameUI.draw_shop();
+        gameUI.draw_money();
         EndDrawing();
     }
 }

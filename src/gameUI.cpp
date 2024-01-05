@@ -8,28 +8,46 @@ void UI::draw_mainUI() {
     GuiGroupBox((Rectangle) {rightCorner.x, rightCorner.y, width, height}, NULL);
 }
 
+void UI::draw_HP() {
+    // Update
+    float HPvalue = 69.0f;
+
+    // Draw
+    GuiSliderBar((Rectangle){ leftCorner.x + width / 4, leftCorner.y + lineHeight, width / 2, height / 10 }, NULL, NULL, &HPvalue, 0, 100);
+}
 
 void UI::draw_wave_info(WaveManager* wave) {
     // Update
     static int waveActive = 0;
-    static bool firstButtonPress = true;
-    string waves = "Wave #1;Wave #2;Wave #3";
+
+    // Draw
+    GuiGroupBox((Rectangle){ leftCorner.x, leftCorner.y + height / 4, width, height / 4 }, NULL);
+
+    GuiValueBox((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 4 + lineHeight, width / 3, height / 10 }, NULL, &waveActive, 0, 50, false);
+
+    if (GuiButton((Rectangle){ leftCorner.x + width / 4, leftCorner.y + height / 4 + 5 * lineHeight, width / 2, height / 16 }, "Next wave") && !wave->active && wave->remainingEnemies.empty()) {
+        wave->waveShouldStart = true;
+        waveActive++;
+    }
+}
+
+void UI::draw_money() {
+    // Update
+    int moneyValue = 150;
 
     // Draw
     GuiGroupBox((Rectangle){ rightCorner.x, rightCorner.y, width, height / 4 }, NULL);
 
-    if (firstButtonPress) {
-        GuiComboBox((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + 0.5 * lineHeight, width / 3, height / 8 }, waves.c_str(), &waveActive);
-        if (GuiButton((Rectangle){ rightCorner.x + lineHeight + padding, rightCorner.y + 5 * lineHeight, width / 3.5, height / 16 }, "Next wave") && !wave->active && wave->remainingEnemies.empty()) {
-            wave->waveShouldStart = true;
-            firstButtonPress = false;
-        }
-    } else {
-        GuiComboBox((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + 0.5 * lineHeight, width / 3, height / 8 }, waves.c_str(), &waveActive);
-        if (GuiButton((Rectangle){ rightCorner.x + lineHeight + padding, rightCorner.y + 5 * lineHeight, width / 3.5, height / 16 }, "Next wave") && !wave->active && wave->remainingEnemies.empty()) {
-            wave->waveShouldStart = true;
-            waveActive++;
-        }
-    }
+    GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + lineHeight, width / 2, height / 10 }, NULL, &moneyValue, 0, 50, false);
 }
 
+void UI::draw_shop() {
+    GuiGroupBox((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + lineHeight + height / 4, tileSize, tileSize}, NULL);
+    GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + tileSize + lineHeight + height / 4, tileSize, tileSize / 4}, "Buy");
+
+    GuiGroupBox((Rectangle){ rightCorner.x + tileSize + 2 * lineHeight, rightCorner.y + lineHeight + height / 4, tileSize, tileSize}, NULL);
+    GuiButton((Rectangle){ rightCorner.x + tileSize + 2 * lineHeight, rightCorner.y + tileSize + lineHeight + height / 4, tileSize, tileSize / 4}, "Buy");
+
+    GuiGroupBox((Rectangle){ rightCorner.x + 2 * tileSize + 3 * lineHeight, rightCorner.y + lineHeight + height / 4, tileSize, tileSize}, NULL);
+    GuiButton((Rectangle){ rightCorner.x + 2 * tileSize + 3 * lineHeight, rightCorner.y + tileSize + lineHeight + height / 4, tileSize, tileSize / 4}, "Buy");
+}
