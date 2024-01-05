@@ -20,13 +20,14 @@ public:
     float attackDelay;
     float range;
     int cost;
+    int level;
 
     baseTower(GameManager* game, float x, float y);
     void update_tower();
     void draw_range();
     baseEnemy* get_enemy_in_range();
     virtual void draw_tower() = 0;
-    virtual void shoot_projectile() = 0;
+    virtual void shoot_projectile(Vec2 targetPos) = 0;
 };
 
 class basicTower : public baseTower {
@@ -35,7 +36,7 @@ private:
 public:
     basicTower(GameManager* game, float x, float y);
     void draw_tower() override;
-    void shoot_projectile() override;
+    void shoot_projectile(Vec2 targetPos) override;
     ~basicTower();
 };
 

@@ -2,36 +2,34 @@
 #define PROJECTILES_H
 
 #include "Vec2.hpp"
-#include "towers.hpp"
-#include "enemies.hpp"
-#include <vector>
-#include <algorithm>
 
-using namespace std;
-
-class baseTower;
+class GameManager;
 
 class baseProjectile {
 protected:
+    GameManager* game;
     Vec2 position;
+    Vec2 dir;
+    float size;
     int damage;
     float speed;
-
+    float lifetime;
 
 public:
-    baseEnemy* target;
-    baseProjectile(baseTower* shooter, baseEnemy& target, int size);
-    virtual void update_projectile(baseTower* shooter);
-    virtual void draw_projectile();
-
     bool shouldDelete;
+
+    baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos);
+    virtual ~baseProjectile();
+    virtual void update();
+    virtual void draw_projectile() = 0;
 };
 
 class basicProjectile : public baseProjectile {
+private:
+    Texture2D texture;
 public:
-    basicProjectile(baseTower* shooter, baseEnemy& target, int size);
-
-    void update_projectile(baseTower* shooter) override;
+    basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos);
+    ~basicProjectile();
     void draw_projectile() override;
 };
 

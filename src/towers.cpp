@@ -1,11 +1,13 @@
 #include "towers.hpp"
 #include "GameManager.hpp"
+#include "projectiles.hpp"
 
 baseTower::baseTower(GameManager* game, float x, float y) {
     this->game = game;
     this->size = game->map->get_tile_size();
     position = { x, y };
     this->rotation = 0;
+    this->level = 1;
 }
 
 void baseTower::update_tower() {
@@ -18,7 +20,7 @@ void baseTower::update_tower() {
     cooldown -= GetFrameTime();
     if(cooldown <= 0){
         if(target != NULL){
-            shoot_projectile();
+            shoot_projectile(target->position);
             cooldown = attackDelay;
         }
     }
@@ -59,6 +61,6 @@ void basicTower::draw_tower() {
         draw_range();
 }
 
-void basicTower::shoot_projectile() {
-    
+void basicTower::shoot_projectile(Vec2 targetPos) {
+    game->projectiles.push_back(new basicProjectile(game, position, targetPos));
 }
