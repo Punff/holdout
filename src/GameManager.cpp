@@ -15,7 +15,6 @@ GameManager::GameManager(){
 
 void GameManager::gameloop(){
     UI gameUI(map);
-    vector<basicTower> towers;
 
     while(!WindowShouldClose()){
         // Updates
@@ -28,12 +27,15 @@ void GameManager::gameloop(){
             int x = map->get_tile_xPos_on_hover();
             int y = map->get_tile_yPos_on_hover();
 
-            basicTower tower(map->get_tile_xPos(x), map->get_tile_yPos(y));
-            towers.push_back(tower);
+            towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
 
             printf("%d, %d \n", x, y);
         }
 
+        for(basicTower* el : towers){
+            el->update_tower();
+        }
+        
         // Rendering
         BeginDrawing();
         ClearBackground(BLACK);
@@ -46,11 +48,11 @@ void GameManager::gameloop(){
         if(waveManager != NULL){
             waveManager->draw_enemies();
         }
-        
-        for (auto& tower : towers) {
-            tower.update_tower(waveManager->activeEnemies, map->get_tile_size());
+
+        for(basicTower* el : towers){
+            el->draw_tower();
         }
-        
+
         gameUI.draw_mainUI();
         gameUI.draw_wave_info(waveManager);
         EndDrawing();
@@ -62,11 +64,19 @@ void GameManager::load_map(string mapName){
     delete map;
     map = new Map(mapName, screenWidth / 2, screenHeight / 2, screenWidth / 2);
     if(map->loaded){
-        waveManager = new WaveManager(map);
+        waveManager = new WaveManager(this);
     }
 }
 
 GameManager::~GameManager(){
     delete waveManager;
     delete map;
+}
+
+void GameManager::take_damage(int damage){
+    playerHP -= damage;
+    if(playerHP < 0){
+        playerHP = 0;
+    }
+    cout << "Player took damage (" << damage << ")" << " HP: " << playerHP << " $" << money << "\n";
 }

@@ -11,13 +11,14 @@ class baseEnemy {
 protected:
     Map* map;
     float moveSpeed;
-    int damage;
     int pathPos;
 
 public:
+    int damage;
     int size;
     Vec2 position;
     int hp;
+    int value;
     bool reachedEnd;
     baseEnemy(Map* map);
     void update();
