@@ -33,7 +33,11 @@ public:
 };
 
 class flameRing : public baseProjectile {
-    flameRing(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
+private:
+    float rotation;
+    bool didDamage;
+public:
+    flameRing(GameManager* game, Vec2 position, Vec2 targetPos, int damage, float range);
     ~flameRing();
     void update() override;
     void draw_projectile() override;

@@ -21,9 +21,9 @@ public:
     int money;
     Map* map;
     WaveManager* waveManager;
-    vector<basicTower*> towers;
+    vector<baseTower*> towers;
     bool isPlacingTower;
-    vector<basicProjectile*> projectiles;
+    vector<baseProjectile*> projectiles;
     GameManager();
     ~GameManager();
     void gameloop();
