@@ -11,6 +11,7 @@ class GameManager;
 
 class baseTower {
 public:
+    Texture2D texture;
     GameManager* game;
     Vec2 position;
     float rotation;
@@ -33,11 +34,18 @@ public:
 
 class basicTower : public baseTower {
 public:
-    Texture2D texture;
     basicTower(GameManager* game, float x, float y);
+    ~basicTower();
     void draw_tower() override;
     void shoot_projectile(Vec2 targetPos) override;
-    ~basicTower();
+};
+
+class flamethrower : public baseTower {
+public:
+    flamethrower(GameManager* game, float x, float y);
+    ~flamethrower();
+    void draw_tower() override;
+    void shoot_projectile(Vec2 targetPos) override;
 };
 
 #endif

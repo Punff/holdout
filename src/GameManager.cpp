@@ -28,8 +28,12 @@ void GameManager::gameloop(){
 
                 int x = map->get_tile_xPos_on_hover();
                 int y = map->get_tile_yPos_on_hover();
-
-                towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                if(IsKeyDown(KEY_F)){
+                    towers.push_back(new flamethrower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                }
+                else{
+                    towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                }
                 isPlacingTower = false;
 
                 printf("%d, %d \n", x, y);
@@ -37,11 +41,11 @@ void GameManager::gameloop(){
 
         }
 
-        for(basicTower* el : towers){
+        for(baseTower* el : towers){
             el->update_tower();
         }
         
-        for(basicProjectile* el : projectiles){
+        for(baseProjectile* el : projectiles){
             el->update();
         }
 
@@ -66,13 +70,13 @@ void GameManager::gameloop(){
         if(waveManager != NULL){
             waveManager->draw_enemies();
         }
-        
-        for(basicTower* el : towers){
-            el->draw_tower();
-        }
 
         for(baseProjectile* el : projectiles){
             el->draw_projectile();
+        }
+        
+        for(baseTower* el : towers){
+            el->draw_tower();
         }
 
         // ovo ce kasnije sve ici u jednu funckiju dw

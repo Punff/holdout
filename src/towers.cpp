@@ -50,7 +50,7 @@ basicTower::basicTower(GameManager* game, float x, float y) : baseTower(game, x,
     range = 2.0f;
     cost = 15;
     attackDelay = 1.5f;
-    cooldown = 0.0f;
+    cooldown = 0;
     damage = 5;
 }
 
@@ -66,5 +66,28 @@ void basicTower::draw_tower() {
 }
 
 void basicTower::shoot_projectile(Vec2 targetPos) {
-    game->projectiles.push_back(new basicProjectile(game, position, targetPos));
+    game->projectiles.push_back(new basicProjectile(game, position, targetPos, damage));
+}
+
+
+flamethrower::flamethrower(GameManager* game, float x, float y) : baseTower(game, x, y) {
+    texture = LoadTexture("assets/textures/text-tower-flamethrower.png");
+    range = 1.4f;
+    cost = 40;
+    attackDelay = 2.0f;
+    cooldown = 0;
+    damage = 4;
+}
+
+flamethrower::~flamethrower(){
+    UnloadTexture(texture);
+}
+
+void flamethrower::draw_tower(){
+    DrawTexturePro(texture, {0, 0, 18, 18}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+    draw_range();
+}
+
+void flamethrower::shoot_projectile(Vec2 targetPos){
+    game->projectiles.push_back(new flameRing(game, position, targetPos, damage, range));
 }
