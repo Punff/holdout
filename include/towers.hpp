@@ -25,7 +25,7 @@ public:
     int level;
 
     baseTower(GameManager* game, float x, float y);
-    void update_tower();
+    virtual void update_tower();
     void draw_range();
     baseEnemy* get_enemy_in_range();
     virtual void draw_tower() = 0;
@@ -44,6 +44,17 @@ class flamethrower : public baseTower {
 public:
     flamethrower(GameManager* game, float x, float y);
     ~flamethrower();
+    void draw_tower() override;
+    void shoot_projectile(Vec2 targetPos) override;
+};
+
+class minigun : public baseTower {
+private:
+    Vec2 targetPos;
+public:
+    minigun(GameManager* game, float x, float y);
+    ~minigun();
+    void update_tower() override;
     void draw_tower() override;
     void shoot_projectile(Vec2 targetPos) override;
 };

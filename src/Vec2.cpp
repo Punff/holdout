@@ -11,6 +11,11 @@ Vec2::Vec2(float x, float y){
     this->y = y;
 }
 
+Vec2::Vec2(Vector2 vec){
+    x = vec.x;
+    y = vec.y;
+}
+
 float Vec2::length(){
     return sqrt(pow(x, 2) + pow(y, 2));
 }
