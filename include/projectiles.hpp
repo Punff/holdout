@@ -7,6 +7,7 @@ class GameManager;
 
 class baseProjectile {
 protected:
+    Texture2D texture;
     GameManager* game;
     Vec2 position;
     Vec2 dir;
@@ -18,18 +19,23 @@ protected:
 public:
     bool shouldDelete;
 
-    baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos);
+    baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
     virtual ~baseProjectile();
     virtual void update();
     virtual void draw_projectile() = 0;
 };
 
 class basicProjectile : public baseProjectile {
-private:
-    Texture2D texture;
 public:
-    basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos);
+    basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
     ~basicProjectile();
+    void draw_projectile() override;
+};
+
+class flameRing : public baseProjectile {
+    flameRing(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
+    ~flameRing();
+    void update() override;
     void draw_projectile() override;
 };
 

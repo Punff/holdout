@@ -4,11 +4,12 @@
 #include "raylib.h"
 #include "GameManager.hpp"
 
-baseProjectile::baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos) {
+baseProjectile::baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) {
     this->game = game;
     this->position = position;
     size = game->map->get_tile_size() * 0.2f;
     dir = targetPos - position;
+    this->damage = damage;
     shouldDelete = false;
     lifetime = 10;
 }
@@ -31,9 +32,8 @@ void baseProjectile::update() {
     }
 }
 
-basicProjectile::basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos) : baseProjectile(game, position, targetPos){
+basicProjectile::basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = LoadTexture("assets/textures/pellet.png");
-    damage = 3;
     speed = 20;
 }
 
@@ -43,4 +43,8 @@ basicProjectile::~basicProjectile(){
 
 void basicProjectile::draw_projectile() {
     DrawTexturePro(texture, {0, 0, 13, 13}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+}
+
+flameRing::flameRing(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
+    texture = LoadTexture("assets/textures/flame-ring.png");
 }
