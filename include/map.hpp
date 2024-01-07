@@ -27,6 +27,7 @@ public:
     int get_tile_size();
     float get_tile_xPos_on_hover();
     float get_tile_yPos_on_hover();
+    baseTile* get_tile_at_position(int x, int y) const;
 };
 
 #endif

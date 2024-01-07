@@ -27,11 +27,23 @@ void GameManager::gameloop() {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
                 int x = map->get_tile_xPos_on_hover();
                 int y = map->get_tile_yPos_on_hover();
+                int xCoord = GetMouseX();
+                int yCoord = GetMouseY();
 
                 bool canPlaceTower = true;
-                for (auto &tile: map->enemyPath) {
-                    if (tile == Vector2{(float) x, (float) y}) {
-                        canPlaceTower = false;
+
+                for (const auto &row: map->grid) {
+                    for (auto &tile: row) {
+                        if (CheckCollisionPointRec({xCoord, yCoord}, tile->hitbox)) {
+                            if (!tile->is_occupied) {
+                                tile->is_occupied = true;
+                            } else {
+                                canPlaceTower = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (!canPlaceTower) {
                         break;
                     }
                 }
@@ -52,7 +64,6 @@ void GameManager::gameloop() {
                 }
             }
         }
-
 
         for(baseTower* el : towers){
             el->update_tower();
