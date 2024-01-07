@@ -146,6 +146,18 @@ float Map::get_tile_yPos_on_hover() {
     return 69;
 }
 
+baseTile* Map::get_tile_at_position(int x, int y) const {
+    for (size_t row = 0; row < grid.size(); ++row) {
+        for (size_t col = 0; col < grid[row].size(); ++col) {
+            baseTile* tile = grid[row][col];
+            if (tile->xPos == x && tile->yPos == y) {
+                return tile;
+            }
+        }
+    }
+    return nullptr;
+}
+
 void Map::generate_path(Vec2 pos, Vec2 lastPos, bool start){
     if(start){
         enemyPath.push_back(pos);

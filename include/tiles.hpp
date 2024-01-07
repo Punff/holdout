@@ -1,13 +1,18 @@
 #ifndef TILES_H
 #define TILES_H
+
 #include "raylib.h"
-class baseTile{
+
+class baseTile {
 protected:
     Texture2D texture;
 public:
+    int xPos;
+    int yPos;
     Rectangle hitbox;
     bool is_occupied;
     bool is_path;
+
     baseTile(int xPos, int yPos, int size);
     virtual void draw_tile();
     virtual ~baseTile();
