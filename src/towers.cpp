@@ -113,7 +113,7 @@ void minigun::update_tower(){
         toggleRange = false;
     }
 
-    //if(game->waveManager->active)
+    if(game->waveManager->active)
         cooldown -= GetFrameTime();
     if(cooldown <= 0){
         shoot_projectile(targetPos);
