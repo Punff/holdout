@@ -21,7 +21,7 @@ public:
     float attackDelay;
     float range;
     bool toggleRange;
-    int cost;
+    int price;
     int level;
 
     baseTower(GameManager* game, float x, float y);

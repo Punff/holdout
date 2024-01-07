@@ -14,35 +14,45 @@ GameManager::GameManager(){
     isPlacingTower = false;
 }
 
-void GameManager::gameloop(){
+void GameManager::gameloop() {
     UI gameUI(this);
 
-    while(!WindowShouldClose()){
+    while (!WindowShouldClose()) {
         // Updates
-        if(waveManager != NULL){
+        if (waveManager != NULL) {
             waveManager->update();
         }
 
         if (isPlacingTower) {
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-
                 int x = map->get_tile_xPos_on_hover();
                 int y = map->get_tile_yPos_on_hover();
-                if(IsKeyDown(KEY_F)){
-                    towers.push_back(new flamethrower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                }
-                else if(IsKeyDown(KEY_M)){
-                    towers.push_back(new minigun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                }
-                else{
-                    towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                }
-                isPlacingTower = false;
 
-                printf("%d, %d \n", x, y);
+                bool canPlaceTower = true;
+                for (auto &tile: map->enemyPath) {
+                    if (tile == Vector2{(float) x, (float) y}) {
+                        canPlaceTower = false;
+                        break;
+                    }
+                }
+
+                if (canPlaceTower) {
+                    if (towerType == "flamethrower") {
+                        towers.push_back(new flamethrower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                          map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                    } else if (towerType == "minigun") {
+                        towers.push_back(new minigun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                     map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                    } else if (towerType == "basic") {
+                        towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                        map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                    }
+
+                    isPlacingTower = false;
+                }
             }
-
         }
+
 
         for(baseTower* el : towers){
             el->update_tower();

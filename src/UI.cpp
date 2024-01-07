@@ -1,4 +1,4 @@
-#include "gameUI.hpp"
+#include "UI.hpp"
 
 UI::UI(GameManager* game) {
     this->game = game;
@@ -11,8 +11,18 @@ UI::UI(GameManager* game) {
     this->rightCorner = {map->get_tile_xPos(map->mapTiles), map->get_tile_yPos(0)};
     this->padding = 15.0f;
     this->lineHeight = 30.0f;
+
+    GuiLoadStyle("assets/style_candy.rgs");
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BORDER_WIDTH, 5);
+
+    load_textures();
+}
+
+void UI::load_textures() {
+    textures.push_back(LoadTexture("assets/textures/tower.png"));
+    textures.push_back(LoadTexture("assets/textures/text-tower-flamethrower.png"));
+    textures.push_back(LoadTexture("assets/textures/text-tower-minigun.png"));
 }
 
 void UI::draw_mainUI() {
@@ -53,28 +63,44 @@ void UI::draw_money() {
 
     // Draw
     GuiGroupBox((Rectangle){ rightCorner.x, rightCorner.y, width, height / 4 }, NULL);
-
     GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + lineHeight, width / 2, height / 10 }, NULL, &moneyValue, 0, 50, false);
+    DrawText("$", rightCorner.x + width / 4 + width / 2 + 10, rightCorner.y + lineHeight + height / width / 2, height / 10, DARKGRAY);
 }
 
 void UI::draw_shop() {
     // Update
+    Rectangle sourceRect = {16, 0, 16, 16};
+    float size = width / 4;
+
     int basicTowerPrice = 7;
+    Rectangle shopItem1 = { rightCorner.x + lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4};
+    Rectangle shopItem2 = { rightCorner.x + width / 4 + 2 * lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4};
+    Rectangle shopItem3 = { rightCorner.x + width / 4 + 7 * lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4};
 
     // Draw
-    GuiGroupBox((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4}, NULL);
+    GuiGroupBox(shopItem1, NULL);
+    DrawTexturePro(textures[0], sourceRect, { shopItem1.x + padding, shopItem1.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
+    DrawTexturePro(textures[0], {0, 0, 16, 16}, { shopItem1.x + padding, shopItem1.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
     if (GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4, width / 4 / 4}, "Buy") && game->money >= basicTowerPrice) {
         game->isPlacingTower = true;
+        game->towerType = "basic";
         game->money -= basicTowerPrice;
     }
 
-    GuiGroupBox((Rectangle){ rightCorner.x + width / 4 + 2 * lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4}, NULL);
+    GuiGroupBox(shopItem2, NULL);
+    DrawTexturePro(textures[1], {0, 0, 18, 18}, { shopItem2.x + padding, shopItem2.y + padding, size - padding, size - padding }, {18 / 2, 18 / 2}, 0, WHITE);
     if (GuiButton((Rectangle){ rightCorner.x + width / 4 + 2 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4, width / 4 / 4}, "Buy")) {
-
+        game->isPlacingTower = true;
+        game->towerType = "flamethrower";
+        game->money -= basicTowerPrice;
     }
 
-    GuiGroupBox((Rectangle){ rightCorner.x + 2 * width / 4 + 3 * lineHeight, rightCorner.y + lineHeight + height / 4, width / 4, width / 4}, NULL);
+    GuiGroupBox(shopItem3, NULL);
+    DrawTexturePro(textures[2], {16, 0, 16, 16}, { shopItem3.x + padding, shopItem3.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
+    DrawTexturePro(textures[2], {0, 0, 16, 16}, { shopItem3.x + padding, shopItem3.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
     if (GuiButton((Rectangle){ rightCorner.x + 2 * width / 4 + 3 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4, width / 4 / 4}, "Buy")) {
-
+        game->isPlacingTower = true;
+        game->towerType = "minigun";
+        game->money -= basicTowerPrice;
     }
 }
