@@ -2,11 +2,14 @@
 #define TILES_H
 #include "raylib.h"
 class baseTile{
+protected:
+    Texture2D texture;
 public:
     Rectangle hitbox;
+    bool is_occupied;
     bool is_path;
     baseTile(int xPos, int yPos, int size);
-    virtual void draw_tile() = 0;
+    virtual void draw_tile();
     virtual ~baseTile();
 };
 
@@ -15,27 +18,24 @@ class wireframeTile : public baseTile {
     void draw_tile();
 };
 
-class solidTile : public baseTile {
-    using baseTile::baseTile;
-    void draw_tile();
-};
-
 class pathTile : public baseTile {
-private:
-    Texture2D texture;
 public:
     pathTile(int xPos, int yPos, int size);
-    ~pathTile();
-    void draw_tile();
 };
 
 class grassTile : public baseTile {
-private:
-    Texture2D texture;
 public:
     grassTile(int xPos, int yPos, int size);
-    ~grassTile();
-    void draw_tile();
+};
+
+class waterTile : public baseTile {
+public:
+    waterTile(int xPos, int yPos, int size);
+};
+
+class rockTile : public baseTile {
+public:
+    rockTile(int xPos, int yPos, int size);
 };
 
 #endif

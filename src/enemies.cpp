@@ -34,16 +34,16 @@ void baseEnemy::update(){
     position = position + (dir.normalized() * moveSpeed * size) * GetFrameTime();
 }
 
+void baseEnemy::draw_enemy(){
+    DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+}
+
 basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
     texture = LoadTexture("assets/textures/text-enemy-basic.png");
     damage = 1;
     value = 5;
     hp = 10;
     moveSpeed = 1;
-}
-
-void basicEnemy::draw_enemy(){
-    DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
 }
 
 eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
@@ -54,6 +54,10 @@ eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
     moveSpeed = 1.5;
 }
 
-void eliteEnemy::draw_enemy(){
-    DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+tankEnemy::tankEnemy(Map* map) : baseEnemy(map){
+    texture = LoadTexture("assets/textures/text-enemy-tank.png");
+    damage = 35;
+    value = 30;
+    hp = 100;
+    moveSpeed = 0.8;
 }

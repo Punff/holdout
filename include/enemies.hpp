@@ -23,20 +23,23 @@ public:
     bool reachedEnd;
     baseEnemy(Map* map);
     void update();
-    virtual void draw_enemy() = 0;
+    virtual void draw_enemy();
     virtual ~baseEnemy();
 };
 
 class basicEnemy : public baseEnemy {
 public:
     basicEnemy(Map* map);
-    void draw_enemy();
 };
 
 class eliteEnemy : public baseEnemy {
 public:
     eliteEnemy(Map* map);
-    void draw_enemy();
+};
+
+class tankEnemy : public baseEnemy {
+public:
+    tankEnemy(Map* map);
 };
 
 #endif

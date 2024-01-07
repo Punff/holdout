@@ -69,6 +69,10 @@ baseTile* Map::create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize){
             return new grassTile(tilexPos, tileyPos, tileSize);
         case 2:
             return new pathTile(tilexPos, tileyPos, tileSize);
+        case 3:
+            return new waterTile(tilexPos, tileyPos, tileSize);
+        case 4:
+            return new rockTile(tilexPos, tileyPos, tileSize);
         default:
             return NULL;
     }
