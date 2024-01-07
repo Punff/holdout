@@ -9,13 +9,14 @@ using namespace std;
 
 class baseEnemy {
 protected:
+    Texture2D texture;
     Map* map;
     float moveSpeed;
     int pathPos;
 
 public:
     int damage;
-    int size;
+    float size;
     Vec2 position;
     int hp;
     int value;

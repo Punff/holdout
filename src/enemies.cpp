@@ -10,7 +10,9 @@ baseEnemy::baseEnemy(Map* map){
     this->reachedEnd = false;
 }
 
-baseEnemy::~baseEnemy(){}
+baseEnemy::~baseEnemy(){
+    UnloadTexture(texture);
+}
 
 void baseEnemy::update(){
     if(pathPos >= map->enemyPath.size() - 1){
@@ -33,25 +35,25 @@ void baseEnemy::update(){
 }
 
 basicEnemy::basicEnemy(Map* map) : baseEnemy(map){
-    this->damage = 1;
-    this->value = 5;
-    this->hp = 10;
-    this->moveSpeed = 1;
+    texture = LoadTexture("assets/textures/text-enemy-basic.png");
+    damage = 1;
+    value = 5;
+    hp = 10;
+    moveSpeed = 1;
 }
 
 void basicEnemy::draw_enemy(){
-    DrawCircle(position.x, position.y, size * 0.8f / 2, RED);
-    DrawCircle(position.x, position.y, size * 0.8f / 2.5, BLUE);
-    DrawCircle(position.x, position.y, size * 0.8f / 4, WHITE);
+    DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
 }
 
 eliteEnemy::eliteEnemy(Map* map) : baseEnemy(map){
-    this->damage = 1;
-    this->value = 10;
-    this->hp = 15;
-    this->moveSpeed = 1.5;
+    texture = LoadTexture("assets/textures/text-enemy-elite.png");
+    damage = 1;
+    value = 10;
+    hp = 15;
+    moveSpeed = 1.5;
 }
 
 void eliteEnemy::draw_enemy(){
-    DrawCircle(position.x, position.y, size * 0.8f / 2, PINK);
+    DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
 }
