@@ -4,7 +4,7 @@
 #include <iostream>
 #include "map.hpp"
 #include "towers.hpp"
-#include "gameUI.hpp"
+#include "UI.hpp"
 #include "enemies.hpp"
 #include <raylib.h>
 #include <vector>
@@ -23,6 +23,7 @@ public:
     WaveManager* waveManager;
     vector<baseTower*> towers;
     bool isPlacingTower;
+    string towerType;
     vector<baseProjectile*> projectiles;
     GameManager();
     ~GameManager();

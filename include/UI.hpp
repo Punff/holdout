@@ -23,15 +23,18 @@ public:
     int width;
     int padding;
     int lineHeight;
+    vector<Texture2D> textures;
     GameManager* game;
     Map* map;
 
     UI(GameManager* game);
 
-	void draw_mainUI();
+    void load_textures();
+    void draw_mainUI();
     void draw_HP();
     void draw_money();
     void draw_shop();
+    void drawShopItem(const Rectangle& itemRect, const Texture2D& texture, const Rectangle& textureRect, const std::string& towerType, int towerPrice);
     void draw_wave_info(WaveManager* wave);
 };
 

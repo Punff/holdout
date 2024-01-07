@@ -8,6 +8,7 @@ baseTower::baseTower(GameManager* game, float x, float y) {
     this->position = { x, y };
     this->rotation = 0;
     this->level = 1;
+    this->price = 15;
     this->toggleRange = true;
 }
 
@@ -48,7 +49,7 @@ void baseTower::draw_range() {
 basicTower::basicTower(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = LoadTexture("assets/textures/tower.png");
     range = 2.0f;
-    cost = 15;
+    price = 15;
     attackDelay = 1.5f;
     cooldown = 0;
     damage = 5;
@@ -73,7 +74,7 @@ void basicTower::shoot_projectile(Vec2 targetPos) {
 flamethrower::flamethrower(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = LoadTexture("assets/textures/text-tower-flamethrower.png");
     range = 1.4f;
-    cost = 40;
+    price = 40;
     attackDelay = 2.0f;
     cooldown = 0;
     damage = 4;
@@ -95,7 +96,7 @@ void flamethrower::shoot_projectile(Vec2 targetPos){
 minigun::minigun(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = LoadTexture("assets/textures/text-tower-minigun.png");
     range = 0.5f;
-    cost = 90;
+    price = 90;
     attackDelay = 0.3f;
     cooldown = attackDelay;
     damage = 5;
