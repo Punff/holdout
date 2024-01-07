@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include "GameManager.hpp"
 #define ENEMY_SIZE 0.45f
+
 baseProjectile::baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) {
     this->game = game;
     this->position = position;
