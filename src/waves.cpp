@@ -6,13 +6,12 @@ const string WaveManager::WAVE_PATH = "assets/waves";
 
 WaveManager::WaveManager(GameManager* game){
     this->game = game;
-    this->map = game->map;
-    this->currWave = 1;
-    this->maxWave = MAX_WAVES;
-    this->spawnInterval = 1;
-    this->nextSpawnTime = 0;
-    this->active = false;
-    this->waveShouldStart = false;
+    currWave = 1;
+    maxWave = MAX_WAVES;
+    spawnInterval = 1;
+    nextSpawnTime = 0;
+    active = false;
+    waveShouldStart = false;
 }
 
 void WaveManager::clear_enemies(){
@@ -31,11 +30,16 @@ void WaveManager::clear_enemies(){
 void WaveManager::add_enemies(char type, int amount){
     for(int i = 0; i < amount; i++){
         switch(type){
+            case 'd':
+                break;
             case 'b':
-                remainingEnemies.push_back(new basicEnemy(map));
+                remainingEnemies.push_back(new basicEnemy(game->map));
                 break;
             case 'e':
-                remainingEnemies.push_back(new eliteEnemy(map));
+                remainingEnemies.push_back(new eliteEnemy(game->map));
+                break;
+            case 't':
+                remainingEnemies.push_back(new tankEnemy(game->map));
                 break;
         }
     }
@@ -73,10 +77,6 @@ void WaveManager::update(){
         if(currWave > maxWave){
             return;
         }
-        if(waveShouldStart) {
-            start_wave();
-            this->waveShouldStart = false;
-        }
     }
     else if(activeEnemies.empty() && remainingEnemies.empty()){
         currWave++;
@@ -110,9 +110,15 @@ void WaveManager::update(){
     }
 }
 
-void WaveManager::start_wave(){
-    load_enemies(currWave);
-    active = true;
+bool WaveManager::start_wave(){
+    if(active || currWave > maxWave){
+        return false;
+    }
+    else{
+        load_enemies(currWave);
+        active = true;
+        return true;
+    }
 }
 
 void WaveManager::draw_enemies(){
@@ -128,5 +134,4 @@ void WaveManager::spawn_enemy(){
 
     activeEnemies.push_back(remainingEnemies[0]);
     remainingEnemies.erase(remainingEnemies.begin());
-
 }
