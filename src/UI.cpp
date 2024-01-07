@@ -12,6 +12,7 @@ UI::UI(GameManager* game) {
     this->padding = 15.0f;
     this->lineHeight = 30.0f;
 
+    GuiLoadStyle("assets/style_candy.rgs");
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BORDER_WIDTH, 5);
 
@@ -61,8 +62,8 @@ void UI::draw_money() {
 
     // Draw
     GuiGroupBox((Rectangle){ rightCorner.x, rightCorner.y, width, height / 4 }, NULL);
-
     GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + lineHeight, width / 2, height / 10 }, NULL, &moneyValue, 0, 50, false);
+    DrawText("$", rightCorner.x + width / 4 + width / 2 + 10, rightCorner.y + lineHeight + height / width / 2, height / 10, DARKGRAY);
 }
 
 void UI::draw_shop() {
