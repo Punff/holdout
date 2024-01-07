@@ -21,7 +21,6 @@ public:
     float attackDelay;
     float range;
     bool toggleRange;
-    int price;
     int level;
 
     baseTower(GameManager* game, float x, float y);
@@ -34,6 +33,7 @@ public:
 
 class basicTower : public baseTower {
 public:
+    static int price;
     basicTower(GameManager* game, float x, float y);
     ~basicTower();
     void draw_tower() override;
@@ -42,6 +42,7 @@ public:
 
 class flamethrower : public baseTower {
 public:
+    static int price;
     flamethrower(GameManager* game, float x, float y);
     ~flamethrower();
     void draw_tower() override;
@@ -52,6 +53,7 @@ class minigun : public baseTower {
 private:
     Vec2 targetPos;
 public:
+    static int price;
     minigun(GameManager* game, float x, float y);
     ~minigun();
     void update_tower() override;
