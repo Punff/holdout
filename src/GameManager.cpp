@@ -31,6 +31,9 @@ void GameManager::gameloop(){
                 if(IsKeyDown(KEY_F)){
                     towers.push_back(new flamethrower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
                 }
+                else if(IsKeyDown(KEY_M)){
+                    towers.push_back(new minigun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                }
                 else{
                     towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2, map->get_tile_yPos(y) + map->get_tile_size() / 2));
                 }

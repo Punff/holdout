@@ -9,6 +9,7 @@ struct Vec2 {
 
     Vec2();
     Vec2(float x, float y);
+    Vec2(Vector2 vec);
     float length();
     Vec2 normalized();
 

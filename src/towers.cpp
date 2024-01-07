@@ -91,3 +91,47 @@ void flamethrower::draw_tower(){
 void flamethrower::shoot_projectile(Vec2 targetPos){
     game->projectiles.push_back(new flameRing(game, position, targetPos, damage, range));
 }
+
+minigun::minigun(GameManager* game, float x, float y) : baseTower(game, x, y) {
+    texture = LoadTexture("assets/textures/text-tower-minigun.png");
+    range = 0.5f;
+    cost = 90;
+    attackDelay = 0.3f;
+    cooldown = attackDelay;
+    damage = 5;
+    targetPos = position + Vec2(0, -1);
+}
+
+minigun::~minigun(){
+    UnloadTexture(texture);
+}
+
+void minigun::update_tower(){
+    if(toggleRange && IsMouseButtonDown(MOUSE_LEFT_BUTTON) && !CheckCollisionPointRec(GetMousePosition(), {position.x - size / 2, position.y - size / 2, size, size})){
+        rotation = Vector2Angle({0, -1}, Vector2Subtract(GetMousePosition(), position)) * 180 / PI;
+        targetPos = GetMousePosition();
+        toggleRange = false;
+    }
+
+    //if(game->waveManager->active)
+        cooldown -= GetFrameTime();
+    if(cooldown <= 0){
+        shoot_projectile(targetPos);
+        cooldown = attackDelay;
+    }
+
+    if (CheckCollisionPointRec(GetMousePosition(), {position.x - size / 2, position.y - size / 2, size, size}) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        toggleRange = !toggleRange;
+    }
+}
+
+void minigun::draw_tower(){
+    DrawTexturePro(texture, {16, 0, 16, 16}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+    DrawTexturePro(texture, {0, 0, 16, 16}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation,
+                   WHITE);
+    draw_range();
+}
+
+void minigun::shoot_projectile(Vec2 targetPos){
+    game->projectiles.push_back(new basicProjectile(game, position, targetPos, damage));
+}

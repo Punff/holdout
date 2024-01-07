@@ -81,6 +81,10 @@ void WaveManager::update(){
     else if(activeEnemies.empty() && remainingEnemies.empty()){
         currWave++;
         active = false;
+        spawnInterval -= 0.2f;
+        if(spawnInterval < 0.2f){
+            spawnInterval = 0.2f;
+        }
         return;
     }
 
