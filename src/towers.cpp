@@ -8,7 +8,7 @@ baseTower::baseTower(GameManager* game, float x, float y) {
     this->position = { x, y };
     this->rotation = 0;
     this->level = 1;
-    this->toggleRange = false;
+    this->toggleRange = true;
 }
 
 void baseTower::update_tower() {
