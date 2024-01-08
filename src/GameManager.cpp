@@ -12,6 +12,7 @@ GameMode currentMode;
 GameManager::GameManager() {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
     ToggleFullscreen();
+    InitAudioDevice();
     SetTargetFPS(60);
 
     screenWidth = GetScreenWidth();
@@ -22,6 +23,7 @@ GameManager::GameManager() {
     waveManager = nullptr;
     isPlacingTower = false;
     currentMode = GameMode::MainMenu;
+    mainMenu = LoadSound("assets/soundfx/mainMenu.wav");
 }
 
 void GameManager::gameloop() {
@@ -48,6 +50,7 @@ void GameManager::gameloop() {
 
 void GameManager::updateMainMenu() {
     if (IsKeyPressed(KEY_ENTER)) {
+        PlaySound(mainMenu);
         currentMode = GameMode::InGame;
         load_map("map2");
     }
@@ -165,6 +168,7 @@ void GameManager::load_map(std::string mapName) {
     if (map->loaded) {
         waveManager = new WaveManager(this);
     }
+
 }
 
 GameManager::~GameManager() {

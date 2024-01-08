@@ -29,6 +29,7 @@ public:
     bool isPlacingTower;
     string towerType;
     vector<baseProjectile*> projectiles;
+    Sound mainMenu;
 
     enum class GameMode {
         MainMenu,
