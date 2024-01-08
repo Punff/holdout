@@ -24,6 +24,7 @@ GameManager::GameManager() {
     isPlacingTower = false;
     currentMode = GameMode::MainMenu;
     mainMenu = LoadSound("assets/soundfx/mainMenu.wav");
+    mainTheme = LoadSound("assets/soundfx/testmusic.wav");
 }
 
 void GameManager::gameloop() {
@@ -50,7 +51,7 @@ void GameManager::gameloop() {
 
 void GameManager::updateMainMenu() {
     if (IsKeyPressed(KEY_ENTER)) {
-        //PlaySound(mainMenu);
+        PlaySound(mainMenu);
         currentMode = GameMode::InGame;
         load_map("map2");
     }
@@ -65,6 +66,10 @@ void GameManager::drawMainMenu() {
 }
 
 void GameManager::updateInGame() {
+    if (!IsSoundPlaying(mainTheme)) {
+        PlaySound(mainTheme);
+    }
+
     if (waveManager != nullptr) {
         waveManager->update();
     }
