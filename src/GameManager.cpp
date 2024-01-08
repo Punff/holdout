@@ -21,6 +21,7 @@ GameManager::GameManager() {
     money = 180;
     map = nullptr;
     waveManager = nullptr;
+    assets = new AssetServer;
     isPlacingTower = false;
     currentMode = GameMode::MainMenu;
     mainMenu = LoadSound("assets/soundfx/mainMenu.wav");
@@ -80,7 +81,7 @@ void GameManager::updateInGame() {
 
             for (const auto &row: map->grid) {
                 for (auto &tile: row) {
-                    if (CheckCollisionPointRec({xCoord, yCoord}, tile->hitbox)) {
+                    if (CheckCollisionPointRec({(float)xCoord, (float)yCoord}, tile->hitbox)) {
                         if (!tile->is_occupied) {
                             tile->is_occupied = true;
                         } else {
@@ -164,11 +165,10 @@ void GameManager::drawInGame(UI* gameUI) {
 void GameManager::load_map(std::string mapName) {
     delete waveManager;
     delete map;
-    map = new Map(mapName, screenWidth / 2, screenHeight / 2, screenWidth / 2);
+    map = new Map(mapName, screenWidth / 2, screenHeight / 2, screenWidth / 2, this);
     if (map->loaded) {
         waveManager = new WaveManager(this);
     }
-
 }
 
 GameManager::~GameManager() {

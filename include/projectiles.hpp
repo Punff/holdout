@@ -28,7 +28,6 @@ public:
 class basicProjectile : public baseProjectile {
 public:
     basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
-    ~basicProjectile();
     void draw_projectile() override;
 };
 
@@ -38,7 +37,6 @@ private:
     bool didDamage;
 public:
     flameRing(GameManager* game, Vec2 position, Vec2 targetPos, int damage, float range);
-    ~flameRing();
     void update() override;
     void draw_projectile() override;
 };

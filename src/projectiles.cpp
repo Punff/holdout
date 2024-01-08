@@ -34,12 +34,8 @@ void baseProjectile::update() {
 }
 
 basicProjectile::basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
-    texture = LoadTexture("assets/textures/pellet.png");
-    speed = 20;
-}
-
-basicProjectile::~basicProjectile(){
-    UnloadTexture(texture);
+    texture = game->assets->load_texture("pellet.png");
+    speed = 25;
 }
 
 void basicProjectile::draw_projectile() {
@@ -47,16 +43,12 @@ void basicProjectile::draw_projectile() {
 }
 
 flameRing::flameRing(GameManager* game, Vec2 position, Vec2 targetPos, int damage, float range) : baseProjectile(game, position, targetPos, damage){
-    texture = LoadTexture("assets/textures/flame-ring.png");
+    texture = game->assets->load_texture("flame-ring.png");
     speed = 0;
     lifetime = 0.6f;
     size = game->map->get_tile_size() * range;
     rotation = 0;
     didDamage = false;
-}
-
-flameRing::~flameRing(){
-    UnloadTexture(texture);
 }
 
 void flameRing::update(){

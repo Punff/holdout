@@ -10,6 +10,7 @@
 #include "waves.hpp"
 #include <vector>
 #include <raylib.h>
+#include "AssetServer.hpp"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
     int money;
     Map* map;
     WaveManager* waveManager;
+    AssetServer* assets;
     vector<baseTower*> towers;
     bool isPlacingTower;
     string towerType;

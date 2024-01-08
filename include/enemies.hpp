@@ -7,10 +7,11 @@
 #include "Vec2.hpp"
 using namespace std;
 
+class GameManager;
 class baseEnemy {
 protected:
     Texture2D texture;
-    Map* map;
+    GameManager* game;
     float moveSpeed;
     int pathPos;
 
@@ -21,7 +22,7 @@ public:
     int hp;
     int value;
     bool reachedEnd;
-    baseEnemy(Map* map);
+    baseEnemy(GameManager* game);
     void update();
     virtual void draw_enemy();
     virtual ~baseEnemy();
@@ -29,17 +30,17 @@ public:
 
 class basicEnemy : public baseEnemy {
 public:
-    basicEnemy(Map* map);
+    basicEnemy(GameManager* game);
 };
 
 class eliteEnemy : public baseEnemy {
 public:
-    eliteEnemy(Map* map);
+    eliteEnemy(GameManager* game);
 };
 
 class tankEnemy : public baseEnemy {
 public:
-    tankEnemy(Map* map);
+    tankEnemy(GameManager* game);
 };
 
 #endif

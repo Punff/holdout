@@ -3,7 +3,8 @@
 
 const string Map::MAP_PATH = "assets/maps/";
 
-Map::Map(string filename, int xPos, int yPos, int size){
+Map::Map(string filename, int xPos, int yPos, int size, GameManager* game){
+    this->game = game;
     string path = MAP_PATH + filename + ".tmf";
     ifstream mapFile(path);
     if(!mapFile){
@@ -55,8 +56,6 @@ Map::Map(string filename, int xPos, int yPos, int size){
     cout << "Map loaded\n";
     loaded = true;
     mapFile.close();
-
-
 }
 
 baseTile* Map::create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize){
@@ -64,15 +63,15 @@ baseTile* Map::create_tile_by_ID(int ID, int xCoord, int yCoord, int tileSize){
     int tileyPos = yPos - size / 2 + tileSize * yCoord;
     switch(ID){
         case 0:
-            return new wireframeTile(tilexPos, tileyPos, tileSize);
+            return new wireframeTile(tilexPos, tileyPos, tileSize, game);
         case 1:
-            return new grassTile(tilexPos, tileyPos, tileSize);
+            return new grassTile(tilexPos, tileyPos, tileSize, game);
         case 2:
-            return new pathTile(tilexPos, tileyPos, tileSize);
+            return new pathTile(tilexPos, tileyPos, tileSize, game);
         case 3:
-            return new waterTile(tilexPos, tileyPos, tileSize);
+            return new waterTile(tilexPos, tileyPos, tileSize, game);
         case 4:
-            return new rockTile(tilexPos, tileyPos, tileSize);
+            return new rockTile(tilexPos, tileyPos, tileSize, game);
         default:
             return NULL;
     }
