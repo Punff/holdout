@@ -31,16 +31,14 @@ void WaveManager::clear_enemies(){
 void WaveManager::add_enemies(char type, int amount){
     for(int i = 0; i < amount; i++){
         switch(type){
-            case 'd':
-                break;
             case 'b':
-                remainingEnemies.push_back(new basicEnemy(game->map));
+                remainingEnemies.push_back(new basicEnemy(game));
                 break;
             case 'e':
-                remainingEnemies.push_back(new eliteEnemy(game->map));
+                remainingEnemies.push_back(new eliteEnemy(game));
                 break;
             case 't':
-                remainingEnemies.push_back(new tankEnemy(game->map));
+                remainingEnemies.push_back(new tankEnemy(game));
                 break;
         }
     }

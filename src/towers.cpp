@@ -11,6 +11,8 @@ baseTower::baseTower(GameManager* game, float x, float y) {
     this->toggleRange = true;
 }
 
+baseTower::~baseTower(){}
+
 void baseTower::update_tower() {
     baseEnemy* target = get_enemy_in_range();
 
@@ -48,15 +50,11 @@ void baseTower::draw_range() {
 int basicTower::price = 30;
 
 basicTower::basicTower(GameManager* game, float x, float y) : baseTower(game, x, y) {
-    texture = LoadTexture("assets/textures/tower.png");
-    range = 2.0f;
+    texture = game->assets->load_texture("tower.png");
+    range = 2.9f;
     attackDelay = 1.5f;
     cooldown = 0;
     damage = 5;
-}
-
-basicTower::~basicTower(){
-    UnloadTexture(texture);
 }
 
 void basicTower::draw_tower() {
@@ -73,15 +71,11 @@ void basicTower::shoot_projectile(Vec2 targetPos) {
 int flamethrower::price = 70;
 
 flamethrower::flamethrower(GameManager* game, float x, float y) : baseTower(game, x, y) {
-    texture = LoadTexture("assets/textures/text-tower-flamethrower.png");
+    texture = game->assets->load_texture("text-tower-flamethrower.png");
     range = 1.4f;
     attackDelay = 2.0f;
     cooldown = 0;
     damage = 4;
-}
-
-flamethrower::~flamethrower(){
-    UnloadTexture(texture);
 }
 
 void flamethrower::draw_tower(){
@@ -96,16 +90,12 @@ void flamethrower::shoot_projectile(Vec2 targetPos){
 int minigun::price = 250;
 
 minigun::minigun(GameManager* game, float x, float y) : baseTower(game, x, y) {
-    texture = LoadTexture("assets/textures/text-tower-minigun.png");
+    texture = game->assets->load_texture("text-tower-minigun.png");
     range = 0.5f;
     attackDelay = 0.3f;
     cooldown = attackDelay;
     damage = 5;
     targetPos = position + Vec2(0, -1);
-}
-
-minigun::~minigun(){
-    UnloadTexture(texture);
 }
 
 void minigun::update_tower(){
