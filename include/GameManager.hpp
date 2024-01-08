@@ -30,6 +30,7 @@ public:
     string towerType;
     vector<baseProjectile*> projectiles;
     Sound mainMenu;
+    Sound mainTheme;
 
     enum class GameMode {
         MainMenu,
