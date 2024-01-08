@@ -56,7 +56,8 @@ void GameManager::updateMainMenu() {
 void GameManager::drawMainMenu() {
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawText("Press Enter to start the game", 10, 10, 20, DARKGRAY);
+    DrawText("GlowNigger Defense", 40, 80, 150, GRAY);
+    DrawText("Press Enter to start the game", screenWidth / 2, screenHeight / 2, 50, DARKGRAY);
     EndDrawing();
 }
 
@@ -130,7 +131,7 @@ void GameManager::updateInGame() {
 
 void GameManager::drawInGame(UI* gameUI) {
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(BLANK);
 
     if (map != nullptr) {
         map->draw_map();
