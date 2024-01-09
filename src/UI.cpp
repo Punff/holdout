@@ -23,6 +23,7 @@ void UI::load_textures() {
     textures.push_back(LoadTexture("assets/textures/tower.png"));
     textures.push_back(LoadTexture("assets/textures/text-tower-flamethrower.png"));
     textures.push_back(LoadTexture("assets/textures/text-tower-minigun.png"));
+    textures.push_back(LoadTexture("assets/textures/text-tower-artillery.png"));
 }
 
 void UI::draw_mainUI() {
@@ -118,10 +119,14 @@ void UI::draw_shop() {
 
     // 2nd row
     GuiGroupBox(shopItem4, NULL);
+    DrawTexturePro(textures[3], {0, 0, 16, 16}, { shopItem4.x + padding, shopItem4.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
+    if (CheckCollisionPointRec({ GetMouseX(), GetMouseY() }, shopItem4))
+        DrawText(TextFormat("%d", cannon::price), static_cast<int>(shopItem4.x) - 5 + padding, static_cast<int>(shopItem4.y) + 2 * padding, width / 8, GRAY);
+
     if (GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + width / 4 + lineHeight + height / 2, width / 4, width / 4 / 4}, "Buy") && game->money >= flamethrower::price) {
         game->isPlacingTower = true;
-        game->towerType = "basic";
-        game->money -= basicTowerPrice;
+        game->towerType = "cannon";
+        game->money -= cannon::price;
 
     }
 

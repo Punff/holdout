@@ -110,6 +110,9 @@ void GameManager::updateInGame() {
                 } else if (towerType == "basic") {
                     towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
                                                     map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                } else if (towerType == "cannon") {
+                    towers.push_back(new cannon(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                    map->get_tile_yPos(y) + map->get_tile_size() / 2));
                 }
 
                 isPlacingTower = false;

@@ -41,4 +41,21 @@ public:
     void draw_projectile() override;
 };
 
+class bomb : public baseProjectile {
+public:
+    bomb(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
+    void update() override;
+    void draw_projectile() override;
+};
+
+class explosion : public baseProjectile {
+private:
+    float maxLifetime;
+    bool didDamage;
+public:
+    explosion(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
+    void update() override;
+    void draw_projectile() override;
+};
+
 #endif
