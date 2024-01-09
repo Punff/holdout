@@ -67,4 +67,12 @@ public:
     void shoot_projectile(Vec2 targetPos) override;
 };
 
+class crossbow : public baseTower {
+public:
+    static int price;
+    crossbow(GameManager* game, float x, float y);
+    void draw_tower() override;
+    void shoot_projectile(Vec2 targetPos) override;
+};
+
 #endif

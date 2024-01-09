@@ -4,11 +4,12 @@
 
 baseTower::baseTower(GameManager* game, float x, float y) {
     this->game = game;
-    this->size = game->map->get_tile_size();
-    this->position = { x, y };
-    this->rotation = 0;
-    this->level = 1;
-    this->toggleRange = true;
+    size = game->map->get_tile_size();
+    position = { x, y };
+    rotation = 0;
+    level = 1;
+    toggleRange = true;
+    cooldown = 0;
 }
 
 baseTower::~baseTower(){}
@@ -146,4 +147,24 @@ void cannon::draw_tower(){
 
 void cannon::shoot_projectile(Vec2 targetPos){
     game->projectiles.push_back(new bomb(game, position, targetPos, damage));
+}
+
+int crossbow::price = 60;
+
+crossbow::crossbow(GameManager* game, float x, float y) : baseTower(game, x, y){
+    texture = game->assets->load_texture("text-tower-crossbow.png");
+    range = 3.3f;
+    attackDelay = 1.6;
+    damage = 5;
+}
+
+void crossbow::draw_tower(){
+    DrawTexturePro(texture, {15, 0, 15, 15}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+    DrawTexturePro(texture, {0, 0, 15, 15}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation,
+                   WHITE);
+    draw_range();
+}
+
+void crossbow::shoot_projectile(Vec2 targetPos){
+    game->projectiles.push_back(new arrow(game, position, targetPos, damage));
 }
