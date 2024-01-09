@@ -25,6 +25,7 @@ void UI::load_textures() {
     textures.push_back(game->assets->load_texture("text-tower-minigun.png"));
     textures.push_back(game->assets->load_texture("text-tower-artillery.png"));
     textures.push_back(game->assets->load_texture("text-tower-crossbow.png"));
+    textures.push_back(game->assets->load_texture("text-tower-railgun.png"));
 }
 
 void UI::draw_mainUI() {
@@ -122,7 +123,7 @@ void UI::draw_shop() {
     GuiGroupBox(shopItem4, NULL);
     DrawTexturePro(textures[3], {0, 0, 16, 16}, { shopItem4.x + padding, shopItem4.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
     if (CheckCollisionPointRec({ GetMouseX(), GetMouseY() }, shopItem4))
-        DrawText(TextFormat("%d", cannon::price), static_cast<int>(shopItem4.x) - 5 + padding, static_cast<int>(shopItem4.y) + 2 * padding, width / 8, GRAY);
+        DrawText(TextFormat("%d", cannon::price), static_cast<int>(shopItem4.x) + 3 + padding, static_cast<int>(shopItem4.y) + 2 * padding, width / 8, GRAY);
 
     if (GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + width / 4 + lineHeight + height / 2, width / 4, width / 4 / 4}, "Buy") && game->money >= cannon::price) {
         game->isPlacingTower = true;
@@ -143,10 +144,14 @@ void UI::draw_shop() {
     }
 
     GuiGroupBox(shopItem6, NULL);
+    DrawTexturePro(textures[5], {64, 0, 32, 32}, { shopItem6.x + padding, shopItem6.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
+    DrawTexturePro(textures[5], {0, 0, 32, 32}, { shopItem6.x + padding, shopItem6.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
+    if (CheckCollisionPointRec({ GetMouseX(), GetMouseY() }, shopItem6))
+        DrawText(TextFormat("%d", railgun::price), static_cast<int>(shopItem6.x) - 5 + padding, static_cast<int>(shopItem6.y) + 2 * padding, width / 8, GRAY);
 
-    if (GuiButton((Rectangle){ rightCorner.x + 2 * width / 4 + 3 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 2, width / 4, width / 4 / 4}, "Buy") && game->money >= flamethrower::price) {
+    if (GuiButton((Rectangle){ rightCorner.x + 2 * width / 4 + 3 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 2, width / 4, width / 4 / 4}, "Buy") && game->money >= railgun::price) {
         game->isPlacingTower = true;
-        game->towerType = "minigun";
-        game->money -= basicTowerPrice;
+        game->towerType = "railgun";
+        game->money -= railgun::price;
     }
 }

@@ -182,3 +182,36 @@ void arrow::draw_projectile(){
     float sizeMod = size * 3;
     DrawTexturePro(texture, {0, 0, 13, 13}, {position.x, position.y, sizeMod, sizeMod}, {sizeMod / 2, sizeMod / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
 }
+
+railShot::railShot(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
+    texture = game->assets->load_texture("rail-shot.png");
+    this->targetPos = targetPos;
+    lifetime = RAIL_SHOT_LIFETIME * 3;
+}
+
+void railShot::update(){
+    lifetime -= GetFrameTime();
+    if(lifetime <= 0){
+        shouldDelete = true;
+    }
+}
+
+void railShot::draw_projectile(){
+    float xPos = (targetPos.x - position.x) / 2;
+    float yPos = (targetPos.y - position.y) / 2;
+    float lenght = (targetPos - position).length();
+
+    // Main beam
+    if(lifetime > RAIL_SHOT_LIFETIME * 2)
+    DrawTexturePro(texture, {5, 0, 6, 16}, {position.x + xPos, position.y + yPos, size, lenght}, {size / 2, lenght / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
+
+    // Explosion
+    float explSize = size * 5;
+    if(lifetime < RAIL_SHOT_LIFETIME){
+        DrawTexturePro(texture, {48, 0, 16, 16}, {targetPos.x, targetPos.y, explSize, explSize}, {explSize / 2, explSize / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
+    } else if(lifetime < RAIL_SHOT_LIFETIME * 2){
+        DrawTexturePro(texture, {32, 0, 16, 16}, {targetPos.x, targetPos.y, explSize, explSize}, {explSize / 2, explSize / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
+    } else {
+        DrawTexturePro(texture, {16, 0, 16, 16}, {targetPos.x, targetPos.y, explSize, explSize}, {explSize / 2, explSize / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);        
+    }
+}
