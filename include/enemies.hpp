@@ -22,6 +22,7 @@ public:
     int hp;
     int value;
     bool reachedEnd;
+    bool isDelay;
     Sound sound;
     baseEnemy(GameManager* game);
     void update();
@@ -42,6 +43,31 @@ public:
 class tankEnemy : public baseEnemy {
 public:
     tankEnemy(GameManager* game);
+};
+
+class brute : public baseEnemy {
+public:
+    brute(GameManager* game);
+};
+
+class veteran : public baseEnemy {
+public:
+    veteran(GameManager* game);
+};
+
+class dasher : public baseEnemy {
+public:
+    dasher(GameManager* game);
+};
+
+class superTank : public baseEnemy {
+public:
+    superTank(GameManager* game);
+};
+
+class delay : public baseEnemy {
+public:
+    delay(GameManager* game);
 };
 
 #endif

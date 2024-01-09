@@ -1,7 +1,7 @@
 #include "waves.hpp"
 #include "GameManager.hpp"
 #include <sstream>
-#define BASE_SPAWN_INTERVAL 2.5
+#define BASE_SPAWN_INTERVAL 2
 
 const string WaveManager::WAVE_PATH = "assets/waves";
 
@@ -37,8 +37,23 @@ void WaveManager::add_enemies(char type, int amount){
             case 'e':
                 remainingEnemies.push_back(new eliteEnemy(game));
                 break;
+            case 'v':
+                remainingEnemies.push_back(new veteran(game));
+                break;
+            case 'r':
+                remainingEnemies.push_back(new brute(game));
+                break;
+            case 'd':
+                remainingEnemies.push_back(new dasher(game));
+                break;
             case 't':
                 remainingEnemies.push_back(new tankEnemy(game));
+                break;
+            case 's':
+                remainingEnemies.push_back(new superTank(game));
+                break;
+            case 'w':
+                remainingEnemies.push_back(new delay(game));
                 break;
         }
     }
@@ -86,8 +101,8 @@ void WaveManager::update(){
 
     nextSpawnTime -= GetFrameTime();
     if(nextSpawnTime <= 0){
-        spawn_enemy();
         nextSpawnTime = spawnInterval;
+        spawn_enemy();
     }
 
     for(auto el : activeEnemies){
@@ -127,7 +142,10 @@ void WaveManager::spawn_enemy(){
     if(remainingEnemies.empty()){
         return;
     }
-
+    if(remainingEnemies[0]->isDelay){
+        remainingEnemies.erase(remainingEnemies.begin());
+        return;
+    }
     activeEnemies.push_back(remainingEnemies[0]);
     remainingEnemies.erase(remainingEnemies.begin());
 }
