@@ -193,7 +193,7 @@ void railgun::update_tower(){
             shoot_projectile(target->position);
             target->hp -= damage;
             cooldown = attackDelay;
-            cooldown += (float)(GetRandomValue(0, 2000) - 2000) / 10000;
+            cooldown += (float)(GetRandomValue(0, 100) - 50) / 1500;
         }
     }
 
@@ -205,7 +205,7 @@ void railgun::update_tower(){
 void railgun::draw_tower(){
     DrawTexturePro(texture, {64, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
 
-    if(cooldown < attackDelay - RAIL_SHOT_LIFETIME){
+    if(cooldown < attackDelay - RAIL_SHOT_LIFETIME / 3){
         DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation, WHITE);
     }
     else {

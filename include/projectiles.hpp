@@ -3,7 +3,7 @@
 
 #include "Vec2.hpp"
 #include "enemies.hpp"
-#define RAIL_SHOT_LIFETIME 0.2
+#define RAIL_SHOT_LIFETIME 0.55
 
 class GameManager;
 

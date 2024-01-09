@@ -105,9 +105,9 @@ void bomb::draw_projectile(){ // drawn 2x bigger
 
 explosion::explosion(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage) {
     texture = game->assets->load_texture("explosion.png");
-    size = game->map->get_tile_size() * 1;
+    size = game->map->get_tile_size() * 1.20;
     speed = 0;
-    lifetime = 0.4;
+    lifetime = 0.5;
     maxLifetime = lifetime;
     didDamage = false;
 }
@@ -187,7 +187,7 @@ void arrow::draw_projectile(){
 railShot::railShot(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("rail-shot.png");
     this->targetPos = targetPos;
-    lifetime = RAIL_SHOT_LIFETIME * 3;
+    lifetime = RAIL_SHOT_LIFETIME;
 }
 
 void railShot::update(){
@@ -203,14 +203,14 @@ void railShot::draw_projectile(){
     float lenght = (targetPos - position).length();
 
     // Main beam
-    if(lifetime > RAIL_SHOT_LIFETIME * 2)
+    if(lifetime > RAIL_SHOT_LIFETIME * 2 / 3)
     DrawTexturePro(texture, {5, 0, 6, 16}, {position.x + xPos, position.y + yPos, size, lenght}, {size / 2, lenght / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
 
     // Explosion
     float explSize = size * 5;
-    if(lifetime < RAIL_SHOT_LIFETIME){
+    if(lifetime < RAIL_SHOT_LIFETIME / 3){
         DrawTexturePro(texture, {48, 0, 16, 16}, {targetPos.x, targetPos.y, explSize, explSize}, {explSize / 2, explSize / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
-    } else if(lifetime < RAIL_SHOT_LIFETIME * 2){
+    } else if(lifetime < RAIL_SHOT_LIFETIME * 2 / 3){
         DrawTexturePro(texture, {32, 0, 16, 16}, {targetPos.x, targetPos.y, explSize, explSize}, {explSize / 2, explSize / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
     } else {
         DrawTexturePro(texture, {16, 0, 16, 16}, {targetPos.x, targetPos.y, explSize, explSize}, {explSize / 2, explSize / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);        
