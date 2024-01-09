@@ -133,6 +133,9 @@ void UI::draw_shop() {
     GuiGroupBox(shopItem5, NULL);
     DrawTexturePro(textures[4], {15, 0, 15, 15}, { shopItem5.x + padding, shopItem5.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
     DrawTexturePro(textures[4], {0, 0, 15, 15}, { shopItem5.x + padding, shopItem5.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
+    if (CheckCollisionPointRec({ GetMouseX(), GetMouseY() }, shopItem5))
+        DrawText(TextFormat("%d", crossbow::price), static_cast<int>(shopItem5.x) + padding, static_cast<int>(shopItem5.y) + padding, width / 6, GRAY);
+    
     if (GuiButton((Rectangle){ rightCorner.x + width / 4 + 2 * lineHeight, rightCorner.y + width / 4 + lineHeight + height / 2, width / 4, width / 4 / 4}, "Buy") && game->money >= crossbow::price) {
         game->isPlacingTower = true;
         game->towerType = "crossbow";
