@@ -12,7 +12,7 @@ baseProjectile::baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos,
     dir = targetPos - position;
     this->damage = damage;
     shouldDelete = false;
-    lifetime = 10;
+    lifetime = 5;
 }
 
 baseProjectile::~baseProjectile(){ }
@@ -106,7 +106,7 @@ explosion::explosion(GameManager* game, Vec2 position, Vec2 targetPos, int damag
     texture = game->assets->load_texture("explosion.png");
     size = game->map->get_tile_size() * 1;
     speed = 0;
-    lifetime = 0.6;
+    lifetime = 0.4;
     maxLifetime = lifetime;
     didDamage = false;
 }
@@ -137,4 +137,48 @@ void explosion::draw_projectile(){
     } else {
         DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size * 2, size * 2}, {size, size}, 0, WHITE);
     }
+}
+
+arrow::arrow(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
+    texture = game->assets->load_texture("arrow.png");
+    speed = 40;
+    pierces = 3;
+}
+
+void arrow::update(){
+    lifetime -= GetFrameTime();
+    if(lifetime <= 0){
+        shouldDelete = true;
+    }
+
+    position = position + (dir.normalized() * speed * size) * GetFrameTime();
+
+    for(baseEnemy* el : game->waveManager->activeEnemies){
+        if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * ENEMY_SIZE)){
+            if(enemy_was_hit(el)){
+                continue;
+            }
+            el->hp -= damage;
+            hits.push_back(el);
+            pierces--;
+            if(pierces <= 0){
+                shouldDelete = true;
+            }
+            return;
+        }
+    }
+}
+
+bool arrow::enemy_was_hit(baseEnemy* enemy){
+    for(baseEnemy* el : hits){
+        if(el == enemy){
+            return true;
+        }
+    }
+    return false;
+}
+
+void arrow::draw_projectile(){
+    float sizeMod = size * 3;
+    DrawTexturePro(texture, {0, 0, 13, 13}, {position.x, position.y, sizeMod, sizeMod}, {sizeMod / 2, sizeMod / 2}, Vector2Angle({0, -1}, dir) * 180 / PI, WHITE);
 }

@@ -2,6 +2,7 @@
 #define PROJECTILES_H
 
 #include "Vec2.hpp"
+#include "enemies.hpp"
 
 class GameManager;
 
@@ -54,6 +55,17 @@ private:
     bool didDamage;
 public:
     explosion(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
+    void update() override;
+    void draw_projectile() override;
+};
+
+class arrow : public baseProjectile {
+private:
+    vector<baseEnemy*> hits;
+    int pierces;
+    bool enemy_was_hit(baseEnemy* enemy);
+public:
+    arrow(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
     void update() override;
     void draw_projectile() override;
 };
