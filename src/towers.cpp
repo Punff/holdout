@@ -54,7 +54,6 @@ basicTower::basicTower(GameManager* game, float x, float y) : baseTower(game, x,
     texture = game->assets->load_texture("tower.png");
     range = 2.9f;
     attackDelay = 1.5f;
-    cooldown = 0;
     damage = 5;
 }
 
@@ -75,7 +74,6 @@ flamethrower::flamethrower(GameManager* game, float x, float y) : baseTower(game
     texture = game->assets->load_texture("text-tower-flamethrower.png");
     range = 1.4f;
     attackDelay = 2.0f;
-    cooldown = 0;
     damage = 4;
 }
 
@@ -135,7 +133,6 @@ cannon::cannon(GameManager* game, float x, float y) : baseTower(game, x, y){
     texture = game->assets->load_texture("text-tower-artillery.png");
     range = 3.2f;
     attackDelay = 2.5f;
-    cooldown = 0;
     damage = 5;
 }
 
@@ -167,4 +164,52 @@ void crossbow::draw_tower(){
 
 void crossbow::shoot_projectile(Vec2 targetPos){
     game->projectiles.push_back(new arrow(game, position, targetPos, damage));
+}
+
+int railgun::price = 400;
+
+railgun::railgun(GameManager* game, float x, float y) : baseTower(game, x, y){
+    texture = game->assets->load_texture("text-tower-railgun.png");
+    range = 6.6;
+    attackDelay = 5;
+    damage = 100;
+}
+
+void railgun::update_tower(){
+    baseEnemy* target = get_enemy_in_range();
+
+    if(target != NULL && cooldown < attackDelay * 0.5){
+        rotation = Vector2Angle({0, -1}, target->position - position) * 180 / PI;
+    }
+
+    cooldown -= GetFrameTime();
+    if(cooldown <= 0){
+        if(target != NULL){
+            shoot_projectile(target->position);
+            target->hp -= damage;
+            cooldown = attackDelay;
+            cooldown += (float)(GetRandomValue(0, 2000) - 2000) / 10000;
+        }
+    }
+
+    if (CheckCollisionPointRec(GetMousePosition(), {position.x - size / 2, position.y - size / 2, size, size}) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        toggleRange = !toggleRange;
+    }
+}
+
+void railgun::draw_tower(){
+    DrawTexturePro(texture, {64, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, 0, WHITE);
+
+    if(cooldown < attackDelay - RAIL_SHOT_LIFETIME){
+        DrawTexturePro(texture, {0, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation, WHITE);
+    }
+    else {
+        DrawTexturePro(texture, {32, 0, 32, 32}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation, WHITE);
+    }
+
+    draw_range();
+}
+
+void railgun::shoot_projectile(Vec2 targetpos){
+    game->projectiles.push_back(new railShot(game, position, targetpos, damage));
 }

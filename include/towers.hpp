@@ -75,4 +75,13 @@ public:
     void shoot_projectile(Vec2 targetPos) override;
 };
 
+class railgun : public baseTower {
+public:
+    static int price;
+    railgun(GameManager* game, float x, float y);
+    void update_tower() override;
+    void draw_tower() override;
+    void shoot_projectile(Vec2 targetPos) override;
+};
+
 #endif

@@ -3,6 +3,7 @@
 
 #include "Vec2.hpp"
 #include "enemies.hpp"
+#define RAIL_SHOT_LIFETIME 0.2
 
 class GameManager;
 
@@ -66,6 +67,15 @@ private:
     bool enemy_was_hit(baseEnemy* enemy);
 public:
     arrow(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
+    void update() override;
+    void draw_projectile() override;
+};
+
+class railShot : public baseProjectile {
+private:
+    Vec2 targetPos;
+public:
+    railShot(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
     void update() override;
     void draw_projectile() override;
 };
