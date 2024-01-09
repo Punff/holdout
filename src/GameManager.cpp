@@ -25,7 +25,7 @@ GameManager::GameManager() {
     isPlacingTower = false;
     currentMode = GameMode::MainMenu;
     mainMenu = LoadSound("assets/soundfx/mainMenu.wav");
-    mainTheme = LoadSound("assets/soundfx/testmusic.wav");
+    mainTheme = LoadSound("assets/soundfx/gameLoop.wav");
 }
 
 void GameManager::gameloop() {

@@ -26,7 +26,8 @@ void baseProjectile::update() {
     position = position + (dir.normalized() * speed * size) * GetFrameTime();
 
     for(baseEnemy* el : game->waveManager->activeEnemies){
-        if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * ENEMY_SIZE)){
+        if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * ENEMY_SIZE)) {
+            PlaySound(el->sound);
             el->hp -= damage;
             shouldDelete = true;
             return;

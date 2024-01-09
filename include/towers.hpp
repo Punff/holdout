@@ -12,6 +12,7 @@ class GameManager;
 class baseTower {
 public:
     Texture2D texture;
+    Sound sound;
     GameManager* game;
     Vec2 position;
     float rotation;

@@ -4,6 +4,7 @@
 
 baseEnemy::baseEnemy(GameManager* game){
     this->game = game;
+    this->sound = game->assets->load_sound("enemySound.wav");
     this->size = game->map->get_tile_size();
     this->pathPos = 0;
     this->position.x = game->map->get_tile_xPos(game->map->enemyPath[pathPos].x) + size / 2;

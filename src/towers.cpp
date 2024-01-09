@@ -52,6 +52,7 @@ int basicTower::price = 30;
 
 basicTower::basicTower(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = game->assets->load_texture("tower.png");
+    sound = game->assets->load_sound("basicTowerShot.wav");
     range = 2.9f;
     attackDelay = 1.5f;
     damage = 5;
@@ -65,6 +66,7 @@ void basicTower::draw_tower() {
 }
 
 void basicTower::shoot_projectile(Vec2 targetPos) {
+    PlaySound(sound);
     game->projectiles.push_back(new basicProjectile(game, position, targetPos, damage));
 }
 
@@ -72,6 +74,7 @@ int flamethrower::price = 70;
 
 flamethrower::flamethrower(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = game->assets->load_texture("text-tower-flamethrower.png");
+    sound = game->assets->load_sound("flamethrowerShot.wav");
     range = 1.4f;
     attackDelay = 2.0f;
     damage = 4;
@@ -83,6 +86,7 @@ void flamethrower::draw_tower(){
 }
 
 void flamethrower::shoot_projectile(Vec2 targetPos){
+    PlaySound(sound);
     game->projectiles.push_back(new flameRing(game, position, targetPos, damage, range));
 }
 
@@ -170,6 +174,7 @@ int railgun::price = 400;
 
 railgun::railgun(GameManager* game, float x, float y) : baseTower(game, x, y){
     texture = game->assets->load_texture("text-tower-railgun.png");
+    sound = game->assets->load_sound("railgunShot.wav");
     range = 6.6;
     attackDelay = 5;
     damage = 100;
@@ -211,5 +216,6 @@ void railgun::draw_tower(){
 }
 
 void railgun::shoot_projectile(Vec2 targetpos){
+    PlaySound(sound);
     game->projectiles.push_back(new railShot(game, position, targetpos, damage));
 }

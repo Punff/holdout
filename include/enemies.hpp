@@ -22,6 +22,7 @@ public:
     int hp;
     int value;
     bool reachedEnd;
+    Sound sound;
     baseEnemy(GameManager* game);
     void update();
     virtual void draw_enemy();
