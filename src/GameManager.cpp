@@ -18,7 +18,7 @@ GameManager::GameManager() {
     screenWidth = GetScreenWidth();
     screenHeight = GetScreenHeight();
     playerHP = 100;
-    money = 180;
+    money = 250;
     map = nullptr;
     waveManager = nullptr;
     assets = new AssetServer;
@@ -112,6 +112,9 @@ void GameManager::updateInGame() {
                                                     map->get_tile_yPos(y) + map->get_tile_size() / 2));
                 } else if (towerType == "cannon") {
                     towers.push_back(new cannon(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                    map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                } else if (towerType == "crossbow") {
+                    towers.push_back(new crossbow(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
                                                     map->get_tile_yPos(y) + map->get_tile_size() / 2));
                 }
 
