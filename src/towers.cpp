@@ -127,3 +127,23 @@ void minigun::draw_tower(){
 void minigun::shoot_projectile(Vec2 targetPos){
     game->projectiles.push_back(new basicProjectile(game, position, targetPos, damage));
 }
+
+int cannon::price = 150;
+
+cannon::cannon(GameManager* game, float x, float y) : baseTower(game, x, y){
+    texture = game->assets->load_texture("text-tower-artillery.png");
+    range = 3.2f;
+    attackDelay = 2.5f;
+    cooldown = 0;
+    damage = 5;
+}
+
+void cannon::draw_tower(){
+    DrawTexturePro(texture, {0, 0, 16, 16}, {position.x, position.y, size, size}, {size / 2, size / 2}, rotation,
+                   WHITE);
+    draw_range();
+}
+
+void cannon::shoot_projectile(Vec2 targetPos){
+    game->projectiles.push_back(new bomb(game, position, targetPos, damage));
+}

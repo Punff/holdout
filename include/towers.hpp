@@ -59,4 +59,12 @@ public:
     void shoot_projectile(Vec2 targetPos) override;
 };
 
+class cannon : public baseTower {
+public:
+    static int price;
+    cannon(GameManager* game, float x, float y);
+    void draw_tower() override;
+    void shoot_projectile(Vec2 targetPos) override;
+};
+
 #endif
