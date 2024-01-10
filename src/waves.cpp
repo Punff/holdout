@@ -1,9 +1,9 @@
 #include "waves.hpp"
 #include "GameManager.hpp"
 #include <sstream>
-#define BASE_SPAWN_INTERVAL 2
+#define BASE_SPAWN_INTERVAL 1
 
-const string WaveManager::WAVE_PATH = "assets/waves";
+const string WaveManager::WAVE_PATH = "assets/waves.txt";
 
 WaveManager::WaveManager(GameManager* game){
     this->game = game;

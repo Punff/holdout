@@ -1,0 +1,10 @@
+b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 b 1
+b 1 w 1 b 1 w 1 b 1 w 1 b 1 w 1 e 1 w 1 e 1 w 1 e 1 w 3 b 10 w 1 e 3
+b 20 e 10 2 3 v 1 w 2 v 1 w 2 v 1
+e 3 w 1 e 3 w 1 e 3 w 1 e 3 w 1 e 3 w 1 b 15 v 1 w 1 v 1 w 1 v 1 e 5
+v 3 w 1 v 3 w 1 v 3 w 2 d 1 w 1 d 1 w 1 d 1 b 5 e 20 v 5 
+v 5 w 1 v 5 w 1
+e 5 t 1 e 5 t 1
+b 1 e 1 v 1 r 1 d 1 t 1 s 1
+b 1 e 1 v 1 r 1 d 1 t 1 s 1
+b 1 e 1 v 1 r 1 d 1 t 1 s 1
