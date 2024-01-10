@@ -3,7 +3,7 @@
 #include "enemies.hpp"
 #include "raylib.h"
 #include "GameManager.hpp"
-#define ENEMY_SIZE 0.45f
+#define ENEMY_SIZE 0.55f
 
 baseProjectile::baseProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) {
     this->game = game;
@@ -37,7 +37,7 @@ void baseProjectile::update() {
 
 basicProjectile::basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("pellet.png");
-    speed = 30;
+    speed = 35;
 }
 
 void basicProjectile::draw_projectile() {
@@ -78,7 +78,7 @@ void flameRing::draw_projectile(){
 
 bomb::bomb(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("bomb.png");
-    speed = 25;
+    speed = 28;
 }
 
 void bomb::update(){
@@ -91,7 +91,6 @@ void bomb::update(){
 
     for(baseEnemy* el : game->waveManager->activeEnemies){
         if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * ENEMY_SIZE)){
-            el->hp -= damage;
             shouldDelete = true;
             game->projectiles.push_back(new explosion(game, position, {0, 0}, damage));
             return;
@@ -142,8 +141,8 @@ void explosion::draw_projectile(){
 
 arrow::arrow(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("arrow.png");
-    speed = 45;
-    pierces = 3;
+    speed = 50;
+    pierces = 4;
 }
 
 void arrow::update(){

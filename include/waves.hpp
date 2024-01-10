@@ -2,7 +2,10 @@
 #define WAVES_H
 
 #include "enemies.hpp"
-#define MAX_WAVES 10
+#define MAX_WAVES 12
+#define BASE_SPAWN_INTERVAL 1
+#define BASE_BONUS 50
+#define WAVE_BONUS 15 // scales per wave
 
 class GameManager;
 class WaveManager {
