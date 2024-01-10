@@ -18,7 +18,7 @@ GameManager::GameManager() {
     screenWidth = GetScreenWidth();
     screenHeight = GetScreenHeight();
     playerHP = 100;
-    money = 2500;
+    money = 80;
     paused = false;
     map = nullptr;
     waveManager = nullptr;
@@ -180,7 +180,7 @@ void GameManager::drawInGame(UI* gameUI) {
     DrawRectangle(screenWidth * 3 / 4, 0, screenWidth / 4, screenHeight, BLACK);
     DrawRectangle(0, 0, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
     DrawRectangle(0, screenHeight - (screenHeight - (screenWidth / 2)) / 2, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
-    
+
     gameUI->draw_mainUI();
     gameUI->draw_wave_info(waveManager);
     gameUI->draw_HP();

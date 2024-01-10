@@ -1,7 +1,6 @@
 #include "waves.hpp"
 #include "GameManager.hpp"
 #include <sstream>
-#define BASE_SPAWN_INTERVAL 1
 
 const string WaveManager::WAVE_PATH = "assets/waves.txt";
 
@@ -93,6 +92,7 @@ void WaveManager::update(){
         }
     }
     else if(activeEnemies.empty() && remainingEnemies.empty()){
+        game->money += currWave * WAVE_BONUS;
         currWave++;
         active = false;
         spawnInterval = Lerp(BASE_SPAWN_INTERVAL, 0.2, (float)currWave / maxWave);
