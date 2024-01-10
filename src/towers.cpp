@@ -35,12 +35,17 @@ void baseTower::update_tower() {
 }
 
 baseEnemy* baseTower::get_enemy_in_range(){
+    baseEnemy* target = NULL;
+    int maxPos = -1;
+
     for(baseEnemy* el : game->waveManager->activeEnemies){
-        if(CheckCollisionPointCircle(el->position, position, range * size)){
-            return el;
+        if(CheckCollisionPointCircle(el->position, position, range * size) && el->pathPos > maxPos){
+            target = el;
+            maxPos = el->pathPos;
         }
     }
-    return NULL;
+
+    return target;
 }
 
 void baseTower::draw_range() {
