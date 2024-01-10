@@ -13,7 +13,7 @@ GameManager::GameManager() {
     InitWindow(GetMonitorWidth(0), GetMonitorHeight(0), "untitled-TD");
     ToggleFullscreen();
     InitAudioDevice();
-    SetTargetFPS(60);
+    SetTargetFPS(240);
 
     screenWidth = GetScreenWidth();
     screenHeight = GetScreenHeight();
@@ -53,7 +53,7 @@ void GameManager::gameloop() {
 
 void GameManager::updateMainMenu() {
     if (IsKeyPressed(KEY_ENTER)) {
-        PlaySound(mainMenu);
+        //PlaySound(mainMenu);
         currentMode = GameMode::InGame;
     }
 }
@@ -61,7 +61,7 @@ void GameManager::updateMainMenu() {
 void GameManager::drawMainMenu() {
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawText("GlowNigger Defense", 40, 80, 150, GRAY);
+    DrawText("Holdout", 40, 80, 150, GRAY);
     DrawText("Press Enter to start the game", screenWidth / 2, screenHeight / 2, 50, DARKGRAY);
     EndDrawing();
 }
@@ -176,6 +176,11 @@ void GameManager::drawInGame(UI* gameUI) {
         el->draw_tower();
     }
 
+    DrawRectangle(0, 0, screenWidth / 4, screenHeight, BLACK);
+    DrawRectangle(screenWidth * 3 / 4, 0, screenWidth / 4, screenHeight, BLACK);
+    DrawRectangle(0, 0, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
+    DrawRectangle(0, screenHeight - (screenHeight - (screenWidth / 2)) / 2, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
+    
     gameUI->draw_mainUI();
     gameUI->draw_wave_info(waveManager);
     gameUI->draw_HP();
