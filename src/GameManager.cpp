@@ -19,6 +19,7 @@ GameManager::GameManager() {
     screenHeight = GetScreenHeight();
     playerHP = 100;
     money = 2500;
+    paused = false;
     map = nullptr;
     waveManager = nullptr;
     assets = new AssetServer;
@@ -66,6 +67,15 @@ void GameManager::drawMainMenu() {
 }
 
 void GameManager::updateInGame() {
+
+    if(IsKeyPressed(KEY_P)){
+        paused = !paused;
+    }
+
+    if(paused){
+        return;
+    }
+
     if (!IsSoundPlaying(mainTheme)) {
         PlaySound(mainTheme);
     }
@@ -171,6 +181,13 @@ void GameManager::drawInGame(UI* gameUI) {
     gameUI->draw_HP();
     gameUI->draw_shop();
     gameUI->draw_money();
+
+    if(paused){
+        DrawTexturePro(assets->load_texture("paused.png"),
+        {0, 0, 31, 31},
+        {(float)map->get_tile_xPos(0), (float)map->get_tile_yPos(0), (float)map->size, (float)map->size},
+        {0, 0}, 0, {255, 255, 255, 200});
+    }
 
     EndDrawing();
 }

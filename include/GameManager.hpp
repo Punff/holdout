@@ -24,6 +24,7 @@ private:
 public:
     int playerHP;
     int money;
+    bool paused;
     Map* map;
     WaveManager* waveManager;
     AssetServer* assets;
