@@ -37,7 +37,7 @@ void baseProjectile::update() {
 
 basicProjectile::basicProjectile(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("pellet.png");
-    speed = 25;
+    speed = 30;
 }
 
 void basicProjectile::draw_projectile() {
@@ -78,7 +78,7 @@ void flameRing::draw_projectile(){
 
 bomb::bomb(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("bomb.png");
-    speed = 20;
+    speed = 25;
 }
 
 void bomb::update(){
@@ -142,7 +142,7 @@ void explosion::draw_projectile(){
 
 arrow::arrow(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
     texture = game->assets->load_texture("arrow.png");
-    speed = 40;
+    speed = 45;
     pierces = 3;
 }
 

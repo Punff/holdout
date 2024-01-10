@@ -1,11 +1,12 @@
 #include "map.hpp"
 #include "tiles.hpp"
+#include "GameManager.hpp"
 
 const string Map::MAP_PATH = "assets/maps/";
 
 Map::Map(string filename, int xPos, int yPos, int size, GameManager* game){
     this->game = game;
-    string path = MAP_PATH + filename + ".tmf";
+    string path = MAP_PATH + filename;
     ifstream mapFile(path);
     if(!mapFile){
         cout << "Could not find " << path << "\n";
@@ -23,8 +24,11 @@ Map::Map(string filename, int xPos, int yPos, int size, GameManager* game){
     int tileID;
 
     Vec2 enemySpawn;
+    Vec2 pathEnd;
     mapFile >> enemySpawn.x;
     mapFile >> enemySpawn.y;
+    mapFile >> pathEnd.x;
+    mapFile >> pathEnd.y;
 
     for(int i = 0; i < mapTiles; i++)
     {
@@ -47,6 +51,7 @@ Map::Map(string filename, int xPos, int yPos, int size, GameManager* game){
         cout << "Warning: tile amount doesnt match map size!\n";
     }
     generate_path(enemySpawn, enemySpawn, true);
+    enemyPath.push_back(pathEnd);
 
     cout << "Entry coordinates: " << enemySpawn.x << ", " << enemySpawn.y << "\n";
     cout << "Path:\n";
@@ -91,6 +96,11 @@ void Map::draw_map() {
             grid[i][j]->draw_tile();
         }
     }
+    Texture2D texture = game->assets->load_texture("entrance-arrow.png");
+    float x = get_tile_xPos(enemyPath[1].x);
+    float y = get_tile_yPos(enemyPath[1].y);
+    float size = get_tile_size();
+    DrawTexturePro(texture, {0, 0, 16, 16}, {x + size / 2, y + size / 2, size, size}, {size / 2, size / 2}, Vector2Angle({0, -1}, enemyPath[1] - enemyPath[0]) * 180 / PI, WHITE);
 }
 
 int Map::get_tile_xPos(int column){

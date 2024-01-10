@@ -13,9 +13,9 @@ protected:
     Texture2D texture;
     GameManager* game;
     float moveSpeed;
-    int pathPos;
 
 public:
+    int pathPos;
     int damage;
     float size;
     Vec2 position;

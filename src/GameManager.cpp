@@ -54,7 +54,6 @@ void GameManager::updateMainMenu() {
     if (IsKeyPressed(KEY_ENTER)) {
         PlaySound(mainMenu);
         currentMode = GameMode::InGame;
-        load_map("map2");
     }
 }
 

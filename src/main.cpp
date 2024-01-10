@@ -5,7 +5,7 @@
 
 int main() {
     GameManager game;
-    game.load_map("map2");
+    game.load_map("map_main");
     game.gameloop();
     return 0;
 }
