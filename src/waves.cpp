@@ -92,7 +92,7 @@ void WaveManager::update(){
         }
     }
     else if(activeEnemies.empty() && remainingEnemies.empty()){
-        game->money += currWave * WAVE_BONUS;
+        game->money += BASE_BONUS + currWave * WAVE_BONUS;
         currWave++;
         active = false;
         spawnInterval = Lerp(BASE_SPAWN_INTERVAL, 0.2, (float)currWave / maxWave);

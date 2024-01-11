@@ -77,7 +77,7 @@ void GameManager::updateInGame() {
     }
 
     if (!IsSoundPlaying(mainTheme)) {
-        PlaySound(mainTheme);
+        //PlaySound(mainTheme);
     }
 
     if (waveManager != nullptr) {

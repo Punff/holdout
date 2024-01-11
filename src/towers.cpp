@@ -81,8 +81,8 @@ flamethrower::flamethrower(GameManager* game, float x, float y) : baseTower(game
     texture = game->assets->load_texture("text-tower-flamethrower.png");
     sound = game->assets->load_sound("flamethrowerShot.wav");
     range = 1.5f;
-    attackDelay = 1.8f;
-    damage = 5;
+    attackDelay = 1.7f;
+    damage = 6;
 }
 
 void flamethrower::draw_tower(){
@@ -102,7 +102,7 @@ minigun::minigun(GameManager* game, float x, float y) : baseTower(game, x, y) {
     range = 0.5f;
     attackDelay = 0.3f;
     cooldown = attackDelay;
-    damage = 8;
+    damage = 9;
     targetPos = position + Vec2(0, -1);
 }
 
@@ -142,7 +142,7 @@ cannon::cannon(GameManager* game, float x, float y) : baseTower(game, x, y){
     texture = game->assets->load_texture("text-tower-artillery.png");
     range = 3.2f;
     attackDelay = 2.3f;
-    damage = 16;
+    damage = 22;
 }
 
 void cannon::draw_tower(){
@@ -180,7 +180,7 @@ int railgun::price = 600;
 railgun::railgun(GameManager* game, float x, float y) : baseTower(game, x, y){
     texture = game->assets->load_texture("text-tower-railgun.png");
     sound = game->assets->load_sound("railgunShot.wav");
-    range = 6.6;
+    range = 5.3;
     attackDelay = 8;
     damage = 400;
 }

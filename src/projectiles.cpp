@@ -104,7 +104,7 @@ void bomb::draw_projectile(){ // drawn 2x bigger
 
 explosion::explosion(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage) {
     texture = game->assets->load_texture("explosion.png");
-    size = game->map->get_tile_size() * 1.20;
+    size = game->map->get_tile_size() * 1.30;
     speed = 0;
     lifetime = 0.5;
     maxLifetime = lifetime;

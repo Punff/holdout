@@ -61,24 +61,24 @@ veteran::veteran(GameManager* game) : baseEnemy(game){
     texture = game->assets->load_texture("text-enemy-veteran.png");
     damage = 15;
     value = 5;
-    hp = 60;
+    hp = 65;
     moveSpeed = 1.3;
 }
 
 brute::brute(GameManager* game) : baseEnemy(game){
     texture = game->assets->load_texture("text-enemy-brute.png");
     damage = 24;
-    value = 8;
-    hp = 200;
-    moveSpeed = 1;
+    value = 7;
+    hp = 250;
+    moveSpeed = 1.1;
 }
 
 dasher::dasher(GameManager* game) : baseEnemy(game){
     texture = game->assets->load_texture("text-enemy-dasher.png");
     damage = 15;
     value = 6;
-    hp = 65;
-    moveSpeed = 1.8;
+    hp = 80;
+    moveSpeed = 1.9;
 }
 
 tankEnemy::tankEnemy(GameManager* game) : baseEnemy(game){
@@ -93,7 +93,7 @@ superTank::superTank(GameManager* game) : baseEnemy(game){
     texture = game->assets->load_texture("text-enemy-super-tank.png");
     damage = 150;
     value = 80;
-    hp = 2500;
+    hp = 2300;
     moveSpeed = 0.7;
 }
 
