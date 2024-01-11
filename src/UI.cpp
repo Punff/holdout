@@ -1,5 +1,7 @@
 #include "UI.hpp"
 
+// My hope is that this UI code is so awful that I'm never allowed to write UI code again
+
 UI::UI(GameManager* game) {
     this->game = game;
     this->map = game->map;
@@ -12,7 +14,7 @@ UI::UI(GameManager* game) {
     this->padding = 15.0f;
     this->lineHeight = 30.0f;
 
-    GuiLoadStyle("assets/style_candy.rgs");
+    GuiLoadStyle("assets/style_jungle.rgs");
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
     GuiSetStyle(DEFAULT, BORDER_WIDTH, 5);
 
@@ -30,9 +32,12 @@ void UI::load_textures() {
 
 void UI::draw_mainUI() {
     // Update
-
+    Color UIGreen = {43, 58, 58, 255};
+    Color UIGreener = {13, 70, 60, 255};
     // Draw
+    DrawRectangleGradientEx((Rectangle) {leftCorner.x, leftCorner.y, width, height}, UIGreen, UIGreen, UIGreener, UIGreener);
     GuiGroupBox((Rectangle) {leftCorner.x, leftCorner.y, width, height}, NULL);
+    DrawRectangleGradientEx((Rectangle) {rightCorner.x, rightCorner.y, width, height}, UIGreen, UIGreen, UIGreener, UIGreener);
     GuiGroupBox((Rectangle) {rightCorner.x, rightCorner.y, width, height}, NULL);
 }
 
@@ -57,6 +62,10 @@ void UI::draw_wave_info(WaveManager* wave) {
         if(wave->start_wave()){
             waveActive++;
         }
+    }
+
+    if (GuiButton((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 2 + 3 * lineHeight, width / 3, width / 3 }, "PAUSE") && !wave->active && wave->remainingEnemies.empty()) {
+        game->paused = !game->paused;
     }
 }
 
