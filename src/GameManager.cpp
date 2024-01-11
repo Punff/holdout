@@ -53,7 +53,7 @@ void GameManager::gameloop() {
 
 void GameManager::updateMainMenu() {
     if (IsKeyPressed(KEY_ENTER)) {
-        //PlaySound(mainMenu);
+        PlaySound(mainMenu);
         currentMode = GameMode::InGame;
     }
 }
@@ -84,54 +84,53 @@ void GameManager::updateInGame() {
         waveManager->update();
     }
 
-    if (isPlacingTower) {
-        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            int x = map->get_tile_xPos_on_hover();
-            int y = map->get_tile_yPos_on_hover();
-            int xCoord = GetMouseX();
-            int yCoord = GetMouseY();
+    if (isPlacingTower && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        int x = map->get_tile_xPos_on_hover();
+        int y = map->get_tile_yPos_on_hover();
+        float xCoord = GetMouseX();
+        float yCoord = GetMouseY();
 
-            bool canPlaceTower = true;
-
-            for (const auto &row: map->grid) {
-                for (auto &tile: row) {
-                    if (CheckCollisionPointRec({(float)xCoord, (float)yCoord}, tile->hitbox)) {
-                        if (!tile->is_occupied) {
-                            tile->is_occupied = true;
-                        } else {
-                            canPlaceTower = false;
-                            break;
-                        }
-                    }
-                }
-                if (!canPlaceTower) {
-                    break;
+        bool canPlaceTower = false;
+        for(vector<baseTile*> row : map->grid){
+            for(baseTile* tile : row){
+                if(CheckCollisionPointRec({xCoord, yCoord}, tile->hitbox) && !tile->is_occupied){
+                    canPlaceTower = true;
                 }
             }
+        }
 
-            if (canPlaceTower) {
-                if (towerType == "flamethrower") {
-                    towers.push_back(new flamethrower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
-                                                      map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                } else if (towerType == "minigun") {
-                    towers.push_back(new minigun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
-                                                 map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                } else if (towerType == "basic") {
-                    towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+        if (canPlaceTower && x >= 0 && y >= 0) {
+            if (towerType == "flamethrower") {
+                towers.push_back(new flamethrower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
                                                     map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                } else if (towerType == "cannon") {
-                    towers.push_back(new cannon(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
-                                                    map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                } else if (towerType == "crossbow") {
-                    towers.push_back(new crossbow(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
-                                                    map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                } else if (towerType == "railgun") {
-                    towers.push_back(new railgun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
-                                                    map->get_tile_yPos(y) + map->get_tile_size() / 2));
-                }
+                money -= flamethrower::price;
 
-                isPlacingTower = false;
+            } else if (towerType == "minigun") {
+                towers.push_back(new minigun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                money -= minigun::price;
+
+            } else if (towerType == "basic") {
+                towers.push_back(new basicTower(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                money -= basicTower::price;
+
+            } else if (towerType == "cannon") {
+                towers.push_back(new cannon(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                money -= cannon::price;
+
+            } else if (towerType == "crossbow") {
+                towers.push_back(new crossbow(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                money -= crossbow::price;
+
+            } else if (towerType == "railgun") {
+                towers.push_back(new railgun(this, map->get_tile_xPos(x) + map->get_tile_size() / 2,
+                                                map->get_tile_yPos(y) + map->get_tile_size() / 2));
+                money -= railgun::price;
             }
+            isPlacingTower = false;
         }
     }
 

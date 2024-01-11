@@ -133,7 +133,7 @@ float Map::get_tile_xPos_on_hover() {
         }
     }
 
-    return 69;
+    return -1;
 }
 
 float Map::get_tile_yPos_on_hover() {
@@ -152,7 +152,7 @@ float Map::get_tile_yPos_on_hover() {
         }
     }
     
-    return 69;
+    return -1;
 }
 
 baseTile* Map::get_tile_at_position(int x, int y) const {
