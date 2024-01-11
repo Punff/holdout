@@ -176,10 +176,10 @@ void GameManager::drawInGame(UI* gameUI) {
         el->draw_tower();
     }
 
-    DrawRectangle(0, 0, screenWidth / 4, screenHeight, BLACK);
-    DrawRectangle(screenWidth * 3 / 4, 0, screenWidth / 4, screenHeight, BLACK);
-    DrawRectangle(0, 0, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
-    DrawRectangle(0, screenHeight - (screenHeight - (screenWidth / 2)) / 2, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
+    DrawRectangle(0, 0, screenWidth / 4, screenHeight, {13, 70, 60, 255});
+    DrawRectangle(screenWidth * 3 / 4, 0, screenWidth / 4, screenHeight, {13, 70, 60, 255});
+    DrawRectangle(0, 0, screenWidth, (screenHeight - (screenWidth / 2)) / 2, {13, 70, 60, 255});
+    DrawRectangle(0, screenHeight - (screenHeight - (screenWidth / 2)) / 2, screenWidth, (screenHeight - (screenWidth / 2)) / 2, {13, 70, 60, 255});
 
     gameUI->draw_mainUI();
     gameUI->draw_wave_info(waveManager);

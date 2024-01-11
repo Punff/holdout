@@ -46,7 +46,7 @@ void UI::draw_HP() {
     float HPvalue = game->playerHP;
 
     // Draw
-    GuiSliderBar((Rectangle){ leftCorner.x + width / 4, leftCorner.y + lineHeight, width / 2, height / 10 }, NULL, NULL, &HPvalue, 0, 100);
+    GuiSliderBar((Rectangle){ leftCorner.x + width / 4, leftCorner.y + height / 4 / 4, width / 2, height / 8 }, NULL, NULL, &HPvalue, 0, 100);
 }
 
 void UI::draw_wave_info(WaveManager* wave) {
@@ -64,7 +64,7 @@ void UI::draw_wave_info(WaveManager* wave) {
         }
     }
 
-    if (GuiButton((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 2 + 3 * lineHeight, width / 3, width / 3 }, "PAUSE") && !wave->active && wave->remainingEnemies.empty()) {
+    if (GuiButton((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 2 + 3 * lineHeight, width / 3, width / 3 }, "PAUSE")) {
         game->paused = !game->paused;
     }
 }
@@ -75,8 +75,8 @@ void UI::draw_money() {
 
     // Draw
     GuiGroupBox((Rectangle){ rightCorner.x, rightCorner.y, width, height / 4 }, NULL);
-    GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + lineHeight, width / 2, height / 10 }, NULL, &moneyValue, 0, 50, false);
-    DrawText("$", rightCorner.x + width / 4 + width / 2 + 10, rightCorner.y + lineHeight + height / width / 2, height / 10, DARKGRAY);
+    GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + height / 4 / 4, width / 2, height / 8 }, NULL, &moneyValue, 0, 50, false);
+    DrawText("$", rightCorner.x + width / 4 + width / 2 + 10, rightCorner.y + height / 4 / 4 + height / width / 2, height / 8, DARKGRAY);
 }
 
 void UI::draw_shop() {
@@ -132,7 +132,7 @@ void UI::draw_shop() {
     GuiGroupBox(shopItem4, NULL);
     DrawTexturePro(textures[3], {0, 0, 16, 16}, { shopItem4.x + padding, shopItem4.y + padding, size - padding, size - padding }, { 16 / 2, 16 / 2 }, 0, WHITE);
     if (CheckCollisionPointRec({ GetMouseX(), GetMouseY() }, shopItem4))
-        DrawText(TextFormat("%d", cannon::price), static_cast<int>(shopItem4.x) + 3 + padding, static_cast<int>(shopItem4.y) + 2 * padding, width / 8, GRAY);
+        DrawText(TextFormat("%d", cannon::price), static_cast<int>(shopItem4.x) + padding - 5, static_cast<int>(shopItem4.y) + 2 * padding, width / 8, GRAY);
 
     if (GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + width / 4 + lineHeight + height / 2, width / 4, width / 4 / 4}, "Buy") && game->money >= cannon::price) {
         game->isPlacingTower = true;
