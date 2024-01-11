@@ -58,14 +58,14 @@ void UI::draw_wave_info(WaveManager* wave) {
 
     GuiValueBox((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 4 + lineHeight, width / 3, height / 10 }, NULL, &waveActive, 0, 50, false);
 
-    if (GuiButton((Rectangle){ leftCorner.x + width / 4, leftCorner.y + height / 4 + 5 * lineHeight, width / 2, height / 16 }, "Next wave") && !wave->active && wave->remainingEnemies.empty()) {
-        if(wave->start_wave()){
-            waveActive++;
-        }
-    }
-
     if (GuiButton((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 2 + 3 * lineHeight, width / 3, width / 3 }, "PAUSE") && !wave->active && wave->remainingEnemies.empty()) {
         game->paused = !game->paused;
+    }
+
+    if (GuiButton((Rectangle){ leftCorner.x + width / 4, leftCorner.y + height / 4 + 5 * lineHeight, width / 2, height / 16 }, "Next wave") && !wave->active && wave->remainingEnemies.empty()) {
+        if(!game->paused && wave->start_wave()){
+            waveActive++;
+        }
     }
 }
 
@@ -150,9 +150,6 @@ void UI::draw_shop() {
     }
 
     // Update
-    if(game->paused){
-        return;
-    }
 
     if (GuiButton((Rectangle){ rightCorner.x + lineHeight, rightCorner.y + width / 4 + lineHeight + height / 4, width / 4 + 2, width / 4 / 4}, "Buy") && game->money >= basicTower::price) {
         game->isPlacingTower = true;
