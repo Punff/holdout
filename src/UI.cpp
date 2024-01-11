@@ -58,7 +58,7 @@ void UI::draw_wave_info(WaveManager* wave) {
 
     GuiValueBox((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 4 + lineHeight, width / 3, height / 10 }, NULL, &waveActive, 0, 50, false);
 
-    if (GuiButton((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 2 + 3 * lineHeight, width / 3, width / 3 }, "PAUSE") && !wave->active && wave->remainingEnemies.empty()) {
+    if (GuiButton((Rectangle){ leftCorner.x + width / 3, leftCorner.y + height / 2 + 3 * lineHeight, width / 3, width / 3 }, "PAUSE")) {
         game->paused = !game->paused;
     }
 
