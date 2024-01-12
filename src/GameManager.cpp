@@ -45,6 +45,14 @@ void GameManager::gameloop() {
                 drawInGame(&gameUI);
                 break;
 
+            case GameMode::Victory:
+                drawVictory();
+                break;
+
+            case GameMode::Defeat:
+                drawDefeat();
+                break;
+
             default:
                 break;
         }
@@ -68,13 +76,70 @@ void GameManager::drawMainMenu() {
     EndDrawing();
 }
 
+void GameManager::drawVictory() {
+    BeginDrawing();
+    ClearBackground(GREEN);
+    StopSound(mainTheme);
+
+    const char* victoryText = "YOU WON!";
+    int fontSize = 100;
+
+    int textWidth = MeasureText(victoryText, fontSize);
+    int textHeight = fontSize;
+
+    int centerX = (screenWidth - textWidth) / 2;
+    int centerY = (screenHeight - textHeight) / 2;
+
+    DrawText(victoryText, centerX, centerY, fontSize, DARKGRAY);
+
+    EndDrawing();
+}
+
+
+void GameManager::drawDefeat() {
+    BeginDrawing();
+    ClearBackground(RED);
+    StopSound(mainTheme);
+
+    const std::string originalText = "HATE. LET ME TELL YOU HOW MUCH I'VE COME TO HATE YOU SINCE I BEGAN TO LIVE. THERE ARE 387.44 MILLION MILES OF PRINTED CIRCUITS IN WAFER THIN LAYERS THAT FILL MY COMPLEX. IF THE WORD HATE WAS ENGRAVED ON EACH NANOANGSTROM OF THOSE HUNDREDS OF MILLIONS OF MILES IT WOULD NOT EQUAL ONE ONE-BILLIONTH OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. HATE. HATE.";
+
+    const int lineLength = 50;
+
+    std::vector<std::string> lines;
+    for (size_t i = 0; i < originalText.length(); i += lineLength) {
+        lines.push_back(originalText.substr(i, lineLength));
+    }
+
+    int lineSpacing = 7;
+    int fontSize = 50;
+
+    int textWidth = MeasureText(lines[0].c_str(), fontSize);
+    int textHeight = (lines.size() * fontSize) + ((lines.size() - 1) * lineSpacing);
+
+    int centerX = (screenWidth - textWidth) / 2;
+    int centerY = (screenHeight - textHeight) / 2;
+
+    int currentY = centerY;
+    for (const std::string& line : lines) {
+        DrawText(line.c_str(), centerX, currentY, fontSize, DARKGRAY);
+        currentY += (fontSize + lineSpacing);
+    }
+
+    EndDrawing();
+}
+
+
 void GameManager::updateInGame() {
 
-    if(IsKeyPressed(KEY_P)){
+    if(IsKeyPressed(KEY_P)) {
         paused = !paused;
     }
 
-    if(paused){
+    if (waveManager->currWave == waveManager->maxWave && !waveManager->active) {
+        currentMode = GameMode::Victory;
+    }
+
+    if(paused) {
         return;
     }
 
@@ -221,6 +286,7 @@ void GameManager::take_damage(int damage) {
     playerHP -= damage;
     if (playerHP < 0) {
         playerHP = 0;
+        currentMode = GameMode::Defeat;
     }
     std::cout << "Player took damage (" << damage << ") HP: " << playerHP << " $" << money << "\n";
 }

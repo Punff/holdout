@@ -38,7 +38,9 @@ public:
     enum class GameMode {
         MainMenu,
         InGame,
-        Exit
+        Exit,
+        Victory,
+        Defeat
     };
 
     GameMode currentMode;
@@ -51,6 +53,8 @@ public:
     void drawInGame(UI* gameUI);
     void updateInGame();
     void drawMainMenu();
+    void drawVictory();
+    void drawDefeat();
     void updateMainMenu();
 };
 
