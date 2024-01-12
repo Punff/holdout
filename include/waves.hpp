@@ -12,13 +12,13 @@ class WaveManager {
     private:
     static const string WAVE_PATH;
     GameManager* game;
-    int currWave;
-    int maxWave;
     int lastFrameDamage;
     double spawnInterval;
     double nextSpawnTime;
 
 public:
+    int currWave;
+    int maxWave;
     bool active;
     bool waveShouldStart;
     vector<baseEnemy*> remainingEnemies;
