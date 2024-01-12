@@ -46,7 +46,7 @@ void UI::draw_HP() {
     float HPvalue = game->playerHP;
 
     // Draw
-    GuiSliderBar((Rectangle){ leftCorner.x + width / 4, leftCorner.y + lineHeight, width / 2, height / 10 }, NULL, NULL, &HPvalue, 0, 100);
+    GuiSliderBar((Rectangle){ leftCorner.x + width / 4, leftCorner.y + height / 4 / 4, width / 2, height / 8 }, NULL, NULL, &HPvalue, 0, 100);
 }
 
 void UI::draw_wave_info(WaveManager* wave) {
@@ -75,8 +75,8 @@ void UI::draw_money() {
 
     // Draw
     GuiGroupBox((Rectangle){ rightCorner.x, rightCorner.y, width, height / 4 }, NULL);
-    GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + lineHeight, width / 2, height / 10 }, NULL, &moneyValue, 0, 50, false);
-    DrawText("$", rightCorner.x + width / 4 + width / 2 + 10, rightCorner.y + lineHeight + height / width / 2, height / 10, DARKGRAY);
+    GuiValueBox((Rectangle){ rightCorner.x + width / 4, rightCorner.y + height / 4 / 4, width / 2, height / 8 }, NULL, &moneyValue, 0, 50, false);
+    DrawText("$", rightCorner.x + width / 4 + width / 2 + 10, rightCorner.y + height / 4 / 4 + height / width / 2, height / 8, DARKGRAY);
 }
 
 void UI::draw_shop() {

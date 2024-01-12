@@ -4,7 +4,9 @@
 enum class GameMode {
     MainMenu,
     InGame,
-    Exit
+    Exit,
+    Victory,
+    Defeat
 };
 
 GameMode currentMode;
@@ -77,7 +79,7 @@ void GameManager::updateInGame() {
     }
 
     if (!IsSoundPlaying(mainTheme)) {
-        //PlaySound(mainTheme);
+        PlaySound(mainTheme);
     }
 
     if (waveManager != nullptr) {
@@ -94,6 +96,7 @@ void GameManager::updateInGame() {
         for(vector<baseTile*> row : map->grid){
             for(baseTile* tile : row){
                 if(CheckCollisionPointRec({xCoord, yCoord}, tile->hitbox) && !tile->is_occupied){
+                    tile->is_occupied = true;
                     canPlaceTower = true;
                 }
             }
@@ -175,10 +178,14 @@ void GameManager::drawInGame(UI* gameUI) {
         el->draw_tower();
     }
 
-    DrawRectangle(0, 0, screenWidth / 4, screenHeight, BLACK);
-    DrawRectangle(screenWidth * 3 / 4, 0, screenWidth / 4, screenHeight, BLACK);
-    DrawRectangle(0, 0, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
-    DrawRectangle(0, screenHeight - (screenHeight - (screenWidth / 2)) / 2, screenWidth, (screenHeight - (screenWidth / 2)) / 2, BLACK);
+    Color UIGreen = {43, 58, 58, 255};
+    Color UIGreener = {13, 70, 60, 255};
+    // Draw
+    DrawRectangleGradientEx((Rectangle) {0, 0, screenWidth, (screenHeight - screenWidth / 2) / 2}, UIGreen, UIGreen, UIGreener, UIGreener);
+    DrawRectangleGradientEx((Rectangle) {0, screenHeight - (screenHeight - screenWidth / 2) / 2, screenWidth, (screenHeight - screenWidth / 2)}, UIGreen, UIGreen, UIGreener, UIGreener);
+
+//    DrawRectangle(0, 0, screenWidth, (screenHeight - (screenWidth / 2)) / 2, {13, 70, 60, 255});
+//    DrawRectangle(0, screenHeight - (screenHeight - (screenWidth / 2)) / 2, screenWidth, (screenHeight - (screenWidth / 2)) / 2, {13, 70, 60, 255});
 
     gameUI->draw_mainUI();
     gameUI->draw_wave_info(waveManager);
