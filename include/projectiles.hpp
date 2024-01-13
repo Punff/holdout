@@ -45,6 +45,7 @@ public:
 
 class bomb : public baseProjectile {
 public:
+    Sound sound;
     bomb(GameManager* game, Vec2 position, Vec2 targetPos, int damage);
     void update() override;
     void draw_projectile() override;

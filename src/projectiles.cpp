@@ -76,7 +76,8 @@ void flameRing::draw_projectile(){
 }
 
 
-bomb::bomb(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage){
+bomb::bomb(GameManager* game, Vec2 position, Vec2 targetPos, int damage) : baseProjectile(game, position, targetPos, damage) {
+    sound = game->assets->load_sound("explosion.wav");
     texture = game->assets->load_texture("bomb.png");
     speed = 28;
 }
@@ -90,7 +91,8 @@ void bomb::update(){
     position = position + (dir.normalized() * speed * size) * GetFrameTime();
 
     for(baseEnemy* el : game->waveManager->activeEnemies){
-        if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * ENEMY_SIZE)){
+        if(CheckCollisionPointCircle(position, el->position, game->map->get_tile_size() * ENEMY_SIZE)) {
+            PlaySound(sound);
             shouldDelete = true;
             game->projectiles.push_back(new explosion(game, position, {0, 0}, damage));
             return;

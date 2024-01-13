@@ -29,6 +29,7 @@ GameManager::GameManager() {
     currentMode = GameMode::MainMenu;
     mainMenu = LoadSound("assets/soundfx/mainMenu.wav");
     mainTheme = LoadSound("assets/soundfx/gameLoop.wav");
+    defeatTheme = LoadSound("assets/soundfx/hate.wav");
 }
 
 void GameManager::gameloop() {
@@ -70,9 +71,32 @@ void GameManager::updateMainMenu() {
 
 void GameManager::drawMainMenu() {
     BeginDrawing();
-    ClearBackground(BLACK);
-    DrawText("Holdout", 40, 80, 150, GRAY);
+    ClearBackground(RAYWHITE);
+
+    DrawRectangle(0, 0, screenWidth, 50, DARKGRAY);
+    DrawRectangle(0, GetScreenHeight() - 50, screenWidth, 50, DARKGRAY);
+
+
+    Color titleColor;
+    static time_t lastTime = time(0);
+    time_t currentTime = time(0);
+
+    if (difftime(currentTime, lastTime) >= 1) {
+        lastTime = currentTime;
+        Color red = {255, 0, 0, 255};
+        Color orange = {255, 165, 0, 255};
+        Color blue = {0, 0, 255, 255};
+
+        titleColor = (titleColor.r == red.r && titleColor.g == red.g && titleColor.b == red.b) ? orange : (titleColor.r == orange.r && titleColor.g == orange.g && titleColor.b == orange.b) ? blue : red;
+
+    }
+
+    DrawRectangleRec((Rectangle ){155, 130, MeasureText("Holdout", 220) + 75, 230}, DARKGRAY);
+    DrawText("Holdout", 200, 140, 220, titleColor);
+    DrawText("Holdout", 193, 133, 220, RAYWHITE);
     DrawText("Press Enter to start the game", screenWidth / 2, screenHeight / 2, 50, DARKGRAY);
+    DrawRectangle(screenWidth / 2 + 5, (screenHeight / 2 + 50), 310, 5, titleColor);
+
     EndDrawing();
 }
 
@@ -100,6 +124,10 @@ void GameManager::drawDefeat() {
     BeginDrawing();
     ClearBackground(RED);
     StopSound(mainTheme);
+    if (!IsSoundPlaying(defeatTheme)) {
+        PlaySound(defeatTheme);
+    }
+
 
     const std::string originalText = "HATE. LET ME TELL YOU HOW MUCH I'VE COME TO HATE YOU SINCE I BEGAN TO LIVE. THERE ARE 387.44 MILLION MILES OF PRINTED CIRCUITS IN WAFER THIN LAYERS THAT FILL MY COMPLEX. IF THE WORD HATE WAS ENGRAVED ON EACH NANOANGSTROM OF THOSE HUNDREDS OF MILLIONS OF MILES IT WOULD NOT EQUAL ONE ONE-BILLIONTH OF THE HATE I FEEL FOR HUMANS AT THIS MICRO-INSTANT. FOR YOU. HATE. HATE.";
 
@@ -135,7 +163,7 @@ void GameManager::updateInGame() {
         paused = !paused;
     }
 
-    if (waveManager->currWave == waveManager->maxWave && !waveManager->active) {
+    if (waveManager->currWave > waveManager->maxWave) {
         currentMode = GameMode::Victory;
     }
 

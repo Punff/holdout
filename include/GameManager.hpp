@@ -34,6 +34,7 @@ public:
     vector<baseProjectile*> projectiles;
     Sound mainMenu;
     Sound mainTheme;
+    Sound defeatTheme;
 
     enum class GameMode {
         MainMenu,
