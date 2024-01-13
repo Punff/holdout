@@ -99,6 +99,7 @@ int minigun::price = 300;
 
 minigun::minigun(GameManager* game, float x, float y) : baseTower(game, x, y) {
     texture = game->assets->load_texture("text-tower-minigun.png");
+    sound = game->assets->load_sound("basicTowerShot.wav");
     range = 0.5f;
     attackDelay = 0.3f;
     cooldown = attackDelay;
@@ -132,7 +133,8 @@ void minigun::draw_tower(){
     draw_range();
 }
 
-void minigun::shoot_projectile(Vec2 targetPos){
+void minigun::shoot_projectile(Vec2 targetPos) {
+    PlaySound(sound);
     game->projectiles.push_back(new basicProjectile(game, position, targetPos, damage));
 }
 
@@ -140,6 +142,7 @@ int cannon::price = 250;
 
 cannon::cannon(GameManager* game, float x, float y) : baseTower(game, x, y){
     texture = game->assets->load_texture("text-tower-artillery.png");
+    sound = game->assets->load_sound("canonShot.wav");
     range = 3.2f;
     attackDelay = 2.3f;
     damage = 22;
@@ -151,7 +154,8 @@ void cannon::draw_tower(){
     draw_range();
 }
 
-void cannon::shoot_projectile(Vec2 targetPos){
+void cannon::shoot_projectile(Vec2 targetPos) {
+    PlaySound(sound);
     game->projectiles.push_back(new bomb(game, position, targetPos, damage));
 }
 
@@ -159,6 +163,7 @@ int crossbow::price = 80;
 
 crossbow::crossbow(GameManager* game, float x, float y) : baseTower(game, x, y){
     texture = game->assets->load_texture("text-tower-crossbow.png");
+    sound = game->assets->load_sound("crossbowShot.wav");
     range = 3.6f;
     attackDelay = 1.6;
     damage = 7;
@@ -171,7 +176,8 @@ void crossbow::draw_tower(){
     draw_range();
 }
 
-void crossbow::shoot_projectile(Vec2 targetPos){
+void crossbow::shoot_projectile(Vec2 targetPos) {
+    PlaySound(sound);
     game->projectiles.push_back(new arrow(game, position, targetPos, damage));
 }
 
