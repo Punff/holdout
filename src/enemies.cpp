@@ -43,10 +43,10 @@ void baseEnemy::draw_enemy(){
 
 basicEnemy::basicEnemy(GameManager* game) : baseEnemy(game){
     texture = game->assets->load_texture("text-enemy-basic.png");
-    damage = 5000;
+    damage = 5;
     value = 2;
     hp = 10;
-    moveSpeed = 100;
+    moveSpeed = 1;
 }
 
 eliteEnemy::eliteEnemy(GameManager* game) : baseEnemy(game){
