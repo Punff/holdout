@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(raylib_game)
+project(holdout)
 
 set(CMAKE_CXX_STANDARD 17)
 
