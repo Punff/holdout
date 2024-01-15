@@ -1,14 +1,6 @@
-# untitled-TD
-Tower defense game project using C++ &amp; Raylib
+# Holdout
+Tower defense igra koristeći C++ i Raylib
 
-## TO-DO
-- Enemy behaviour and variety
-- Projectiles
-- Tower behaviour and variety
-- Waves
-- Economy
-- UI
-### Optional:
-- Assets
-- Sound and music
-- More maps
+# Instalacija
+Projekt koristi statički povezanu raylib biblioteku te će takva funkcionirati bez dodatnog konfiguriranja
+Sve što je potrebno je preuzeti mapu s izvršnom datotekom ''holdout'' i mapom s resursima igre ''assets''
